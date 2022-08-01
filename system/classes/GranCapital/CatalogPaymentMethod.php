@@ -6,9 +6,6 @@ use HCStudio\Orm;
 
 class CatalogPaymentMethod extends Orm {
 	protected $tblName = 'catalog_payment_method';
-
-	public static $DEPOSIT = 1;
-	public static $CASH = 2;
 	public function __construct() {
 		parent::__construct();
 	}
@@ -17,7 +14,13 @@ class CatalogPaymentMethod extends Orm {
 	{
 		$sql = "SELECT 
 					{$this->tblName}.{$this->tblName}_id,
-					{$this->tblName}.payment_method
+					{$this->tblName}.currency,
+					{$this->tblName}.fee,
+					{$this->tblName}.additional_info,
+					{$this->tblName}.image,
+					{$this->tblName}.description,
+					{$this->tblName}.recomended,
+					{$this->tblName}.code
 				FROM 
 					{$this->tblName}
 				WHERE 
@@ -26,24 +29,19 @@ class CatalogPaymentMethod extends Orm {
 		
 		return $this->connection()->rows($sql);
 	}
-
-	public function get($catalog_payment_method_id = null)
+	
+	public function getCode(int $catalog_currency_id = null)
 	{
-		if(isset($catalog_payment_method_id) == true)
-		{
-			$sql = "SELECT 
-						{$this->tblName}.{$this->tblName}_id,
-						{$this->tblName}.permission,
-						{$this->tblName}.description
-					FROM 
-						{$this->tblName}
-					WHERE 
-						{$this->tblName}.status = '1'
-					";
-			
-			return $this->connection()->rows($sql);
-		}
-
-		return false;
+		$sql = "SELECT 
+					{$this->tblName}.code
+				FROM 
+					{$this->tblName}
+				WHERE 
+					{$this->tblName}.catalog_currency_id = '{$catalog_currency_id}'
+				AND  
+					{$this->tblName}.status = '1'
+				";
+		
+		return $this->connection()->field($sql);
 	}
 }

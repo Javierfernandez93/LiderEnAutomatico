@@ -3,6 +3,58 @@
         <div class="col-12 col-xl-8">
             <div class="row">
                 <div class="col-lg-7">
+                    <div class="card mb-3">
+                        <div class="card-header pb-0 px-3 pb-3">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h6 class="mb-0">
+                                        Selecciona tu forma de depósito
+                                    </h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <ul class="list-group list-group-flush">
+                                <li 
+                                    v-for="catalogPaymentMethod in catalogPaymentMethods"
+                                    :class="transaction.catalog_payment_method_id == catalogPaymentMethod.catalog_payment_method_id ? 'active': ''"
+                                    class="list-group-item cursor-pointer list-group-item-action"
+                                    @click="setPaymentMethod(catalogPaymentMethod.catalog_payment_method_id)">
+                                    <div class="row align-items-center">
+                                        <div class="col-2">
+                                            <img :src="catalogPaymentMethod.image" alt="catalogPaymentMethod.currency" class="img-fluid p-2">
+                                        </div>
+                                        <div class="col">
+                                            <div>
+                                                {{catalogPaymentMethod.description}} 
+                                                <span 
+                                                    :class="transaction.catalog_payment_method_id == catalogPaymentMethod.catalog_payment_method_id ? 'text-white': ''"
+                                                    class="badge text-dark p-0">{{catalogPaymentMethod.currency}}</span> 
+                                            </div>
+
+                                            <div>
+                                                <span v-if="catalogPaymentMethod.fee > 0"
+                                                    class="badge bg-danger">
+                                                    Tarifa de transacción del {{catalogPaymentMethod.fee.numberFormat()}} %
+                                                </span>
+                                                <span v-else
+                                                    class="badge bg-success">
+                                                    Sin cargos
+                                                </span>
+                                            </div>
+
+                                            <div class="text-sm py-2">{{catalogPaymentMethod.additional_info}}</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <span v-if="catalogPaymentMethod.recomended"
+                                                class="badge bg-light text-primary">Recomendado</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
                     <div class="card">
                         <div class="card-header pb-0 px-3">
                             <div class="row">
@@ -16,16 +68,10 @@
                                 <label>Monto a fondear</label>
                                 <div class="input-group mb-3">
                                     <input 
+                                        :disabled="!transaction.catalog_payment_method_id"
                                         :autofocus="true"
                                         v-model="transaction.ammount"
                                         type="text" class="form-control" placeholder="0.0" />
-                                        
-                                    <select 
-                                        class="form-select" v-model="transaction.catalog_currency_id" aria-label="">
-                                        <option v-for="catalogCurrency in catalogCurrencies" v-bind:value="catalogCurrency.catalog_currency_id">
-                                            {{catalogCurrency.description}} - {{catalogCurrency.code}}
-                                        </option>
-                                    </select>
                                 </div>
 
 

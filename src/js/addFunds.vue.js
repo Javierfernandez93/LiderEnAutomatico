@@ -9,12 +9,12 @@ Vue.createApp({
             User: new User,
             feedback: null,
             transaction: {
-                catalog_currency_id: 1,
+                catalog_payment_method_id: null,
                 ammount: null,
             },
             checkoutData: false,
             lastTransactions: [],
-            catalogCurrencies: [],
+            catalogPaymentMethods: [],
             loading : false,
         }
     },
@@ -33,6 +33,9 @@ Vue.createApp({
         },
     },
     methods: {
+        setPaymentMethod: function (catalog_payment_method_id) {
+            this.transaction.catalog_payment_method_id = catalog_payment_method_id
+        },
         createTransactionRequirement: function () {
             this.loading = true
             this.User.createTransactionRequirement(this.transaction, (response) => {
@@ -52,11 +55,11 @@ Vue.createApp({
                 }
             })
         },
-        getCurrencies: function () {
+        getPaymentMethods: function () {
             return new Promise((resolve) => {
-                this.User.getCurrencies({}, (response) => {
+                this.User.getPaymentMethods({}, (response) => {
                     if (response.s == 1) {
-                        this.catalogCurrencies = response.catalogCurrencies
+                        this.catalogPaymentMethods = response.catalogPaymentMethods
                     }
 
                     resolve()
@@ -65,7 +68,7 @@ Vue.createApp({
         },
     },
     mounted() {
-        this.getCurrencies().then(() => {
+        this.getPaymentMethods().then(() => {
             this.getLastTransactionsRequirement()
         })
     },

@@ -43,6 +43,9 @@ class User extends Http {
     getCountries(data, callback) {
         return this.call('../../app/application/get_countries.php', data, callback);
     }
+    getPaymentMethods(data, callback) {
+        return this.call('../../app/application/getPaymentMethods.php', data, callback);
+    }
     changePassword(data, callback) {
         return this.call('../../app/application/change_password.php', data, callback);
     }
