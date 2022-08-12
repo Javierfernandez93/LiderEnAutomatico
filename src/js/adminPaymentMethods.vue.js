@@ -29,6 +29,10 @@ Vue.createApp({
                     name: 'fee',
                     desc: false,
                 },
+                recomended: {
+                    name: 'recomended',
+                    desc: false,
+                },
                 create_date: {
                     name: 'create_date',
                     desc: false,
@@ -95,6 +99,22 @@ Vue.createApp({
                 if(response.s == 1)
                 {
                     catalogPaymentMethod.status = response.status
+                }
+            })
+        },
+        enableRecomendation: function (catalogPaymentMethod) {
+            this.UserSupport.enableRecomendation({catalog_payment_method_id: catalogPaymentMethod.catalog_payment_method_id},(response)=>{
+                if(response.s == 1)
+                {
+                    catalogPaymentMethod.recomended = 1
+                }
+            })
+        },
+        disableRecomendation: function (catalogPaymentMethod) {
+            this.UserSupport.disableRecomendation({catalog_payment_method_id: catalogPaymentMethod.catalog_payment_method_id},(response)=>{
+                if(response.s == 1)
+                {
+                    catalogPaymentMethod.recomended = 0
                 }
             })
         },

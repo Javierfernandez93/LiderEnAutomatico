@@ -65,6 +65,17 @@
                                         <u class="text-sm ms-2">Fecha de ingreso</u>
                                     </th>
                                     <th 
+                                        @click="sortData(columns.recomended)"
+                                        class="text-center c-pointer text-uppercase text-primary text-secondary font-weight-bolder opacity-7">
+                                        <span v-if="columns.recomended.desc">
+                                            <i class="bi text-primary bi-arrow-up-square-fill"></i>
+                                        </span>    
+                                        <span v-else>    
+                                            <i class="bi text-primary bi-arrow-down-square-fill"></i>
+                                        </span>    
+                                        <u class="text-sm ms-2">Recomendado</u>
+                                    </th>
+                                    <th 
                                         @click="sortData(columns.status)"
                                         class="text-center c-pointer text-uppercase text-primary text-secondary font-weight-bolder opacity-7">
                                         <span v-if="columns.status.desc">
@@ -119,6 +130,12 @@
                                         {{catalogPaymentMethod.create_date.formatDate()}} 
                                     </td>
                                     <td class="align-middle text-center text-sm">
+                                        <span v-if="catalogPaymentMethod.recomended"
+                                            class="badge bg-gradient-warning">
+                                            Recomendado
+                                        </span>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
                                         <span v-if="catalogPaymentMethod.status == -1"
                                             class="badge bg-danger">
                                             Eliminado
@@ -145,6 +162,13 @@
                                                 <li v-else>
                                                     <button class="dropdown-item" @click="activePaymentMethod(catalogPaymentMethod)">Activar</button>
                                                 </li>
+                                                <li v-if="catalogPaymentMethod.recomended">
+                                                    <button class="dropdown-item" @click="disableRecomendation(catalogPaymentMethod)">Quitar de recomendados</button>
+                                                </li>
+                                                <li v-else>
+                                                    <button class="dropdown-item" @click="enableRecomendation(catalogPaymentMethod)">Añadir a recomendados</button>
+                                                </li>
+                                                
                                                 <li>
                                                     <button class="dropdown-item" @click="deletePaymentMethod(catalogPaymentMethod)">Eliminar</button>
                                                 </li>

@@ -40,6 +40,12 @@ class UserSupport extends Http {
     activePaymentMethod(data, callback) {
         return this.call('../../app/application/activePaymentMethod.php', data, callback);
     }
+    disableRecomendation(data, callback) {
+        return this.call('../../app/application/disableRecomendation.php', data, callback);
+    }
+    enableRecomendation(data, callback) {
+        return this.call('../../app/application/enableRecomendation.php', data, callback);
+    }
     deletePaymentMethod(data, callback) {
         return this.call('../../app/application/deletePaymentMethod.php', data, callback);
     }
