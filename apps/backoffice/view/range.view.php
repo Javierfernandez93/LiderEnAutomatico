@@ -6,7 +6,8 @@
                     Rangos
 
 
-                    <div class="row justify-content-center range-box">
+                    <div class="row justify-content-center range-box"
+                        :class="!catalog_plan_id ? 'range-box-bar-fixed' : ''">
                         <div class="col-12 col-xl-10">
                             <div 
                                 v-if="catalogPlans.length > 0"

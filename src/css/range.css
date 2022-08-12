@@ -1,6 +1,7 @@
 .range-box-inner {
     z-index: 2;
 }
+
 .range-box:before {
     content: '';
     width: 80%;
@@ -10,6 +11,9 @@
     height: 1px;
     z-index: 1;
     background-color: #8392ab;
+}
+.range-box-bar-fixed:before {
+    top: 72%;
 }
 .dot-inner {
     border-radius: 50%;
@@ -24,4 +28,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+@media (max-width: 600px) 
+{
+    .range-box:before {
+        display: none;
+    } 
 }
