@@ -484,14 +484,14 @@
                             document.write(new Date().getFullYear())
                             </script>,
                             made with <i class="fa fa-heart"></i> by
-                            <a href="https://grancapital.fund/" class="font-weight-bold" target="_blank">Lider en Automático</a>
+                            <a href="https://grancapital.fund/" class="font-weight-bold" target="_blank">Libertad en Automático</a>
                             for a better web.
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                             <li class="nav-item">
-                                <a href="" class="nav-link text-muted" target="_blank">Lider en Automático</a>
+                                <a href="" class="nav-link text-muted" target="_blank">Libertad en Automático</a>
                             </li>
                         </ul>
                     </div>

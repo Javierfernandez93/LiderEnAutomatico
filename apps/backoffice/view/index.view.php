@@ -23,7 +23,7 @@
                             <div class="d-flex flex-column h-100">
                                 <p class="mb-1 pt-2 text-bold">Aviso</p>
                                 <h5 class="font-weight-bolder">¿Estás preparado para ganar?</h5>
-                                <p class="mb-5">Lider en Automático te ofrece varios esquemas de ganancias.</p>
+                                <p class="mb-5">Libertad en Automático te ofrece varios esquemas de ganancias.</p>
                                 <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto"
                                     href="../../apps/backoffice/plans">
                                     Leer más
@@ -50,7 +50,7 @@
                 <span class="mask bg-gradient-dark"></span>
                 <div class="card-body position-relative z-index-1 d-flex flex-column h-100 p-3">
                     <h5 class="text-white font-weight-bolder">Haz crecer tu grupo y gana</h5>
-                    <p class="text-white">Lider en Automático te premia por referir usuarios activos.</p>
+                    <p class="text-white">Libertad en Automático te premia por referir usuarios activos.</p>
                     
                     <div v-if="landing">
                         <div class="mb-3">

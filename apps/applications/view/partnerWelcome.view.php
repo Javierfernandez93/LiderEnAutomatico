@@ -10,6 +10,6 @@
 
 <p>
     <b>
-        Gracias de parte del equipo de Lider en Automático
+        Gracias de parte del equipo de Libertad en Automático
     </b>
 </p>

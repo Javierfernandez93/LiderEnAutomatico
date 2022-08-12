@@ -189,7 +189,7 @@ function createTransaction(string $email = null,array $data = null)
             'currency1' => 'USD',
             'currency2' => $data['code'],
             'buyer_email' => $email,
-            'item_name' => 'Fondos en Lider en Automático',
+            'item_name' => 'Fondos en Libertad en Automático',
             'item_number' => (string)$data['transaction_requirement_per_user_id'],
             'address' => '', // leave blank send to follow your settings on the Coin Settings page
             'ipn_url' => 'https://grancapital.fund/ipn_handler.php',

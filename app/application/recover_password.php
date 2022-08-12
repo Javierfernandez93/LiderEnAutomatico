@@ -78,7 +78,7 @@ function sendEmail(string $email = null,string $token = null) : bool
 
             //Recipients
             $mail->setFrom($CatalogMailController->mail, $CatalogMailController->sender);
-            $mail->addAddress($email, 'Lider en Automático User');     
+            $mail->addAddress($email, 'Libertad en Automático User');     
 
             //Content
             $mail->isHTML(true);                                
