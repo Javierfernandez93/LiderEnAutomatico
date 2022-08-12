@@ -15,7 +15,7 @@
 								<label>Balance</label>
 							</div>
 						</div>
-						<div class="col-12 col-xl-6">
+						<div class="col-12 col-xl-6 mb-3 mb-xl-0">
 							<div class="form-floating">
 								<input
 									@keydown.enter.exact.prevent="$refs.ammount.focus()" 
