@@ -62,7 +62,7 @@ function sendPush(string $user_login_id = null,string $message = null,int $catal
 
 function sendPushUser(string $user_login_id = null,string $names = null) : bool
 {
-    return sendPush($user_login_id,"Bienvenido a bordo {$names}, estamos felices de que te hayas registrado en Gran Capital",GranCapital\CatalogNotification::ACCOUNT);
+    return sendPush($user_login_id,"Bienvenido a bordo {$names}, estamos felices de que te hayas registrado en Lider en Automático",GranCapital\CatalogNotification::ACCOUNT);
 }
 
 function sendPushSponsor(string $user_login_id = null,string $names = null) : bool
@@ -78,7 +78,7 @@ function sendEmailSponsor(string $user_login_id = null,string $names = null) : b
 
         if($email = $UserLogin->getEmail($user_login_id))
         {
-            return sendEmail($email,$names,'Nuevo afiliado en Gran Capital','partnerWelcome');
+            return sendEmail($email,$names,'Nuevo afiliado en Lider en Automático','partnerWelcome');
         }
     }
 

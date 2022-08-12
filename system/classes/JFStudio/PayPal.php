@@ -2,7 +2,6 @@
 
 namespace JFStudio;
 
-use Talento\BuyPerUser;
 use HCStudio\Util;
 use JFStudio\ValidatorHelper;
 use JFStudio\ModelPayPalErrors;
@@ -10,15 +9,27 @@ use Jcart\ModelPaymentMethod;
 use Exception;
 
 class PayPal {
-    // public static $CLIENT_ID = "AfR2RRNUmTU82_mkmKJvUgCnYYrILn-p3NKjlHAOnLpIHXiNVR0Ag7vpouPxiLuPwG8O8ad65BCJF1oo"; 
-    public static $CLIENT_ID = "AQe5pdGM8BQ1jpREDidCvEuCEkWSajBzzwFgxePZMCA0nY_jJCpk372-ib2p9SgFgrSKb2UkUAlO5zKy"; 
-    // public static $CLIENT_SECRET = "ENgAx4PgpYXzBgbiPvL74RaOL3LuHfjpqdwq1Rk3z2xn9sFkxiswVig4IqZfiJjx5XHrFJExMHFYaoDD";
-    public static $CLIENT_SECRET = "EP3-2vp_Qu7LjR6gYjyX7PM8e00LiDtjvocl_wiuWAzL1oA4tsP8bHXYCz1njxfWeBpzU-eQMObPyztK";
-    public $URL = "https://www.mtkmexico.com/apps/admin/subcore/application/validate_buy.php";
-    public static $APPROVED = "approved";
-    public static $FAILED = "failed";
-    public $TEMPORAL_VALIDATION = true;
+    // const CLIENT_ID = "AfR2RRNUmTU82_mkmKJvUgCnYYrILn-p3NKjlHAOnLpIHXiNVR0Ag7vpouPxiLuPwG8O8ad65BCJF1oo"; 
+    // const CLIENT_SECRET = "ENgAx4PgpYXzBgbiPvL74RaOL3LuHfjpqdwq1Rk3z2xn9sFkxiswVig4IqZfiJjx5XHrFJExMHFYaoDD";
+
+    /* states */
+    const APPROVED = 'approved';
+
+
+    const CLIENT_ID = "AdwyJ9IikdGSF6yu1XhcWMybTjuba30NjQZfKLnPXN3_cYOHDsZlglkPoVMPLdTTfgSKzrBRXe4jir-Y"; 
+    const CLIENT_SECRET = "EDeQdrc4logyni_uoHNFyALxzKyiBFFexNbfzZAWGU16nFztxEgHB8Yw54Fqm86PFhGnQESyPpqrwJJt";
+
+    const RETURN_URL = "http://localhost:8888/LiderEnAutomatico/apps/paypal/index.php";
+    const CANCEL_URL = "http://localhost:8888/LiderEnAutomatico/apps/backoffice";
+    const URL = "http://localhost:8888/LiderEnAutomatico/apps/admin/subcore/application/validate_buy.php";
+    
+    const MODE = 'sandbox'; // 'live', 'sandbox'
+    
+    const FAILED = "failed";
+    const TEMPORAL_VALIDATION = true;
+
     private static $instance;
+    
 	public static function getInstance()
  	{
     	if(!self::$instance instanceof self)

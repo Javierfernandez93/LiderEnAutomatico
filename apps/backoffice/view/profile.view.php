@@ -23,7 +23,8 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-auto my-auto text-end">
+                <div class="col-auto my-auto text-end cursor-pointer"
+                    @click="goToRange">
                     <div class="text-muted fw-semibold small">Estatus</div>
                     <div>
                         <span 

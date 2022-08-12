@@ -16,6 +16,8 @@ class CatalogPlan extends Orm {
 		$sql = "SELECT 
 					{$this->tblName}.{$this->tblName}_id,
 					{$this->tblName}.name,
+					{$this->tblName}.goal,
+					{$this->tblName}.image,
 					{$this->tblName}.profit
 				FROM 
 					{$this->tblName}
@@ -61,13 +63,13 @@ class CatalogPlan extends Orm {
 
 			if($catalog_plans = $this->getAll())
 			{
-				if($ammount >= $catalog_plans[0]['name'])
+				if($ammount >= $catalog_plans[0]['goal'])
 				{
 					foreach($catalog_plans as $key => $catalog_plan)
 					{
-						$nextVal = $$catalog_plans[$key+1] != null ? $catalog_plans[$key+1]['name'] : INF;
+						$nextVal = $$catalog_plans[$key+1] != null ? $catalog_plans[$key+1]['goal'] : INF;
 		
-						if ($ammount >= $catalog_plan['name'] && $ammount < $nextVal) 
+						if ($ammount >= $catalog_plan['goal'] && $ammount < $nextVal) 
 						{
 							$catalog_plan_id = $catalog_plan['catalog_plan_id'];
 						}

@@ -11,7 +11,11 @@ class TransactionRequirementPerUser extends Orm {
     const VALIDATED = 2;
     
     const CRONJOB = 1;
+    const PAYPAL_CDN = 3;
+    const STRIPE_CDN = 4;
     const ADMIN = 2;
+
+    CONST DEFAULT_CURRENCY = 'USD';
     protected $tblName = 'transaction_requirement_per_user';
 
     public function __construct() {
@@ -22,7 +26,7 @@ class TransactionRequirementPerUser extends Orm {
     {
         return $this->getTransactions(" WHERE {$this->tblName}.status = '".self::PENDING."'");
     }
-    
+
     public function getTransactions(string $filter = null) 
     {
         $sql = "SELECT
@@ -66,10 +70,13 @@ class TransactionRequirementPerUser extends Orm {
         {
             $sql = "SELECT
                         {$this->tblName}.{$this->tblName}_id,
+                        {$this->tblName}.fee,
                         {$this->tblName}.ammount,
                         {$this->tblName}.item_number,
                         {$this->tblName}.txn_id,
                         {$this->tblName}.create_date,
+                        {$this->tblName}.catalog_payment_method_id,
+                        {$this->tblName}.checkout_data,
                         {$this->tblName}.validate_date,
                         {$this->tblName}.status
                     FROM 

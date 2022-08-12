@@ -10,6 +10,10 @@ if($UserLogin->_loaded === false) {
 
 $UserLogin->checkRedirection();
 
+// $ApiFixer = JFStudio\ApiFixer::getInstance();
+// $res = $ApiFixer->convert(5000,'mxn','usd');
+// d($res);
+
 $Layout = JFStudio\Layout::getInstance();
 
 $route = JFStudio\Router::AddFunds;

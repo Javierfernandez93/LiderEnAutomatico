@@ -17,6 +17,10 @@ class Router {
     const Wallet = 23;
     const Calculator = 25;
     const AddFunds = 28;
+    const Range = 35;
+    const PayPal = 36;
+    const Stripe = 37;
+    const ListFunds = 39;
 
     /* admin */
     const AdminUsers = 9;
@@ -41,6 +45,7 @@ class Router {
     const AdminNoticesEdit = 32;
     const AdminNoticesAdd = 33;
     const AdminStats = 34;
+    const AdminPaymentMethods = 38;
 
     static function getName(int $route = null)
     {
@@ -72,6 +77,12 @@ class Router {
                 return 'Cartera electrónica';
             case self::Calculator:
                 return 'Calculadora';
+            case self::Range:
+                return 'Rango';
+            case self::PayPal:
+                return 'PayPal';
+            case self::Stripe:
+                return 'Stripe';
             case self::AddFunds:
                 return 'Añadir fondos';
             case self::AdminDash:
@@ -118,6 +129,10 @@ class Router {
                 return 'Ver fondeos';
             case self::AdminStats:
                 return 'Estadísticas';
+            case self::ListFunds:
+                return 'Lista de fondeos';
+            case self::AdminPaymentMethods:
+                return 'Métodos de pago';
                 default: 
                 return 'Sin nombre';
         }

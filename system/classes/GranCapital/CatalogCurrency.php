@@ -6,6 +6,8 @@ use HCStudio\Orm;
 
 class CatalogCurrency extends Orm {
 	protected $tblName = 'catalog_currency';
+	const CRIPTO = 1;
+	const FIAT = 2;
 	public function __construct() {
 		parent::__construct();
 	}
@@ -24,20 +26,5 @@ class CatalogCurrency extends Orm {
 				";
 		
 		return $this->connection()->rows($sql);
-	}
-	
-	public function getCode(int $catalog_currency_id = null)
-	{
-		$sql = "SELECT 
-					{$this->tblName}.code
-				FROM 
-					{$this->tblName}
-				WHERE 
-					{$this->tblName}.catalog_currency_id = '{$catalog_currency_id}'
-				AND  
-					{$this->tblName}.status = '1'
-				";
-		
-		return $this->connection()->field($sql);
 	}
 }

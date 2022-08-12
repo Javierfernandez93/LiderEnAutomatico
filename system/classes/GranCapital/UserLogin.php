@@ -540,6 +540,15 @@ class UserLogin extends Orm {
       return (new TransactionRequirementPerUser)->getLastTransactions($this->company_id,"LIMIT 5");
     }
   }
+  
+  public function getAllTransactions()
+  {
+    if($this->getId())
+    {
+      return (new TransactionRequirementPerUser)->getLastTransactions($this->company_id);
+    }
+  }
+
   public function getSignupDate(int $company_id = null)
   {
     if(isset($company_id))

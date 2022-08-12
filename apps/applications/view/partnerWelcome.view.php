@@ -10,6 +10,6 @@
 
 <p>
     <b>
-        Gracias de parte del equipo de Gran Capital
+        Gracias de parte del equipo de Lider en Automático
     </b>
 </p>

@@ -88,7 +88,7 @@ function updateUserAccount($data = null,$company_id = null)
         return $UserAccount->save();
     }
 
-    return false;
+    return true;
 }
 
 function updateUserAddress($data = null,$company_id = null)

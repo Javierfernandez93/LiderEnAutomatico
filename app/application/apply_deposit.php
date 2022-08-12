@@ -141,7 +141,7 @@ function sendEmail(string $email = null,float $ammount = null) : bool
             //Content
             $mail->isHTML(true);                                  
             $mail->CharSet = 'UTF-8';
-            $mail->Subject = 'Gran Capital - Fondos Aplicados';
+            $mail->Subject = 'Lider en Automático - Fondos Aplicados';
             $mail->Body = $Layout->getHtml();
             $mail->AltBody = strip_tags($Layout->getHtml());
 

@@ -25,7 +25,7 @@ class Layout
 	public $virtual_view= null;
 	public $_view_root  = null;
 	public $content_virtual_view = null;
-	public $_pretitle  = 'Gran Capital Fund - ';
+	public $_pretitle  = 'Lider en Automático - ';
 	public $modules    = [];
 	# protected vars
 

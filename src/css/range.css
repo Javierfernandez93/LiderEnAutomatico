@@ -1,0 +1,27 @@
+.range-box-inner {
+    z-index: 2;
+}
+.range-box:before {
+    content: '';
+    width: 80%;
+    left: 10%;
+    position: absolute;
+    top: 69%;
+    height: 1px;
+    z-index: 1;
+    background-color: #8392ab;
+}
+.dot-inner {
+    border-radius: 50%;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+.dot {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

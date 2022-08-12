@@ -34,6 +34,9 @@ class User extends Http {
     getWithdraws(data, callback) {
         return this.call('../../app/application/get_withdraws.php', data, callback);
     }
+    getMyRange(data, callback) {
+        return this.call('../../app/application/getMyRange.php', data, callback);
+    }
     getPlans(data, callback) {
         return this.call('../../app/application/get_plans.php', data, callback);
     }
@@ -79,9 +82,21 @@ class User extends Http {
     getNoticesList(data, callback) {
         return this.call('../../app/application/get_notices_list.php', data, callback);
     }
+    getPayPalPaymentStatus(data, callback) {
+        return this.call('../../app/application/getPayPalPaymentStatus.php', data, callback);
+    }
+    getAllTransactionsRequirement(data, callback) {
+        return this.call('../../app/application/getAllTransactionsRequirement.php', data, callback);
+    }
     // callfile
     uploadImageProfile(data, progress, callback) {
         return this.callFile('../../app/application/upload_image_profile.php', data, callback, progress);
+    }
+    checkStripePayment(data,callback) {
+        return this.call('./../../app/application/checkStripePayment.php', data, callback);
+    }
+    getStripeClientSecret(data,callback) {
+        return this.call('./../../app/application/getStripeClientSecret.php', data, callback);
     }
 }
 

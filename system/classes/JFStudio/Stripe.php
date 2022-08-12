@@ -2,7 +2,6 @@
 
 namespace JFStudio;
 
-use Talento\BuyPerUser;
 use HCStudio\Util;
 use JFStudio\ValidatorHelper;
 use JFStudio\ModelStripeErrors;
@@ -10,12 +9,17 @@ use Jcart\ModelPaymentMethod;
 use Exception;
 
 class Stripe {
-    // public $URL = "http://localhost:8888/franquicias/apps/admin/subcore/application/validate_buy.php";
-    public $URL = "https://www.mtkmexico.com/apps/admin/subcore/application/validate_buy.php";
-    public static $SECRET_KEY_SANDBOX = "sk_test_dL2vzQGh2cPGxDOQo6nBs85z"; 
-    public static $SECRET_KEY_LIVE = "sk_live_d0NEo5a95zvOvLQknCqvoTs2"; 
-    public static $APPROVED = "succeeded";
-    public $TEMPORAL_VALIDATION = true;
+    public $URL = "https://www.grancapital.fund/apps/admin/subcore/application/validate_buy.php";
+    
+    // const SECRET_KEY = "sk_test_dL2vzQGh2cPGxDOQo6nBs85z"; 
+    // const PULIC_KEY = "sk_live_d0NEo5a95zvOvLQknCqvoTs2"; 
+
+    const SECRET_KEY_SANDBOX = "sk_test_51GM2sSHwPw0UyNibVSfLaOZ76TPbCh8msfj1T98I0bTmX3eVpIzekIEImG44dHUgcYRQpDW6FWcDkLipHXRfJPPE00IcfzSuyd"; 
+    const PULIC_KEY_SANDBOX = "pk_test_Emr0QcdYN1t5FdOEHKQMPhos007kikkSMO"; 
+    
+    const APPROVED = "succeeded";
+    const TEMPORAL_VALIDATION = true;
+    
     private static $instance;
 	public static function getInstance()
  	{
@@ -36,12 +40,14 @@ class Stripe {
     }
     public function getSecretKeySandbox()
     {
-        return self::$SECRET_KEY_SANDBOX;
+        return self::SECRET_KEY_SANDBOX;
     }
+
     public function getSecretKeyLive()
     {
-        return self::$SECRET_KEY_LIVE;
+        return self::SECRET_KEY;
     }
+    
     public function validateBuy($paymentId = null,&$BuyPerUser = null)
  	{
  		if (isset($paymentId)) 

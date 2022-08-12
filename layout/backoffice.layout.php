@@ -95,6 +95,24 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link <?php if($route == JFStudio\Router::Range){?>active<?php } ?>" href="../../apps/backoffice/range">
+                            <div
+                                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-x-diamond-fill <?php if($route == JFStudio\Router::Range){?>text-white<?php } else { ?>text-dark<?php } ?>"></i>
+                            </div>
+                            <span class="nav-link-text ms-1"><?php echo JFStudio\Router::getName(JFStudio\Router::Range);?></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if($route == JFStudio\Router::ListFunds){?>active<?php } ?>" href="../../apps/wallet/allFunds">
+                            <div
+                                class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
+                                <i class="bi bi-currency-bitcoin <?php if($route == JFStudio\Router::ListFunds){?>text-white<?php } else { ?>text-dark<?php } ?>"></i>
+                            </div>
+                            <span class="nav-link-text ms-1"><?php echo JFStudio\Router::getName(JFStudio\Router::ListFunds);?></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link <?php if($route == JFStudio\Router::Gains){?>active<?php } ?>" href="../../apps/gains">
                             <div
                                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -252,7 +270,7 @@
                         <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Ajustes de cuenta</h6>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link  <?php if($route == JFStudio\Router::Profile){?>active<?php } ?>"
+                        <a class="nav-link  <?php if(in_array($route,[JFStudio\Router::Profile,JFStudio\Router::Range])){?>active<?php } ?>"
                             href="../../apps/backoffice/profile">
                             <div
                                 class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center me-2 d-flex align-items-center justify-content-center">
@@ -466,15 +484,14 @@
                             document.write(new Date().getFullYear())
                             </script>,
                             made with <i class="fa fa-heart"></i> by
-                            <a href="https://grancapital.fund/" class="font-weight-bold" target="_blank">Grand
-                                Capital</a>
+                            <a href="https://grancapital.fund/" class="font-weight-bold" target="_blank">Lider en Automático</a>
                             for a better web.
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <ul class="nav nav-footer justify-content-center justify-content-lg-end">
                             <li class="nav-item">
-                                <a href="" class="nav-link text-muted" target="_blank">Grand Capital</a>
+                                <a href="" class="nav-link text-muted" target="_blank">Lider en Automático</a>
                             </li>
                         </ul>
                     </div>

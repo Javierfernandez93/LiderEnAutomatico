@@ -31,6 +31,9 @@ Vue.createApp({
         },
     },
     methods: {
+        goToRange : function() {
+            window.location.href = '../../apps/backoffice/range'
+        },
         getProfile : function() {
             this.User.getProfile({include_countries:true},(response)=>{
                 if(response.s == 1)

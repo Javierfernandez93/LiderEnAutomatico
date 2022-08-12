@@ -34,8 +34,23 @@ class UserSupport extends Http {
     deleteTransaction(data, callback) {
         return this.call('../../app/application/delete_transaction.php', data, callback);
     }
+    inactivePaymentMethod(data, callback) {
+        return this.call('../../app/application/inactivePaymentMethod.php', data, callback);
+    }
+    activePaymentMethod(data, callback) {
+        return this.call('../../app/application/activePaymentMethod.php', data, callback);
+    }
+    deletePaymentMethod(data, callback) {
+        return this.call('../../app/application/deletePaymentMethod.php', data, callback);
+    }
+    savePaymentMethodFee(data, callback) {
+        return this.call('../../app/application/savePaymentMethodFee.php', data, callback);
+    }
     getDeposits(data, callback) {
         return this.call('../../app/application/get_deposits.php', data, callback);
+    }
+    getAllPaymentMethods(data, callback) {
+        return this.call('../../app/application/getAllPaymentMethods.php', data, callback);
     }
     getTransactionsList(data, callback) {
         return this.call('../../app/application/get_transactions_list.php', data, callback);

@@ -60,6 +60,24 @@ class Country extends Orm {
 
 		return false;
 	}
+	
+	public function getCountryCode(int $country_id = null)
+	{
+		if(isset($country_id) === true)
+		{
+			$sql = "SELECT 
+						{$this->tblName}.country_code
+					FROM 
+						{$this->tblName}
+					WHERE	
+						{$this->tblName}.country_id = '{$country_id}'
+					";
+
+			return $this->connection()->field($sql);
+		}
+
+		return false;
+	}
 
 	public function getCountryNameAndPhoneArea($country_id = null)
 	{
