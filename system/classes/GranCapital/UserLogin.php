@@ -467,6 +467,11 @@ class UserLogin extends Orm {
     return (new UserPlan)->hasPlan($this->company_id);
   }
 
+  public function getMyRange()
+  {
+    return (new UserPlan)->getUserPlanId($this->company_id);
+  }
+
   public function hasCard() : bool
   { 
     return (new UserCard)->hasCard($this->company_id);

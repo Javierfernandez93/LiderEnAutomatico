@@ -10,7 +10,7 @@ if($UserLogin->_loaded === true)
 {
     if($catalogPlans = (new GranCapital\CatalogPlan)->getAll())
     {
-        $data["catalog_plan_id"] = 2;
+        $data["catalog_plan_id"] = $UserLogin->getMyRange();
         $data["catalogPlans"] = $catalogPlans;
         $data["s"] = 1;
         $data["r"] = "DATA_OK";

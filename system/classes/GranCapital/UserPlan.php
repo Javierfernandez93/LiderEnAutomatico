@@ -84,7 +84,7 @@ class UserPlan extends Orm {
     return false;
   }
   
-  public function getUserPlanId($user_login_id = null) 
+  public function getUserPlanId(int $user_login_id = null) 
   {
     if(isset($user_login_id) === true)
     {
