@@ -73,12 +73,12 @@ Vue.createApp({
         getPlanProfit: function (ammount) {
             let profit = 0
             
-            if(ammount >= parseFloat(this.plans[0].name))
+            if(ammount >= parseFloat(this.plans[0].goal))
             {
                 for (let i = 0; i < this.plans.length; i++) {
-                    const nextVal = this.plans[i + 1] != undefined ? parseFloat(this.plans[i + 1].name) : Infinity
+                    const nextVal = this.plans[i + 1] != undefined ? parseFloat(this.plans[i + 1].goal) : Infinity
     
-                    if (ammount >= parseFloat(this.plans[i].name) && ammount < nextVal) {
+                    if (ammount >= parseFloat(this.plans[i].goal) && ammount < nextVal) {
                         profit = this.plans[i].profit
                     }
                 }
