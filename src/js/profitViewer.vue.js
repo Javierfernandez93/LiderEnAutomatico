@@ -44,7 +44,7 @@ const ProfitViewer = {
         this.getProfitStats()
     },
     template : `
-        <div class="row mb-4">
+        <div class="row mb-4 border-bottom pb-3">
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                 <a href="../../apps/wallet">
                     <div class="card bg-gradient-primary">
@@ -70,7 +70,7 @@ const ProfitViewer = {
                 </a>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
+                <div class="card border-end border-radius-xs">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">
@@ -97,7 +97,7 @@ const ProfitViewer = {
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card">
+                <div class="card border-end border-radius-xs">
                     <div class="card-body p-3">
                         <div class="row">
                             <div class="col-8">

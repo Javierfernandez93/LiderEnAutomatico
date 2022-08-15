@@ -1,7 +1,7 @@
 <div class="container-fluid py-4" id="app">
 	<div class="row justify-content-center">
 		<div class="col-12 col-lg-10">
-			<div class="card bg-gradient-warning mb-3">
+			<div class="card bg-primary mb-3">
 				<div class="card-header bg-transparent text-white">
 					<h4 class="text-white mb-0">Calculadora</h4>
 				</div>

@@ -64,6 +64,8 @@ Vue.createApp({
             }).then((result) => {
                 this.loadingButton = false
 
+                console.log(result)
+
                 if (result.error) {
                     this.error = result.error
                 } else {

@@ -16,7 +16,7 @@ if($UserLogin->_loaded === true)
         $data["r"] = "DATA_OK";
     } else {
         $data["s"] = 0;
-        $data["r"] = "NOT_TRANSACTIONS_FOUND";
+        $data["r"] = "NPT_PLANS_FOUND";
     }
 } else {
 	$data["s"] = 0;

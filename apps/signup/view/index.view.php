@@ -106,7 +106,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
     
-                        <button :disabled="!userComplete || loading" class="btn bg-gradient-success w-100 mt-4 mb-0" @click="doSignup" id="button">
+                        <button :disabled="!userComplete || loading" class="btn bg-primary text-white w-100 mt-4 mb-0" @click="doSignup" id="button">
                             <span v-if="!loading">
                                 Crear mi cuenta
                             </span>

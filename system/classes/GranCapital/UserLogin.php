@@ -9,6 +9,7 @@ use HCStudio\Util;
 use HCStudio\Connection;
 
 use GranCapital\UserPlan;
+use GranCapital\UserStripe;
 use GranCapital\TransactionRequirementPerUser;
 
 class UserLogin extends Orm {
@@ -451,6 +452,14 @@ class UserLogin extends Orm {
     }
   }
 
+  public function getFullName() 
+  {
+    if($this->_loaded === true) 
+    {
+      return (new UserData)->getNames($this->company_id);
+    }
+  }
+
   function checkRedirection()
   {
     // @todo
@@ -551,6 +560,14 @@ class UserLogin extends Orm {
     if($this->getId())
     {
       return (new TransactionRequirementPerUser)->getLastTransactions($this->company_id);
+    }
+  }
+ 
+  public function getCustomerId()
+  {
+    if($this->getId())
+    {
+      return (new UserStripe)->getCustomerId($this->company_id);
     }
   }
 

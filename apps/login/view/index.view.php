@@ -55,7 +55,7 @@
                                 <button
                                     :disabled="!userComplete" 
                                     @click="doLogin"
-                                    type="button" class="btn bg-gradient-success w-100 mt-4 mb-0">Ingresar a mi cuenta</button>
+                                    type="button" class="btn bg-primary text-white w-100 mt-4 mb-0">Ingresar a mi cuenta</button>
                             </div>
                         </form>
                     </div>

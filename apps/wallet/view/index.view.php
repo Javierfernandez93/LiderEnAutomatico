@@ -1,5 +1,5 @@
 <div class="container-fluid py-4" id="app">
-    <div class="alert shadow-xl c-pointer alert-info text-white" @click="openVideo">
+    <div class="alert c-pointer alert-info text-white" @click="openVideo">
         <div class="row align-items-center">
             <div class="col-auto">
                 <i class="bi bi-camera-video"></i>
@@ -11,9 +11,9 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row pb-3">
         <div class="col-lg-8">
-            <div class="row">
+            <div class="row border-bottom">
                 <div class="col-xl-7 mb-xl-0 mb-4">
                     <div class="card bg-transparent shadow-xl">
                         <div class="overflow-hidden position-relative border-radius-xl" style="background-image: url('../../src/img/curved-images/curved14.jpg');">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-5">
+                <div class="col-xl-5 border-end">
                     <div class="card">
                         <div class="card-body">
                             <div class="row mb-3">
@@ -90,8 +90,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12 mb-lg-0 mb-4">
-                    <div class="card mt-4">
+                    <div class="card border-end mt-4">
                         <div class="card-header pb-0 p-3">
                             <div class="row">
                                 <div class="col-6 d-flex align-items-center">

@@ -14,7 +14,7 @@
 
     <profit-viewer></profit-viewer>
 
-    <div class="row">
+    <div class="row border-bottom pb-3">
         <div class="col-lg-7 mb-lg-0 mb-4">
             <div class="card">
                 <div class="card-body p-3">
@@ -68,7 +68,6 @@
             </div>
         </div>
     </div>
-
 
     <notice-viewer></notice-viewer>
 </div>

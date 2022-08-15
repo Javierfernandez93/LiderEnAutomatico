@@ -82,11 +82,26 @@ class User extends Http {
     getNoticesList(data, callback) {
         return this.call('../../app/application/get_notices_list.php', data, callback);
     }
+    getStripeCustomer(data, callback) {
+        return this.call('../../app/application/getStripeCustomer.php', data, callback);
+    }
     getPayPalPaymentStatus(data, callback) {
         return this.call('../../app/application/getPayPalPaymentStatus.php', data, callback);
     }
+    getStripePublicKey(data, callback) {
+        return this.call('../../app/application/getStripePublicKey.php', data, callback);
+    }
+    getStripePaymentIntervals(data, callback) {
+        return this.call('../../app/application/getStripePaymentIntervals.php', data, callback);
+    }
+    createStripeSuscription(data, callback) {
+        return this.call('../../app/application/createStripeSuscription.php', data, callback);
+    }
     getAllTransactionsRequirement(data, callback) {
         return this.call('../../app/application/getAllTransactionsRequirement.php', data, callback);
+    }
+    getTransactionAmmount(data, callback) {
+        return this.call('../../app/application/getTransactionAmmount.php', data, callback);
     }
     // callfile
     uploadImageProfile(data, progress, callback) {

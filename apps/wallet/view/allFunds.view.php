@@ -1,7 +1,7 @@
 <div class="container-fluid py-4" id="app">
     <div class="row justify-content-center">
         <div class="col-12 col-xl-10">
-            <div class="card mb-4">
+            <div class="card mb-4 shadow-md">
                 <div class="card-header pb-0">
                     <div class="row align-items-center">
                         <div class="col fw-semibold text-dark">Fondeos</div>
