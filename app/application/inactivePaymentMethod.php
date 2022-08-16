@@ -4,9 +4,9 @@ require_once TO_ROOT. "/system/core.php";
 
 $data = HCStudio\Util::getHeadersForWebService();
 
-$UserLogin = new GranCapital\UserLogin;
+$UserSupport = new GranCapital\UserSupport;
 
-if($UserLogin->_loaded === true)
+if($UserSupport->_loaded === true)
 {
     if($data['catalog_payment_method_id'])
     {
