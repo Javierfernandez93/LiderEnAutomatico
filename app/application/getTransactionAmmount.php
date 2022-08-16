@@ -18,6 +18,7 @@ if($UserLogin->_loaded === true)
         
         if($TransactionRequirementPerUser->cargarDonde('transaction_requirement_per_user_id = ?',$data['transaction_requirement_per_user_id']))
         {
+            $data["singleAmmount"] = $TransactionRequirementPerUser->ammount;
             $data["ammount"] = $TransactionRequirementPerUser->ammount+$TransactionRequirementPerUser->fee;
             $data["currency"] = strtolower((new GranCapital\CatalogPaymentMethod)->getCurrency($TransactionRequirementPerUser->catalog_payment_method_id));
             $data["s"] = 1;
