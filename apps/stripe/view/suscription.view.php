@@ -65,6 +65,13 @@
 							</div>
 						</div>
 					</div>
+					<div v-else-if="paymentStatus == STATUS.PAYMENT_DONE">
+						<div class="text-center">
+							<div class="fs-4 fw-semibold text-gradient text-primary"><i class="bi bi-bookmark-check-fill"></i></div>
+							<div class="fs-4 fw-semibold text-gradient text-primary">Pago aprovado</div>
+							<div class="badge p-0 text-dark">Muchas gracias tu pago ha sido aprobado</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

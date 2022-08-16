@@ -12,17 +12,18 @@ if($UserLogin->_loaded === true)
 
     $stripe = new \Stripe\StripeClient(JFStudio\Stripe::SECRET_KEY_SANDBOX);
 
-    // $product = $stripe->products->create([
-    //     'name' => 'Basic Dashboard',
-    //         'default_price_data' => [
-    //         'unit_amount' => JFStudio\Stripe::formatAmmount(1000),
-    //         'currency' => 'usd',
-    //         'recurring' => ['interval' => 'month'],
-    //     ],
-    //     'expand' => ['default_price'],
-    // ]);
+    $product = $stripe->products->create([
+        'name' => 'Recurring plan',
+            'default_price_data' => [
+            'unit_amount' => JFStudio\Stripe::formatAmmount(1000),
+            'currency' => 'usd',
+            'recurring' => ['interval' => 'month'],
+        ],
+        'expand' => ['default_price'],
+    ]);
+
+    d($product);
     // 'prod_MEro1XfX4rxB8s'
-    // d($product);
 
     // $price = $stripe->prices->create([
     //     'product' => 'prod_MErd84W3tsYRMg',

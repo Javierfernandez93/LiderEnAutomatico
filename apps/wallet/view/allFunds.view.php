@@ -4,14 +4,17 @@
             <div class="card mb-4 shadow-md">
                 <div class="card-header pb-0">
                     <div class="row align-items-center">
-                        <div class="col fw-semibold text-dark">Fondeos</div>
-                        <div 
-                            v-if="transactions.length > 0" 
-                            class="col-auto">
-                            <span class="badge bg-primary">Total def fondeos {{transactions.length}}</span>
+                        <div class="col-auto"><i class="bi bi-credit-card-2-back-fill"></i></div>
+                        <div class="col fw-semibold text-dark">
+                            <div class="small">Fondeos</div>
+                        </div>
+                        <div class="col-auto text-end">
+                            <div><a href="../../apps/wallet/addFunds" type="button" class="btn btn-success btn-sm">Añadir fondeo</a></div>
+                            <div><span class="badge bg-secondary">Total de fondeos {{transactions.length}}</span></div>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="card-header">
                     <input v-model="query" :autofocus="true" type="text" class="form-control" placeholder="Buscar...">
@@ -54,16 +57,13 @@
                                             {{transaction.create_date.formatFullDate()}}
                                         </td>
                                         <td class="align-middle text-center text-sm">
-                                            <span v-if="transaction.status == 0"
-                                                class="badge bg-gradient-danger">
+                                            <span v-if="transaction.status == 0" class="badge bg-gradient-danger">
                                                 Expirada
                                             </span>
-                                            <span v-else-if="transaction.status == 1"
-                                                class="badge bg-secondary">
+                                            <span v-else-if="transaction.status == 1" class="badge bg-secondary">
                                                 Pendiente
                                             </span>
-                                            <span v-else-if="transaction.status == 2"
-                                                class="badge bg-gradient-success">
+                                            <span v-else-if="transaction.status == 2" class="badge bg-gradient-success">
                                                 Aplicada
                                             </span>
                                         </td>

@@ -19,6 +19,10 @@ class Stripe {
     
     const APPROVED = "succeeded";
     const TEMPORAL_VALIDATION = true;
+
+    /* PRODUCT_IDS  */
+    const MXN_PID = 'prod_MFlbiK46qhHG7g';
+    const USD_PID = 'prod_MFlc2Pa2ID2jwD';
     
     private static $instance;
 	public static function getInstance()
@@ -28,6 +32,17 @@ class Stripe {
 
     	return self::$instance;
  	}
+ 	
+    public static function getProductIdByCurreny(string $currency = null) : string
+    {
+        if(strtolower($currency) == 'mxn')
+        {
+            return self::MXN_PID;
+        }
+
+        return self::USD_PID;
+    }
+
  	public static function formatAmmount($ammount = null)
     {
         if (isset($ammount)) {

@@ -26,7 +26,7 @@ if($UserLogin->_loaded === true)
                             'price_data' => [
                                 'unit_amount' => JFStudio\Stripe::formatAmmount($data['ammount']),
                                 'currency' => $data['currency'],
-                                'product' => 'prod_MErd84W3tsYRMg',
+                                'product' => JFStudio\Stripe::getProductIdByCurreny($data['currency']),
                                 'recurring' => ['interval' => $data['interval']],
                             ],
                         ],
