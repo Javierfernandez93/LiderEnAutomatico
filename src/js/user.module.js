@@ -97,6 +97,12 @@ class User extends Http {
     createStripeSuscription(data, callback) {
         return this.call('../../app/application/createStripeSuscription.php', data, callback);
     }
+    createStripePayment(data, callback) {
+        return this.call('../../app/application/createStripePayment.php', data, callback);
+    }
+    checkStripeSuscription(data, callback) {
+        return this.call('../../app/application/checkStripeSuscription.php', data, callback);
+    }
     getAllTransactionsRequirement(data, callback) {
         return this.call('../../app/application/getAllTransactionsRequirement.php', data, callback);
     }

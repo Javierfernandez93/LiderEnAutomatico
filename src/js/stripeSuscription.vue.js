@@ -10,7 +10,7 @@ Vue.createApp({
             loadingButton: false,
             loading: null,
             recurring : {
-                interval : null
+                interval : 'month'
             },
             customer : {
                 customer_id: null
@@ -64,13 +64,13 @@ Vue.createApp({
         },
         makePayment: function()
         {
-            this.User.createStripeSuscription({customer_id:this.customer.customer_id,interval:this.recurring.interval,ammount:this.ammount,currency:this.currency},(response)=>{
+            this.loadingButton = true
+            
+            this.User.createStripeSuscription({customer_id:this.customer.customer_id,interval:this.recurring.interval,ammount:this.ammount,currency:this.currency,transaction_requirement_per_user_id:getParam('trpid')},(response)=>{
                 this.client_secret = response.client_secret
 
                 if(response.s == 1)
                 {
-                    this.loadingButton = true
-
                     this.Stripe.confirmCardPayment(this.client_secret, {
                         payment_method: { 
                             card: this.card 
@@ -83,21 +83,19 @@ Vue.createApp({
                         } else {
                             if (result.paymentIntent.status === 'succeeded') 
                             {
-                                subscriptionId
-                                subscr_plan_id
-                                result.paymentIntent
-
-                                this.User.checkStripeSuscription({paymentIntent: result.paymentIntent,subscriptionId:response.subscriptionId},(response) => {
-
-                                    console.log(response)
+                                // subscriptionId
+                                // subscr_plan_id
+                                // result.paymentIntent
+                                // paymentIntent: result.paymentIntent
+                                
+                                this.User.checkStripeSuscription({id: result.paymentIntent.id},(response) => {
                                     if (response.s == 1) {
                                         this.paymentStatus = this.STATUS.PAYMENT_DONE
                                     }
-                                    console.log(this.paymentStatus)
-                                });
+                                })
                             }
                         }
-                    });
+                    })
                 }
             })
 
@@ -168,6 +166,8 @@ Vue.createApp({
         if(getParam('trpid'))
         {
             this.getTransactionAmmount(getParam('trpid')).then((response) => {
+                this.paymentStatus = this.STATUS.PAYMENT_PENDING
+
                 this.ammount = response.ammount
                 this.currency = response.currency
 
@@ -179,7 +179,7 @@ Vue.createApp({
 
                         this.getStripePaymentIntervals().then((paymentIntervals) => {
                             this.paymentIntervals = paymentIntervals
-                            this.recurring.interval = paymentIntervals[0].name
+                            this.recurring.interval = paymentIntervals[0].interval
 
                             this.initStripe()
                         }).catch((error)=>{

@@ -10,22 +10,17 @@ if($UserLogin->_loaded === true)
 {
 	if($data['id'])
 	{
-		require_once TO_ROOT . 'system/lib/Stripe/init.php';
+		require_once TO_ROOT . 'vendor3/autoload.php';
 
-		\Stripe\Stripe::setApiKey(JFStudio\Stripe::SECRET_KEY_SANDBOX);
+		$stripe = new \Stripe\StripeClient(JFStudio\Stripe::SECRET_KEY_SANDBOX);
 
-		$stripe_response = \Stripe\PaymentIntent::retrieve(
-		  $data['id']
-		);
+        $paymentIntent = $stripe->paymentIntents->retrieve($data['id']);
 
-		if($stripe_response['status'] === JFStudio\Stripe::APPROVED)
+		if($paymentIntent->status === JFStudio\Stripe::APPROVED)
 		{
-			$Stripe = JFStudio\Stripe::getInstance();
-
-            // UPDATE TRANSACTION_REQUIREMENT
             $TransactionRequirementPerUser = new GranCapital\TransactionRequirementPerUser;
             
-            if($TransactionRequirementPerUser->cargarDonde("txn_id = ? AND status = ?",[$stripe_response->id,GranCapital\TransactionRequirementPerUser::PENDING]))
+            if($TransactionRequirementPerUser->cargarDonde("txn_id = ? AND status = ?",[$paymentIntent->id,GranCapital\TransactionRequirementPerUser::PENDING]))
             {
                 $UserWallet = new GranCapital\UserWallet;
                             

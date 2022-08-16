@@ -115,6 +115,7 @@ function createTransactionStripe(GranCapital\TransactionRequirementPerUser $Tran
 
     return [
         'link' => "../../apps/stripe/?trpid={$TransactionRequirementPerUser->getId()}",
+        'linkSuscription' => "../../apps/stripe/suscription?trpid={$TransactionRequirementPerUser->getId()}",
         'txn_id' => $TransactionRequirementPerUser->getId(),
         'fee' => $TransactionRequirementPerUser->fee,
         'total' => $total

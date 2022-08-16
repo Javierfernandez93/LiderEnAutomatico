@@ -10,20 +10,20 @@ if($UserLogin->_loaded === true)
 {
 	$data['paymentIntervals'] = [
 		0 => [
-			'name' => 'month',
-			'text' => 'Mes'
+			'interval' => 'month',
+			'text' => 'Mensual'
 		],
 		1 => [
-			'name' => 'year',
-			'text' => 'Año'
+			'interval' => 'year',
+			'text' => 'Anual'
 		],
 		2 => [
-			'name' => 'week',
-			'text' => 'Semana'
+			'interval' => 'week',
+			'text' => 'Semanal'
 		],
 		3 => [
-			'name' => 'day',
-			'text' => 'Día'
+			'interval' => 'day',
+			'text' => 'Diario'
 		]
 	];
 	$data['s'] = 1;

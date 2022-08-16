@@ -237,6 +237,7 @@
                                 </div>
                                 
                                 <a class="btn btn-primary" target="_blank" :href="transaction.checkoutData.link">Ir a pagar</a>
+                                <a class="btn btn-primary ms-3" target="_blank" :href="transaction.checkoutData.linkSuscription">Ir a pagar de forma recurrente</a>
                             </div>
                         </div>
                     </div>

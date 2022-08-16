@@ -19,30 +19,20 @@ if($UserLogin->_loaded === true)
             $stripe = new \Stripe\StripeClient(JFStudio\Stripe::SECRET_KEY_SANDBOX);
 
             try {
-                $subscription = $stripe->subscriptions->create([
-                    'customer' => $data['customer_id'],
-                    'items' => [
-                        [
-                            'price_data' => [
-                                'unit_amount' => JFStudio\Stripe::formatAmmount($data['ammount']),
-                                'currency' => $data['currency'],
-                                'product' => 'prod_MErd84W3tsYRMg',
-                                'recurring' => ['interval' => $data['interval']],
-                            ],
-                        ],
-                    ],
-                    'payment_behavior' => 'default_incomplete', 
-                    'expand' => ['latest_invoice.payment_intent'], 
+                $paymentIntent = $stripe->paymentIntents->create([
+                    'amount' => JFStudio\Stripe::formatAmmount($data['ammount']),
+                    'currency' => $data['currency'],
+                    'payment_method_types' => ['card'],
+                    'description' => 'GranCapital-'.$TransactionRequirementPerUser->getId()
                 ]);
 
-                if($subscription)
+                if($paymentIntent)
                 {
-                    $TransactionRequirementPerUser->txn_id = $subscription->latest_invoice->payment_intent->id;
-
+                    $TransactionRequirementPerUser->txn_id = $paymentIntent->id;
+                    
                     if($TransactionRequirementPerUser->save())
                     {
-                        $data['subscriptionId'] = $subscription->id;
-                        $data['client_secret'] = $subscription->latest_invoice->payment_intent->client_secret;
+                        $data['client_secret'] = $paymentIntent->client_secret;
                         $data['s'] = 1;
                         $data['r'] = 'DATA_OK';
                     } else {
@@ -57,7 +47,6 @@ if($UserLogin->_loaded === true)
                 http_response_code(500);
                 echo json_encode(['error' => $e->getMessage()]);
             }
-
         } else {
             $data['s'] = 0;
             $data['r'] = 'NOT_TRANSACTION_REQUIREMENT_PER_USER';
@@ -65,7 +54,7 @@ if($UserLogin->_loaded === true)
     } else {
         $data['s'] = 0;
         $data['r'] = 'NOT_TRANSACTION_REQUIREMENT_PER_USER_ID';
-    }   
+    }    
 } else {
     $data['s'] = 0;
     $data['r'] = 'INVALID_CREDENTIALS';
