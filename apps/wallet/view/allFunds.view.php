@@ -15,7 +15,6 @@
                     </div>
                 </div>
 
-
                 <div class="card-header">
                     <input v-model="query" :autofocus="true" type="text" class="form-control" placeholder="Buscar...">
                 </div>

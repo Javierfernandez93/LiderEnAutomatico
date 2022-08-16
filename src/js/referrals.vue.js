@@ -7,6 +7,8 @@ Vue.createApp({
     data() {
         return {
             referrals: {},
+            referralsAux: {},
+            query: null,
             totals: {
                 total_capital: 0
             },
@@ -14,14 +16,21 @@ Vue.createApp({
         }
     },
     watch: {
-        user: {
+        query: {
             handler() {
-
+                this.filterData()
             },
-            deep: true
-        },
+            deep : true
+        }
     },
     methods: {
+        filterData: function () {
+            this.referrals = this.referralsAux
+
+            this.referrals = this.referrals.filter((referral) => {
+                return referral.names.toLowerCase().includes(this.query.toLowerCase()) || referral.company_id.toString().includes(this.query.toLowerCase()) || referral.email.toString().includes(this.query.toLowerCase()) 
+            })
+        },
         getTotals: function () {
             this.referrals.map((user)=>{
                 this.totals.total_capital += user.plan ? parseFloat(user.plan.ammount) : 0
@@ -31,7 +40,8 @@ Vue.createApp({
             return new Promise((resolve) => {
                 this.User.getReferrals({}, (response) => {
                     if (response.s == 1) {
-                        this.referrals = response.referrals
+                        this.referralsAux = response.referrals
+                        this.referrals = this.referralsAux
 
                         resolve()
                     }
