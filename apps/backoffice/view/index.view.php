@@ -21,11 +21,11 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="d-flex flex-column h-100">
-                                <p class="mb-1 pt-2 text-bold">Aviso</p>
-                                <h5 class="font-weight-bolder">¿Estás preparado para ganar?</h5>
+                                <p class="mb-1 pt-2 text-bold">¡Bienvenido!</p>
+                                <h5 class="font-weight-bolder">Genera ganancias con nosotros</h5>
                                 <p class="mb-5">Libertad en Automático te ofrece varios esquemas de ganancias.</p>
                                 <a class="text-body text-sm font-weight-bold mb-0 icon-move-right mt-auto"
-                                    href="../../apps/backoffice/plans">
+                                    href="../../apps/backoffice/range">
                                     Leer más
                                     <i class="fas fa-arrow-right text-sm ms-1" aria-hidden="true"></i>
                                 </a>
