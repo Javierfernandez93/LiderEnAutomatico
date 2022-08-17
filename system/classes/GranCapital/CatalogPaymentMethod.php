@@ -14,6 +14,8 @@ class CatalogPaymentMethod extends Orm {
 	const STRIPE = 6;
 	const STRIPE_USA = 7;
 	const TRANSFER_MXN = 8;
+	const TRANSFER_COP = 9;
+	const TRANSFER_USD = 10;
 
 	// state
 	const DELETED = -1;
@@ -38,6 +40,7 @@ class CatalogPaymentMethod extends Orm {
 					{$this->tblName}.additional_info,
 					{$this->tblName}.image,
 					{$this->tblName}.description,
+					{$this->tblName}.country_ids,
 					{$this->tblName}.create_date,
 					{$this->tblName}.additional_data,
 					{$this->tblName}.recomended,

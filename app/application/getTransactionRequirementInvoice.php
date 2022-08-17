@@ -16,7 +16,6 @@ if($UserLogin->_loaded === true)
         {
             $data['transaction'] = format($TransactionRequirementPerUser->data(),$TransactionRequirementPerUser);
             $data['s'] = 1;
-            // d($data);
             $data['r'] = 'DATA_OK';
         } else {
             $data['s'] = 0;

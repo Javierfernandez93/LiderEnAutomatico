@@ -713,6 +713,12 @@ Number.prototype.timeSince = function()
   }
   return Math.floor(seconds) + " segundos";
 }
+
+function getWhatsAppLink(number,text)
+{
+  return `https://wa.me/${number}?text=${text}`;
+}
+
 String.prototype.convertDataToHtml = function() {
   var blocks = JSON.parse(this).blocks
 

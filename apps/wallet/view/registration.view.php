@@ -60,6 +60,21 @@
                                         type="text" class="form-control" id="payment_reference" placeholder="Referencia de pago">
                                     <label for="payment_reference">Referencia de pago</label>
                                 </div>
+
+                                <div class="mb-3 cursor-pointer overflow-hidden text-center upload-photo fw-semibold text-primary text-decoration-underline" @click="openFileManager">
+                                    <input class="form-control d-none" ref="file" id="image" @change="uploadFile($event)" capture="filesystem" type="file" accept=".jpg, .png, .jpeg" />
+                                    <div v-if="transaction.image">
+                                        <img :src="transaction.image" class="img-fluid"/>
+                                    </div>
+                                    <div class="p-3">
+                                        <span v-if="!transaction.image">
+                                            Subir evidencia de pago 
+                                        </span>
+                                        <span v-else>
+                                            Cambiar evidencia de pago 
+                                        </span>
+                                    </div>
+                                </div>
                                 
                                 <div class="">
                                     <button 
@@ -72,7 +87,15 @@
                                 <div class="text-center">
                                     <div class="fs-4 fw-semibold text-gradient text-primary"><i class="bi bi-bookmark-check-fill"></i></div>
                                     <div class="fs-4 fw-semibold text-gradient text-primary">Pago registrado</div>
-                                    <div class="">Muchas gracias tu pago ha sido registrado, es necesario esperar a que tu fondeo se vea reflejado</div>
+                                    <div class="mb-3">Muchas gracias tu pago ha sido registrado</div>
+                                    
+                                    <div class="alert alert-light">
+                                        
+                                        <div class="mb-3"><strong>Importante</strong> Por favor, para agilizar tu fondeo envía la fotografía de tu transferencia o depósito en el siguiente <b>WhatsApp</b></div>
+                                        <button 
+                                            @click="goToWhatsAppSupport(transaction)"
+                                            class="btn btn-success btn-lg px-3"><i class="bi bi-whatsapp"></i> Enviar WhatsApp</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

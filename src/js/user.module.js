@@ -125,6 +125,9 @@ class User extends Http {
     uploadImageProfile(data, progress, callback) {
         return this.callFile('../../app/application/upload_image_profile.php', data, callback, progress);
     }
+    uploadImageFund(data, progress, callback) {
+        return this.callFile('../../app/application/uploadImageFund.php', data, callback, progress);
+    }
     checkStripePayment(data,callback) {
         return this.call('./../../app/application/checkStripePayment.php', data, callback);
     }

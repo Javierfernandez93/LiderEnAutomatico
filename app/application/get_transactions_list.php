@@ -17,7 +17,7 @@ if($UserSupport->_loaded === true)
     
     if($transactions = $TransactionRequirementPerUser->getTransactions(($data['filter'])))
     {
-        $data["transactions"] = format($transactions);
+        $data["transactions"] = format($transactions,$UserSupport);
         $data["s"] = 1;
         $data["r"] = "DATA_OK";
     } else {
@@ -29,11 +29,17 @@ if($UserSupport->_loaded === true)
 	$data["r"] = "NOT_FIELD_SESSION_DATA";
 }
 
-function format(array $transactions = null) : array {
+function format(array $transactions = null,GranCapital\UserSupport $UserSupport = null) : array {
     $CatalogPaymentMethod = new GranCapital\CatalogPaymentMethod;
-    return array_map(function ($transaction) use($CatalogPaymentMethod) {
+    return array_map(function ($transaction) use($CatalogPaymentMethod,$UserSupport) {
         $transaction['catalogPaymentMethod'] = $CatalogPaymentMethod->get($transaction['catalog_payment_method_id']);
         $transaction['total'] = $transaction['ammount'] + $transaction['fee'];
+        
+        if($transaction['status'] == GranCapital\TransactionRequirementPerUser::VALIDATED)
+        {
+            $transaction['user_support'] = $UserSupport->getNames($transaction['user_support_id']);
+        }
+
         return $transaction;
     },$transactions);
 }

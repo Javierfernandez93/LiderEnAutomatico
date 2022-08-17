@@ -7,7 +7,7 @@ Vue.createApp({
     },
     data() {
         return {
-            UserSupport : null,
+            UserSupport : new UserSupport,
             transactions : {},
             columns: { // 0 DESC , 1 ASC 
                 user_support_id : {
@@ -57,7 +57,6 @@ Vue.createApp({
             column.desc = !column.desc
         },
         applyWithdraw : function(user_login_id) {
-            
             this.UserSupport.applyWithdraw({user_login_id: user_login_id},(response)=>{
                 if(response.s == 1)
                 {
@@ -65,7 +64,14 @@ Vue.createApp({
                 }
             });
         },
-        deleteWithdraw : function(user_wallet_id) {
+        deleteWithdraw : function(withdraw_per_user_id,user_login_id) {
+            console.log(1)
+            this.UserSupport.deleteWithdraw({withdraw_per_user_id:withdraw_per_user_id,user_login_id:user_login_id},(response)=>{
+                if(response.s == 1)
+                {
+                    this.getUsersTransactions()
+                }
+            })
         },
         getUsersTransactions : function() {
             this.UserSupport.getUsersTransactions({},(response)=>{
@@ -78,7 +84,6 @@ Vue.createApp({
     },
     mounted() 
     {
-        this.UserSupport = new UserSupport
         this.getUsersTransactions()
     },
 }).mount('#app')

@@ -10,6 +10,7 @@ class WithdrawPerUser extends Orm
 {
     const WAITING_FOR_DEPOSIT = 1;
     const DEPOSITED = 2;
+    const DELETED = -1;
     protected $tblName  = 'withdraw_per_user';
 
     public function __construct()

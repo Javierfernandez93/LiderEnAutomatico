@@ -16,6 +16,7 @@ if($UserLogin->_loaded === true)
         {
             if($TransactionRequirementPerUser->cargarDonde('transaction_requirement_per_user_id = ?',$data['transaction_requirement_per_user_id']))
             {
+                $TransactionRequirementPerUser->image = $data['image'];
                 $TransactionRequirementPerUser->payment_reference = $data['payment_reference'];
                 $TransactionRequirementPerUser->registration_date = time();
 

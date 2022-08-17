@@ -1,8 +1,4 @@
-<?php
-
-use Google\Cloud\Vision\V1\Word;
-
- define("TO_ROOT", "../../");
+<?php define("TO_ROOT", "../../");
 
 require_once TO_ROOT. "/system/core.php";
 
@@ -28,20 +24,20 @@ if($UserLogin->_loaded === true)
 
 function filter(array $catalogPaymentMethods = null,int $country_id = null) : array
 {
-    $country_code = (new World\Country)->getCountryCode($country_id);
+    return array_filter($catalogPaymentMethods, function($catalogPaymentMethod) use($country_id) {
+        $country_ids = json_decode($catalogPaymentMethod['country_ids']);
 
-    return array_filter($catalogPaymentMethods, function($catalogPaymentMethod) use($country_code) {
-        if($catalogPaymentMethod['catalog_currency_id'] == GranCapital\CatalogCurrency::FIAT)
-        {   
-            if($country_code == 'MXN')
-            {
-                return $country_code == $catalogPaymentMethod['currency'];
-            } 
-            
-            return $catalogPaymentMethod['currency'] != 'MXN';
-        } 
+        if(in_array($country_id,$country_ids)) 
+        {
+            return true;
+        }
 
-        return true;
+        if(in_array(-1,$country_ids))
+        {
+            return true;
+        }
+
+        return false;
     });
 }
 

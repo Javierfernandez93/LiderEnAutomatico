@@ -26,6 +26,7 @@ if($UserLogin->_loaded === true)
                 $Curl->get(HCStudio\Connection::getMainPath()."/app/application/apply_deposit.php",[
                     'user' => HCStudio\Util::$username,
                     'password' => HCStudio\Util::$password,
+                    'validation_method' => GranCapital\TransactionRequirementPerUser::STRIPE_CDN,
                     'transaction_requirement_per_user_id' => $TransactionRequirementPerUser->getId()
                 ]);
 

@@ -35,15 +35,17 @@ class TransactionRequirementPerUser extends Orm {
                     {$this->tblName}.user_login_id,
                     {$this->tblName}.item_number,
                     {$this->tblName}.txn_id,
+                    {$this->tblName}.image,
                     {$this->tblName}.create_date,
                     {$this->tblName}.checkout_data,
+                    {$this->tblName}.validation_method,
+                    {$this->tblName}.user_support_id,
                     {$this->tblName}.payment_reference,
                     {$this->tblName}.catalog_payment_method_id,
                     {$this->tblName}.registration_date,
                     {$this->tblName}.validate_date,
                     {$this->tblName}.status,
                     user_login.email,
-                    user_account.image,
                     user_data.names
                 FROM 
                     {$this->tblName}

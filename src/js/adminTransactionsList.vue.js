@@ -105,6 +105,9 @@ Vue.createApp({
 
             column.desc = !column.desc
         },
+        toggleViewDetails: function (transaction) {
+            transaction.viewDetails = !transaction.viewDetails
+        },
         viewDeposit: function (transaction) {
             const { txn_id } = JSON.parse(transaction.checkout_data)
 

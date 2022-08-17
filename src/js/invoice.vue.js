@@ -19,6 +19,9 @@ Vue.createApp({
                 event.target.innerText = "copiado"
             });
         },
+        goToRegistration: function (transaction_requirement_per_user_id) {
+            window.location.href = `../../apps/wallet/registration?trpid=${transaction_requirement_per_user_id}`
+        },
         getTransactionRequirementInvoice: function (transaction_requirement_per_user_id) {
             return new Promise((resolve) => {
                 this.User.getTransactionRequirementInvoice({transaction_requirement_per_user_id:transaction_requirement_per_user_id}, (response) => {

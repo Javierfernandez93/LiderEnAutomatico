@@ -13,6 +13,8 @@ Vue.createApp({
                 STRIPE: 6,
                 STRIPE_USA: 7,
                 TRANSFER_MXN: 8,
+                TRANSFER_COP: 9,
+                TRANSFER_USD: 10,
             },
             transaction: {
                 catalog_payment_method: {

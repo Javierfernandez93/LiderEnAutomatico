@@ -133,7 +133,7 @@
                                                     <li>
                                                         <hr class="dropdown-divider">
                                                     </li>
-                                                    <li><button class="dropdown-item" @click="deleteWithdraw(transaction.user_login_id)">Eliminar</button></li>
+                                                    <li><button class="dropdown-item" @click="deleteWithdraw(transaction.withdraw_per_user_id,transaction.user_login_id)">Eliminar</button></li>
                                                 <?php } ?>
                                             </ul>
                                         </div>

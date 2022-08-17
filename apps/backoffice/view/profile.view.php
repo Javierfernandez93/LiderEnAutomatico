@@ -9,8 +9,7 @@
                 <div class="col-auto">
                     <div class="avatar avatar-xl avatar-editable overflow-hidden img-upload position-relative" @click="openFileManager">
                         <img :src="user.image" :alt="user.name" class="w-100 border-radius-lg shadow-sm">
-                        <input class="d-none" ref="file" @change="uploadFile($event)" capture="filesystem" type="file"
-                            accept=".jpg, .png, .jpeg" />
+                        <input class="d-none" ref="file" @change="uploadFile($event)" capture="filesystem" type="file" accept=".jpg, .png, .jpeg" />
                     </div>
                 </div>
                 <div class="col my-auto">

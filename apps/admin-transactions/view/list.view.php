@@ -142,9 +142,25 @@
                                             Eliminada
                                         </span>
                                         <span v-else-if="transaction.status == 2"
-                                            class="badge bg-success">
-                                            Aplicada
+                                            class="badge bg-success cursor-pointer">
+                                            <span @click="toggleViewDetails(transaction)">Aplicada</span>
+
+                                            
                                         </span>
+
+                                        <div v-if="transaction.viewDetails">
+                                            <div><span class="badge bg-secondary">Fecha de validación {{ transaction.validate_date.formatFullDate() }}</span></div>
+                                            <div>
+                                                <span class="badge bg-secondary">
+                                                    Vía de validación 
+                                                    <span v-if="transaction.validation_method == 1">CronJob</span>
+                                                    <span v-if="transaction.validation_method == 2">Admin</span>
+                                                    <span v-if="transaction.validation_method == 3">PayPal</span>
+                                                    <span v-if="transaction.validation_method == 4">Stripe</span>
+                                                </span>
+                                            </div>
+                                            <div v-if="transaction.validation_method == 2"><span class="badge bg-secondary">Validada por {{ transaction.user_support }}</span></div>
+                                        </div>
 
                                         <div v-if="transaction.apiResponse">
                                             <div><span class="badge bg-secondary">Expira {{ transaction.apiResponse.time_expires.formatFullDate() }}</span></div>
@@ -182,6 +198,10 @@
                                                 <?php if($UserSupport->hasPermission('apply_deposit')) { ?>
                                                     <li v-if="transaction.status == -1 || transaction.status == 0"><button class="dropdown-item" @click="reactiveDeposit(transaction.transaction_requirement_per_user_id)">Reactivar fondeo</button></li>
                                                 <?php } ?>
+                                                <div v-if="transaction.payment_reference">
+                                                    <li><a class="dropdown-item" :href="transaction.image" target="_blank">Ver evidencia de pago</a></li>
+                                                    <li><a class="dropdown-item" :href="transaction.image" download>Descargar evidencia de pago</a></li>
+                                                </div>
                                             </ul>
                                         </div>
                                     </td>

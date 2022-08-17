@@ -27,7 +27,7 @@
                             </div>
 
                             <div v-if="transaction.catalog_payment_method.additional_data">
-                                <div class="row mb-3 align-items-center">
+                                <div v-if="transaction.catalog_payment_method.additional_data.bank" class="row mb-3 align-items-center">
                                     <div class="col">
                                         <div>
                                             <span class="badge p-0 text-secondary">Banco</span>
@@ -40,7 +40,7 @@
                                         <button @click="copy(transaction.catalog_payment_method.additional_data.bank,$event)" class="btn px-3 btn-primary m-0"><i class="bi bi-clipboard"></i></button>
                                     </div>
                                 </div>
-                                <div class="row mb-3 align-items-center">
+                                <div v-if="transaction.catalog_payment_method.additional_data.account" class="row mb-3 align-items-center">
                                     <div class="col">
                                         <div>
                                             <span class="badge p-0 text-secondary">Número de cuenta</span>
@@ -53,7 +53,20 @@
                                         <button @click="copy(transaction.catalog_payment_method.additional_data.account,$event)" class="btn px-3 btn-primary m-0"><i class="bi bi-clipboard"></i></button>
                                     </div>
                                 </div>
-                                <div class="row mb-3 align-items-center">
+                                <div v-if="transaction.catalog_payment_method.additional_data.account" class="row mb-3 align-items-center">
+                                    <div class="col">
+                                        <div>
+                                            <span class="badge p-0 text-secondary">Tipo de cuenta</span>
+                                        </div>
+                                        <div class="fw-semibold">
+                                            {{transaction.catalog_payment_method.additional_data.kind}}
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <button @click="copy(transaction.catalog_payment_method.additional_data.kind,$event)" class="btn px-3 btn-primary m-0"><i class="bi bi-clipboard"></i></button>
+                                    </div>
+                                </div>
+                                <div v-if="transaction.catalog_payment_method.additional_data.clabe" class="row mb-3 align-items-center">
                                     <div class="col">
                                         <div>
                                             <span class="badge p-0 text-secondary">CLABE</span>
@@ -66,7 +79,7 @@
                                         <button @click="copy(transaction.catalog_payment_method.additional_data.clabe,$event)" class="btn px-3 btn-primary m-0"><i class="bi bi-clipboard"></i></button>
                                     </div>
                                 </div>
-                                <div class="row mb-3 align-items-center">
+                                <div v-if="transaction.catalog_payment_method.additional_data.beneficiary" class="row mb-3 align-items-center">
                                     <div class="col">
                                         <div>
                                             <span class="badge p-0 text-secondary">Beneficiario</span>
@@ -90,6 +103,7 @@
                                     $ {{transaction.ammount.numberFormat(2)}} <sup>{{transaction.catalog_payment_method.currency}}</sup>
                                 </div>
                             </div>
+                            
                             <div v-if="transaction.fee > 0" class="mb-3">
                                 <div>
                                     <span class="badge p-0 text-secondary">Tarifa de transacción</span>
@@ -124,7 +138,7 @@
                                             <li class="list-group-item">Ve a cualquier <b>banco</b></li>
                                             <li class="list-group-item">Lleva los <b>datos de la ficha</b> y realiza un depósito en <b>ventanilla</b></li>
                                             <li class="list-group-item"><b>Aseguráte</b> que los datos sean <b>correctos</b> y que te den un <b>recibo</b> al realizar el depósito por <b>$ {{transaction.ammount.numberFormat(2)}} {{transaction.catalog_payment_method.currency}}</b></li>
-                                            <li class="list-group-item"><b>Registra tu pago</b> <u><a class="text-primary fw-semibold" href="../../apps/wallet/allFunds">aquí</a></u></li>
+                                            <li class="list-group-item"><b>Registra tu pago</b> <u><button @click="goToRegistration(transaction.transaction_requirement_per_user_id)" class="btn btn-link m-0 px-1 text-decoration-underline text-primary fw-semibold">aquí</button></u></li>
                                         </ol>
                                     </div>
                                 </div>
@@ -143,7 +157,7 @@
                                             <li class="list-group-item">Pegalos y asegurate que sean <b>correctos</b></li>
                                             <li class="list-group-item">Ingresa la cantidad de <b>$ {{transaction.ammount.numberFormat(2)}} {{transaction.catalog_payment_method.currency}}</b></li>
                                             <li class="list-group-item">Realiza la <b>transferencia</b></li>
-                                            <li class="list-group-item"><b>Registra tu pago</b> <u><a class="text-primary fw-semibold" href="../../apps/wallet/allFunds">aquí</a></u></li>
+                                            <li class="list-group-item"><b>Registra tu pago</b> <u><button @click="goToRegistration(transaction.transaction_requirement_per_user_id)" class="btn btn-link m-0 px-1 text-decoration-underline text-primary fw-semibold">aquí</button></u></li>
                                         </ol>
                                     </div>
                                 </div>

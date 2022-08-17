@@ -38,7 +38,16 @@ if(($data['user'] == HCStudio\Util::$username && $data['password'] == HCStudio\U
 
                         if($UserPlan->setPlan($UserWallet->user_login_id))
                         {
-                            if(updateTransaction($data['transaction_requirement_per_user_id']))
+                            $user_support_id = 0;
+                            $validation_method = $data['validation_method'];
+                            
+                            if($UserSupport->getId())
+                            {
+                                $user_support_id = $UserSupport->getId();
+                                $validation_method = GranCapital\TransactionRequirementPerUser::ADMIN;
+                            }
+
+                            if(updateTransaction($data['transaction_requirement_per_user_id'],$user_support_id,$validation_method))
                             {
                                 // if(sendPush($TransactionRequirementPerUser->user_login_id,'Hemos fondeado tu cuenta',GranCapital\CatalogNotification::ACCOUNT))
                                 // {
@@ -85,7 +94,7 @@ if(($data['user'] == HCStudio\Util::$username && $data['password'] == HCStudio\U
     $data['r'] = "INVALID_CREDENTIALS";
 }
 
-function updateTransaction(int $transaction_requirement_per_user_id = null) : bool
+function updateTransaction(int $transaction_requirement_per_user_id = null,int $user_support_id = null,int $validation_method = null) : bool
 {
     if(isset($transaction_requirement_per_user_id) === true)
     {
@@ -97,7 +106,8 @@ function updateTransaction(int $transaction_requirement_per_user_id = null) : bo
             {
                 $TransactionRequirementPerUser->status = GranCapital\TransactionRequirementPerUser::VALIDATED;
                 $TransactionRequirementPerUser->validate_date = time();
-                $TransactionRequirementPerUser->validation_method = GranCapital\TransactionRequirementPerUser::ADMIN;
+                $TransactionRequirementPerUser->validation_method = $validation_method;
+                $TransactionRequirementPerUser->user_support_id = $user_support_id;
 
                 return $TransactionRequirementPerUser->save();
             }

@@ -2,9 +2,9 @@
     <div class="row justify-content-center">
         <div class="col-12 col-xl-10">
             <div class="row">
-                <div class="col-lg-7">
+                <div class="col-lg-7 border-end">
                     <div v-if="!transaction.checkoutData">
-                        <div class="card mb-3">
+                        <div class="card mb-3 border-bottom">
                             <div class="card-header pb-0 px-3 pb-3">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -27,10 +27,13 @@
                                             </div>
                                             <div class="col">
                                                 <div>
+                                                    <span 
+                                                    :class="transaction.catalog_payment_method.catalog_payment_method_id == catalogPaymentMethod.catalog_payment_method_id ? 'text-white': 'text-primary'"
+                                                        class="fw-semibold me-2">{{catalogPaymentMethod.code}}</span>
                                                     {{catalogPaymentMethod.description}} 
                                                     <span 
-                                                        :class="transaction.catalog_payment_method_id == catalogPaymentMethod.catalog_payment_method_id ? 'text-white': ''"
-                                                        class="badge text-dark p-0">{{catalogPaymentMethod.currency}}</span> 
+                                                        :class="transaction.catalog_payment_method.catalog_payment_method_id == catalogPaymentMethod.catalog_payment_method_id ? 'text-white': 'text-dark'"
+                                                        class="badge p-0">{{catalogPaymentMethod.currency}}</span> 
                                                 </div>
 
                                                 <div>
@@ -66,7 +69,7 @@
                             </div>
                             <div class="card-body">
                                 <div>
-                                    <label>Monto a fondear</label>
+                                    <label>Monto a fondear {{transaction.catalog_payment_method.currency}}</label>
                                     <div class="input-group mb-3">
                                         <input 
                                             :disabled="!transaction.catalog_payment_method.catalog_payment_method_id"
@@ -239,7 +242,7 @@
                                 <a class="btn btn-primary" target="_blank" :href="transaction.checkoutData.link">Ir a pagar</a>
                                 <a class="btn btn-primary ms-3" target="_blank" :href="transaction.checkoutData.linkSuscription">Ir a pagar de forma recurrente</a>
                             </div>
-                            <div v-else-if="transaction.catalog_payment_method.catalog_payment_method_id == CatalogCurrency.TRANSFER_MXN"> 
+                            <div v-else-if="transaction.catalog_payment_method.catalog_payment_method_id == CatalogCurrency.TRANSFER_MXN || transaction.catalog_payment_method.catalog_payment_method_id == CatalogCurrency.TRANSFER_COP || transaction.catalog_payment_method.catalog_payment_method_id == CatalogCurrency.TRANSFER_USD"> 
                                 <div class="row align-items-center mb-3">
                                     <div class="col-2">
                                         <img :src="transaction.catalog_payment_method.image" class="img-fluid">
@@ -285,7 +288,7 @@
                                     </div>
                                 </div>
                                 
-                                <div v-if="transaction.catalog_payment_method.catalog_payment_method_id == CatalogCurrency.STRIPE" class="alert alert-light">
+                                <div v-if="transaction.checkoutData.ammount_to_add" class="alert alert-light">
                                     <strong>Aviso</strong>
                                     Se fondearán apróximadamente <b>${{transaction.checkoutData.ammount_to_add.numberFormat(2)}}</b> USD a tu cuenta
                                 </div>

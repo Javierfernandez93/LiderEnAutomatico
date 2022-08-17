@@ -90,11 +90,17 @@ if($UserLogin->_loaded === true)
                             $data["s"] = 0;
                             $data["r"] = "NOT_STRIPE_DATA";
                         }
-                    } else if(in_array($data['catalog_payment_method']['catalog_payment_method_id'],[GranCapital\CatalogPaymentMethod::TRANSFER_MXN])) {
+                    } else if(in_array($data['catalog_payment_method']['catalog_payment_method_id'],[GranCapital\CatalogPaymentMethod::TRANSFER_MXN,GranCapital\CatalogPaymentMethod::TRANSFER_USD,GranCapital\CatalogPaymentMethod::TRANSFER_COP])) {
                         if($checkoutData = createTransactionTransfer($TransactionRequirementPerUser))
                         {
                             // $TransactionRequirementPerUser->txn_id = $checkoutData['txn_id']; // transaction id
                             $TransactionRequirementPerUser->checkout_data = json_encode($checkoutData);
+
+                            if(in_array($data['catalog_payment_method']['catalog_payment_method_id'],[GranCapital\CatalogPaymentMethod::TRANSFER_COP,GranCapital\CatalogPaymentMethod::TRANSFER_MXN]))
+                            {
+                                $ApiFixer = JFStudio\ApiFixer::getInstance();
+                                $checkoutData["ammount_to_add"] = $ApiFixer->convert($data['ammount'],strtolower($data['catalog_payment_method']['currency']),'usd');
+                            }
                             
                             if($TransactionRequirementPerUser->save())
                             {
