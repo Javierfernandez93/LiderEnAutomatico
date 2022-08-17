@@ -12,7 +12,7 @@ if($UserSupport->_loaded === true)
     
     if($catalogPaymentMethods = $CatalogPaymentMethod->getAll("WHERE catalog_payment_method.status != '-1'"))
     {
-        $data["catalogPaymentMethods"] = $catalogPaymentMethods;
+        $data["catalogPaymentMethods"] = format($catalogPaymentMethods);
         $data["s"] = 1;
         $data["r"] = "DATA_OK";
     } else {
@@ -22,6 +22,14 @@ if($UserSupport->_loaded === true)
 } else {
 	$data["s"] = 0;
 	$data["r"] = "NOT_FIELD_SESSION_DATA";
+}
+
+function format(array $catalogPaymentMethods = null) : array {
+    return array_map(function($catalogPaymentMethod){
+        $catalogPaymentMethod['additional_data'] = json_decode($catalogPaymentMethod['additional_data']);
+
+        return $catalogPaymentMethod;
+    },$catalogPaymentMethods);
 }
 
 echo json_encode($data);

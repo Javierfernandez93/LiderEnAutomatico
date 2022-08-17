@@ -90,6 +90,25 @@ if($UserLogin->_loaded === true)
                             $data["s"] = 0;
                             $data["r"] = "NOT_STRIPE_DATA";
                         }
+                    } else if(in_array($data['catalog_payment_method']['catalog_payment_method_id'],[GranCapital\CatalogPaymentMethod::TRANSFER_MXN])) {
+                        if($checkoutData = createTransactionTransfer($TransactionRequirementPerUser))
+                        {
+                            // $TransactionRequirementPerUser->txn_id = $checkoutData['txn_id']; // transaction id
+                            $TransactionRequirementPerUser->checkout_data = json_encode($checkoutData);
+                            
+                            if($TransactionRequirementPerUser->save())
+                            {
+                                $data["checkoutData"] = $checkoutData;
+                                $data["s"] = 1;
+                                $data["r"] = "STRIPE";
+                            } else {
+                                $data["s"] = 0;
+                                $data["r"] = "NOT_STRIPE_UPDATED";
+                            }
+                        } else {
+                            $data["s"] = 0;
+                            $data["r"] = "NOT_STRIPE_DATA";
+                        }
                     }
                 }
             } else {
@@ -107,6 +126,15 @@ if($UserLogin->_loaded === true)
 } else {
 	$data["s"] = 0;
 	$data["r"] = "NOT_FIELD_SESSION_DATA";
+}
+
+function createTransactionTransfer(GranCapital\TransactionRequirementPerUser $TransactionRequirementPerUser = null) : array
+{
+    return [
+        'link' => "../../apps/wallet/invoice?trpid={$TransactionRequirementPerUser->getId()}",
+        'txn_id' => $TransactionRequirementPerUser->getId(),
+        'total' => $TransactionRequirementPerUser->ammount
+    ];
 }
 
 function createTransactionStripe(GranCapital\TransactionRequirementPerUser $TransactionRequirementPerUser = null) : array

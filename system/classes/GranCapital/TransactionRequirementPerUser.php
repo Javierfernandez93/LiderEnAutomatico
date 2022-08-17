@@ -37,6 +37,9 @@ class TransactionRequirementPerUser extends Orm {
                     {$this->tblName}.txn_id,
                     {$this->tblName}.create_date,
                     {$this->tblName}.checkout_data,
+                    {$this->tblName}.payment_reference,
+                    {$this->tblName}.catalog_payment_method_id,
+                    {$this->tblName}.registration_date,
                     {$this->tblName}.validate_date,
                     {$this->tblName}.status,
                     user_login.email,
@@ -78,6 +81,8 @@ class TransactionRequirementPerUser extends Orm {
                         {$this->tblName}.catalog_payment_method_id,
                         {$this->tblName}.checkout_data,
                         {$this->tblName}.validate_date,
+                        {$this->tblName}.registration_date,
+                        {$this->tblName}.payment_reference,
                         {$this->tblName}.status
                     FROM 
                         {$this->tblName}
@@ -117,6 +122,11 @@ class TransactionRequirementPerUser extends Orm {
     public function isPending(int $transaction_requirement_per_user_id = null) : bool
     {
         return $this->checkTransactionStatus($transaction_requirement_per_user_id," AND {$this->tblName}.status = '".self::PENDING."'");
+    }
+    
+    public function isPendingForRegistration(int $transaction_requirement_per_user_id = null) : bool
+    {
+        return $this->checkTransactionStatus($transaction_requirement_per_user_id," AND {$this->tblName}.status = '".self::PENDING."' AND {$this->tblName}.payment_reference = ''");
     }
     
     public function isAviableToReactive(int $transaction_requirement_per_user_id = null) : bool

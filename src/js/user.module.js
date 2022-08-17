@@ -91,11 +91,23 @@ class User extends Http {
     getStripePublicKey(data, callback) {
         return this.call('../../app/application/getStripePublicKey.php', data, callback);
     }
+    registerTransaction(data, callback) {
+        return this.call('../../app/application/registerTransaction.php', data, callback);
+    }
     getStripePaymentIntervals(data, callback) {
         return this.call('../../app/application/getStripePaymentIntervals.php', data, callback);
     }
     createStripeSuscription(data, callback) {
         return this.call('../../app/application/createStripeSuscription.php', data, callback);
+    }
+    getTransactionRequirementInvoice(data, callback) {
+        return this.call('../../app/application/getTransactionRequirementInvoice.php', data, callback);
+    }
+    getTransactionRequirementForRegistration(data, callback) {
+        return this.call('../../app/application/getTransactionRequirementForRegistration.php', data, callback);
+    }
+    registerTransaction(data, callback) {
+        return this.call('../../app/application/registerTransaction.php', data, callback);
     }
     createStripePayment(data, callback) {
         return this.call('../../app/application/createStripePayment.php', data, callback);

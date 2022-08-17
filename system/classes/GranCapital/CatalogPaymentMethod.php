@@ -13,6 +13,7 @@ class CatalogPaymentMethod extends Orm {
 	const PAYPAL = 5;
 	const STRIPE = 6;
 	const STRIPE_USA = 7;
+	const TRANSFER_MXN = 8;
 
 	// state
 	const DELETED = -1;
@@ -38,6 +39,7 @@ class CatalogPaymentMethod extends Orm {
 					{$this->tblName}.image,
 					{$this->tblName}.description,
 					{$this->tblName}.create_date,
+					{$this->tblName}.additional_data,
 					{$this->tblName}.recomended,
 					{$this->tblName}.status,
 					{$this->tblName}.code
@@ -110,7 +112,11 @@ class CatalogPaymentMethod extends Orm {
 						{$this->tblName}.catalog_currency_id,
 						{$this->tblName}.fee,
 						{$this->tblName}.currency,
-						{$this->tblName}.code
+						{$this->tblName}.code,
+						{$this->tblName}.description,
+						{$this->tblName}.registrable,
+						{$this->tblName}.additional_data,
+						{$this->tblName}.image
 					FROM 
 						{$this->tblName}
 					WHERE 

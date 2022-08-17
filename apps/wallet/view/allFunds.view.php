@@ -68,7 +68,21 @@
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <div v-if="transaction.checkout_data.link && transaction.status == 1">
-                                                <a class="btn btn-primary m-0" target="_blank" :href="transaction.checkout_data.link">Pagar</a>
+
+                                                <span v-if="transaction.catalogPaymentMethod.registrable">
+                                                    <span v-if="!transaction.payment_reference">
+                                                        <a class="btn btn-primary btn-sm px-2 m-0 me-2" target="_blank" :href="transaction.checkout_data.link">Ver ficha</a>
+                                                        <button 
+                                                            @click="goToRegisterPayment(transaction.transaction_requirement_per_user_id)"
+                                                            class="btn btn-primary btn-sm px-2 m-0">Registrar pago</button>
+                                                    </span>
+                                                    <span v-else>
+                                                        -
+                                                    </span>
+                                                </span>
+                                                <span v-else>
+                                                    <a class="btn btn-primary m-0" target="_blank" :href="transaction.checkout_data.link">Pagar</a>
+                                                </span>
                                             </div>
                                             <div v-else>
                                                 -

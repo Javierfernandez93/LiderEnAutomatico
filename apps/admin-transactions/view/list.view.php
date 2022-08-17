@@ -41,15 +41,6 @@
                                         </span>
                                         <u class="text-sm ms-2">#</u>
                                     </th>
-                                    <th @click="sortData(columns.user_support_id)" class="text-center c-pointer text-uppercase text-secondary font-weight-bolder opacity-7">
-                                        <span v-if="columns.user_support_id.desc">
-                                            <i class="bi text-primary bi-arrow-up-square-fill"></i>
-                                        </span>
-                                        <span v-else>
-                                            <i class="bi text-primary bi-arrow-down-square-fill"></i>
-                                        </span>
-                                        <u class="text-sm ms-2">ID</u>
-                                    </th>
                                     <th @click="sortData(columns.names)" class="text-start c-pointer text-uppercase text-secondary font-weight-bolder opacity-7">
                                         <span v-if="columns.names.desc">
                                             <i class="bi text-primary bi-arrow-up-square-fill"></i>
@@ -66,9 +57,17 @@
                                         <span v-else>
                                             <i class="bi text-primary bi-arrow-down-square-fill"></i>
                                         </span>
+                                        <u class="text-sm ms-2">Método de pago</u>
+                                    </th>
+                                    <th @click="sortData(columns.ammount)" class="text-center c-pointer text-uppercase text-secondary font-weight-bolder opacity-7">
+                                        <span v-if="columns.ammount.desc">
+                                            <i class="bi text-primary bi-arrow-up-square-fill"></i>
+                                        </span>
+                                        <span v-else>
+                                            <i class="bi text-primary bi-arrow-down-square-fill"></i>
+                                        </span>
                                         <u class="text-sm ms-2">Monto</u>
                                     </th>
-                                    
                                     <th @click="sortData(columns.create_date)" class="text-center c-pointer text-uppercase text-secondary font-weight-bolder opacity-7">
                                         <span v-if="columns.create_date.desc">
                                             <i class="bi text-primary bi-arrow-up-square-fill"></i>
@@ -78,7 +77,6 @@
                                         </span>
                                         <u class="text-sm ms-2">Fecha de sol.</u>
                                     </th>
-                                    
                                     <th @click="sortData(columns.status)" class="text-center c-pointer text-uppercase text-secondary font-weight-bolder opacity-7">
                                         <span v-if="columns.status.desc">
                                             <i class="bi text-primary bi-arrow-up-square-fill"></i>
@@ -88,7 +86,7 @@
                                         </span>
                                         <u class="text-sm ms-2">Estatus</u>
                                     </th>
-
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Información adicional</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Opciones</th>
                                 </tr>
                             </thead>
@@ -97,12 +95,13 @@
                                     <td class="align-middle text-center text-sm">
                                         {{transaction.transaction_requirement_per_user_id}}
                                     </td>
-                                    <td class="align-middle text-center text-sm">
-                                        {{transaction.user_login_id}}
-                                    </td>
                                     <td>
                                         <div class="d-flex px-2 py-1">
-                                            <div><img :src="transaction.image" class="avatar avatar-sm me-3" :alt="transaction.names"></div>
+                                            <div>
+                                                <span class="badge bg-primary me-2">
+                                                    {{transaction.user_login_id}}
+                                                </span>
+                                            </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm">{{transaction.names}}</h6>
                                                 <p class="text-xs text-secondary mb-0">{{transaction.email}}</p>
@@ -110,7 +109,11 @@
                                         </div>
                                     </td>
                                     <td class="align-middle text-center">
-                                        <p class="mb-0">$ {{transaction.ammount.numberFormat(2)}}</p>
+                                        <p class="mb-0">{{transaction.catalogPaymentMethod.code}}</p>
+                                        <p class="mb-0">{{transaction.catalogPaymentMethod.description}}</p>
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <p class="mb-0">$ {{transaction.ammount.numberFormat(2)}} {{transaction.catalogPaymentMethod.currency}}</p>
                                     </td>
                                     <td class="align-middle text-center">
                                         <p class="mb-0 text-xs"><i class="bi bi-clock"></i> {{transaction.create_date.formatFullDate()}}</p>
@@ -118,7 +121,17 @@
                                     <td class="align-middle text-center">
                                         <span v-if="transaction.status == 1"
                                             class="badge bg-warning">
-                                            Pendiente de pago
+                                            <span v-if="transaction.catalogPaymentMethod.registrable">
+                                                <span v-if="transaction.payment_reference">
+                                                    Pendiente de validación
+                                                </span>
+                                                <span v-else>
+                                                    Pendiente de registro
+                                                </span>
+                                            </span>
+                                            <span v-else>
+                                                Pendiente de pago
+                                            </span>
                                         </span>
                                         <span v-else-if="transaction.status == 0"
                                             class="badge bg-danger">
@@ -140,6 +153,18 @@
                                         </div>
                                     </td>
                                     <td class="align-middle text-center text-sm">
+                                        <div v-if="transaction.payment_reference">
+                                            <div>
+                                                <div class="text-xs text-secondary">Referencia de pago</div>
+                                                {{transaction.payment_reference}}
+                                            </div>
+                                            <div>
+                                                <div class="text-xs text-secondary">Fecha de registro</div>
+                                                {{transaction.registration_date.formatFullDate()}}
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 
@@ -152,7 +177,7 @@
                                                     <li v-if="transaction.status == 1"><button class="dropdown-item" @click="deleteDeposit(transaction.transaction_requirement_per_user_id)">Eliminar fondeo</button></li>
                                                 <?php } ?>
                                                 <?php if($UserSupport->hasPermission('view_deposit')) { ?>
-                                                    <li><button class="dropdown-item" @click="viewDeposit(transaction)">Ver info fondeo (API)</button></li>
+                                                    <li><button class="dropdown-item d-none" @click="viewDeposit(transaction)">Ver info fondeo (API)</button></li>
                                                 <?php } ?>
                                                 <?php if($UserSupport->hasPermission('apply_deposit')) { ?>
                                                     <li v-if="transaction.status == -1 || transaction.status == 0"><button class="dropdown-item" @click="reactiveDeposit(transaction.transaction_requirement_per_user_id)">Reactivar fondeo</button></li>

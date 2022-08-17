@@ -7,7 +7,7 @@ require TO_ROOT . 'vendor3/autoload.php';
 \Stripe\Stripe::setApiKey(JFStudio\Stripe::SECRET_KEY_SANDBOX);
 
 // This is your Stripe CLI webhook secret for testing your endpoint locally.
-$endpoint_secret = 'whsec_21a4025a16c14bd3b3dc19c050259d9742d6f765c64a2ae317da1ee3c2f30955';
+$endpoint_secret = 'whsec_RAPLcBgSZlAdx3vZrfbHgbajmVtaHTyV';
 
 $payload = @file_get_contents('php://input');
 $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];

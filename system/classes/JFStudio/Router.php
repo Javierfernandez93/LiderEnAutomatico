@@ -21,6 +21,8 @@ class Router {
     const PayPal = 36;
     const Stripe = 37;
     const ListFunds = 39;
+    const Invoice = 40;
+    const Registration = 41;
 
     /* admin */
     const AdminUsers = 9;
@@ -133,6 +135,10 @@ class Router {
                 return 'Lista de fondeos';
             case self::AdminPaymentMethods:
                 return 'Métodos de pago';
+            case self::Registration:
+                return 'Registro de fondeo';
+            case self::Invoice:
+                return 'Recibo';
                 default: 
                 return 'Sin nombre';
         }

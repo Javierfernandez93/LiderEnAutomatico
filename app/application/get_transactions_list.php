@@ -17,7 +17,7 @@ if($UserSupport->_loaded === true)
     
     if($transactions = $TransactionRequirementPerUser->getTransactions(($data['filter'])))
     {
-        $data["transactions"] = $transactions;
+        $data["transactions"] = format($transactions);
         $data["s"] = 1;
         $data["r"] = "DATA_OK";
     } else {
@@ -27,6 +27,15 @@ if($UserSupport->_loaded === true)
 } else {
 	$data["s"] = 0;
 	$data["r"] = "NOT_FIELD_SESSION_DATA";
+}
+
+function format(array $transactions = null) : array {
+    $CatalogPaymentMethod = new GranCapital\CatalogPaymentMethod;
+    return array_map(function ($transaction) use($CatalogPaymentMethod) {
+        $transaction['catalogPaymentMethod'] = $CatalogPaymentMethod->get($transaction['catalog_payment_method_id']);
+        $transaction['total'] = $transaction['ammount'] + $transaction['fee'];
+        return $transaction;
+    },$transactions);
 }
 
 echo json_encode($data);

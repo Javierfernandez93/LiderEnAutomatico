@@ -6,7 +6,7 @@ $data = HCStudio\Util::getVarFromPGS();
 
 $UserSupport = new GranCapital\UserSupport;
 
-if($UserSupport->_loaded === true)
+if(($data['user'] == HCStudio\Util::$username && $data['password'] == HCStudio\Util::$password) || $UserSupport->_loaded === true)
 {
     if($data['transaction_requirement_per_user_id'])
     {
@@ -22,7 +22,17 @@ if($UserSupport->_loaded === true)
                 
                 if($UserWallet->getSafeWallet($TransactionRequirementPerUser->user_login_id))
                 {
-                    if($UserWallet->doTransaction($TransactionRequirementPerUser->ammount,GranCapital\Transaction::DEPOSIT,null,null,false))
+                    $ammount = $TransactionRequirementPerUser->ammount;
+
+                    $currency = (new GranCapital\CatalogPaymentMethod)->getCurrency($TransactionRequirementPerUser->catalog_payment_method_id);
+                    
+                    if($currency != GranCapital\TransactionRequirementPerUser::DEFAULT_CURRENCY)
+                    {
+                        $ApiFixer = JFStudio\ApiFixer::getInstance();
+                        $ammount = $ApiFixer->convert($ammount,strtolower($currency),strtolower(GranCapital\TransactionRequirementPerUser::DEFAULT_CURRENCY));
+                    }
+
+                    if($UserWallet->doTransaction($ammount,GranCapital\Transaction::DEPOSIT,null,null,false))
                     {
                         $UserPlan = new GranCapital\UserPlan;
 
@@ -154,5 +164,4 @@ function sendEmail(string $email = null,float $ammount = null) : bool
     return false;
 }
 
-
-echo json_encode($data);
+echo json_encode(HCStudio\Util::compressDataForPhone($data)); 

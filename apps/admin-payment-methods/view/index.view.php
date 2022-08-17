@@ -86,6 +86,7 @@
                                         </span>    
                                         <u class="text-sm ms-2">Estatus</u>
                                     </th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Información adicional</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Opciones</th>
                                 </tr>
                             </thead>
@@ -148,6 +149,26 @@
                                             class="badge bg-success">
                                             Activo
                                         </span>
+                                    </td>
+                                    <td>
+                                        <div v-if="catalogPaymentMethod.additional_data">
+                                            <div>
+                                                <div class="text-xs text-secondary">Banco</div>
+                                                <div class="text-semibold text-dark">{{catalogPaymentMethod.additional_data.bank}}</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs text-secondary">Cuenta</div>
+                                                <div class="text-semibold text-dark">{{catalogPaymentMethod.additional_data.account}}</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs text-secondary">CLABE</div>
+                                                <div class="text-semibold text-dark">{{catalogPaymentMethod.additional_data.clabe}}</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-xs text-secondary">Beneficiario</div>
+                                                <div class="text-semibold text-dark">{{catalogPaymentMethod.additional_data.beneficiary}}</div>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td class="align-middle text-center text-sm">
                                         <div class="btn-group">

@@ -239,6 +239,59 @@
                                 <a class="btn btn-primary" target="_blank" :href="transaction.checkoutData.link">Ir a pagar</a>
                                 <a class="btn btn-primary ms-3" target="_blank" :href="transaction.checkoutData.linkSuscription">Ir a pagar de forma recurrente</a>
                             </div>
+                            <div v-else-if="transaction.catalog_payment_method.catalog_payment_method_id == CatalogCurrency.TRANSFER_MXN"> 
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-2">
+                                        <img :src="transaction.catalog_payment_method.image" class="img-fluid">
+                                    </div>
+                                    <div class="col">
+                                        <div>Paga por {{transaction.catalog_payment_method.description}}</div>
+                                    </div>
+                                    
+                                    <div class="col-auto">
+                                        <div>{{transaction.catalog_payment_method.currency}}</div>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div>
+                                        <span class="badge p-0 text-secondary">Número de pago</span>
+                                    </div>
+                                    <div class="fw-semibold">
+                                        {{transaction.checkoutData.txn_id}}
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div>
+                                        <span class="badge p-0 text-secondary">Sub total</span>
+                                    </div>
+                                    <div class="fw-semibold">
+                                        $ {{transaction.ammount.numberFormat(2)}} <sup>{{transaction.catalog_payment_method.currency}}</sup>
+                                    </div>
+                                </div>
+                                <div v-if="transaction.checkoutData.fee > 0" class="mb-3">
+                                    <div>
+                                        <span class="badge p-0 text-secondary">Tarifa de transacción</span>
+                                    </div>
+                                    <div class="fw-semibold">
+                                        $ {{transaction.checkoutData.fee.numberFormat(2)}} <sup>{{transaction.catalog_payment_method.currency}}</sup> ({{transaction.catalog_payment_method.fee.numberFormat(2)}} %)
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <div>
+                                        <span class="badge p-0 text-secondary">Monto a pagar</span>
+                                    </div>
+                                    <div class="fw-semibold">
+                                        $ {{(transaction.checkoutData.total).numberFormat(2)}} <sup>{{transaction.catalog_payment_method.currency}}</sup>
+                                    </div>
+                                </div>
+                                
+                                <div v-if="transaction.catalog_payment_method.catalog_payment_method_id == CatalogCurrency.STRIPE" class="alert alert-light">
+                                    <strong>Aviso</strong>
+                                    Se fondearán apróximadamente <b>${{transaction.checkoutData.ammount_to_add.numberFormat(2)}}</b> USD a tu cuenta
+                                </div>
+                                
+                                <a class="btn btn-primary" target="_blank" :href="transaction.checkoutData.link">Ir a pagar</a>
+                            </div>
                         </div>
                     </div>
                 </div>

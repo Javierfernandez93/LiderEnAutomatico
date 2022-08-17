@@ -12,6 +12,7 @@ Vue.createApp({
                 PAYPAL: 5,
                 STRIPE: 6,
                 STRIPE_USA: 7,
+                TRANSFER_MXN: 8,
             },
             transaction: {
                 catalog_payment_method: {

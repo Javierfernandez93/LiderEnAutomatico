@@ -62,7 +62,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if(in_array($route,[JFStudio\Router::ListFunds,JFStudio\Router::Stripe])){?>active<?php } ?>" href="../../apps/wallet/allFunds">
+                        <a class="nav-link <?php if(in_array($route,[JFStudio\Router::ListFunds,JFStudio\Router::Stripe,JFStudio\Router::Invoice,JFStudio\Router::Registration])){?>active<?php } ?>" href="../../apps/wallet/allFunds">
                             <i class="bi bi-credit-card-2-back-fill"></i>
                             <span class="nav-link-text ms-1"><?php echo JFStudio\Router::getName(JFStudio\Router::ListFunds);?></span>
                         </a>

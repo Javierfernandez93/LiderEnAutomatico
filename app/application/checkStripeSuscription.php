@@ -22,46 +22,29 @@ if($UserLogin->_loaded === true)
             
             if($TransactionRequirementPerUser->cargarDonde("txn_id = ? AND status = ?",[$paymentIntent->id,GranCapital\TransactionRequirementPerUser::PENDING]))
             {
-                $UserWallet = new GranCapital\UserWallet;
-                            
-                if($UserWallet->getSafeWallet($TransactionRequirementPerUser->user_login_id))
+                $Curl = new JFStudio\Curl;
+                $Curl->get(HCStudio\Connection::getMainPath()."/app/application/apply_deposit.php",[
+                    'user' => HCStudio\Util::$username,
+                    'password' => HCStudio\Util::$password,
+                    'transaction_requirement_per_user_id' => $TransactionRequirementPerUser->getId()
+                ]);
+
+                if($response = $Curl->getResponse(true))
                 {
-                    $ammount = $TransactionRequirementPerUser->ammount;
+                    $data['response'] = $response;
 
-                    $currency = (new GranCapital\CatalogPaymentMethod)->getCurrency($TransactionRequirementPerUser->catalog_payment_method_id);
-                    
-                    if($currency != GranCapital\TransactionRequirementPerUser::DEFAULT_CURRENCY)
+                    if($response['s'] == 1)
                     {
-                        $ApiFixer = JFStudio\ApiFixer::getInstance();
-                        $ammount = $ApiFixer->convert($ammount,strtolower($currency),strtolower(GranCapital\TransactionRequirementPerUser::DEFAULT_CURRENCY));
-                    }
-
-                    if($UserWallet->doTransaction($ammount,GranCapital\Transaction::DEPOSIT,null,null,false))
-                    {
-                        $UserPlan = new GranCapital\UserPlan;
-
-                        if($UserPlan->setPlan($UserWallet->user_login_id))
-                        {
-                            if(updateTransaction($TransactionRequirementPerUser->getId()))
-                            {
-                                $data["s"] = 1;
-                                $data["r"] = "PAYMENT_PROCCESS_OK";
-                            }  else {
-                                $data["s"] = 0;
-                                $data["r"] = "NOT_UPDATE_TRANSACTION";    
-                            }
-                        } else {
-                            $data["s"] = 0;
-                            $data["r"] = "NOT_UPDATE_PLAN";
-                        }
+                        $data['s'] = 1;
+                        $data['r'] = 'DATA_OK';
                     } else {
-                        $data['r'] = "NOT_WALLET";
                         $data['s'] = 0;
+                        $data['r'] = 'NOT_SUCCESS';
                     }
                 } else {
-                    $data['r'] = "DATA_ERROR";
                     $data['s'] = 0;
-                }   
+                    $data['r'] = 'NOT_RESPONSE';
+                } 
             } else {
                 $data["s"] = 0;
                 $data["r"] = "NOT_TRANSACTION_REQUIREMENT_PER_USER";  
@@ -77,26 +60,6 @@ if($UserLogin->_loaded === true)
 } else {
 	$data['s'] = 0;
 	$data['r'] = 'INVALID_CREDENTIALS';
-}
-
-function updateTransaction(int $transaction_requirement_per_user_id = null)
-{
-    if(isset($transaction_requirement_per_user_id) === true)
-    {
-        $TransactionRequirementPerUser = new GranCapital\TransactionRequirementPerUser;
-        
-        if($TransactionRequirementPerUser->isPending($transaction_requirement_per_user_id))
-        {   
-            if($TransactionRequirementPerUser->cargarDonde("transaction_requirement_per_user_id = ?",$transaction_requirement_per_user_id))
-            {
-                $TransactionRequirementPerUser->status = GranCapital\TransactionRequirementPerUser::VALIDATED;
-                $TransactionRequirementPerUser->validate_date = time();
-                $TransactionRequirementPerUser->validation_method = GranCapital\TransactionRequirementPerUser::STRIPE_CDN;
-
-                return $TransactionRequirementPerUser->save();
-            }
-        }
-    }
 }
 
 echo json_encode(HCStudio\Util::compressDataForPhone($data)); 

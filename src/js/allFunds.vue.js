@@ -29,6 +29,9 @@ Vue.createApp({
                 return transaction.ammount.toString().toLowerCase().includes(this.query.toLowerCase()) || transaction.catalogPaymentMethod.code.toLowerCase().includes(this.query.toLowerCase()) || transaction.transaction_requirement_per_user_id.toString().includes(this.query.toLowerCase()) || transaction.total.toString().toLowerCase().includes(this.query.toLowerCase()) 
             })
         },
+        goToRegisterPayment: function (transaction_requirement_per_user_id) {
+            window.location.href = `../../apps/wallet/registration?trpid=${transaction_requirement_per_user_id}`
+        },
         getAllTransactionsRequirement: function () {
             this.User.getAllTransactionsRequirement({}, (response) => {
                 if (response.s == 1) {
