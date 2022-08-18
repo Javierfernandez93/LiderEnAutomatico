@@ -103,6 +103,26 @@ class UserPlan extends Orm {
 
     return false;
   }
+  
+  public function getMyRange(int $user_login_id = null) 
+  {
+    if(isset($user_login_id) === true)
+    {
+      $sql = "SELECT
+                {$this->tblName}.catalog_plan_id
+              FROM 
+                {$this->tblName}
+              WHERE 
+                {$this->tblName}.user_login_id = '{$user_login_id}'
+              AND 
+                {$this->tblName}.status = '1'
+              ";
+
+      return $this->connection()->field($sql);
+    }
+
+    return false;
+  }
 
   public function getActivePlans(string $filter = '') 
   {
@@ -172,7 +192,7 @@ class UserPlan extends Orm {
               $UserPlan->create_date = time();
           }
 
-          $UserPlan->additional_profit = $additional_profit ? $this->calculateProfit($user_login_id,$additional_profit,$catalog_plan_id) : 0;
+          $UserPlan->additional_profit = $additional_profit ? $additional_profit : $UserPlan->additional_profit;
           $UserPlan->sponsor_profit = $sponsor_profit ? $sponsor_profit : $UserPlan->sponsor_profit;
 
           $UserPlan->ammount = $ammount;

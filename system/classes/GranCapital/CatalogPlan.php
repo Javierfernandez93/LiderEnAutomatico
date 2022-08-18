@@ -64,19 +64,14 @@ class CatalogPlan extends Orm {
 
 			if($catalog_plans = $this->getAll())
 			{
-				if($ammount >= $catalog_plans[0]['goal'])
+				foreach($catalog_plans as $key => $catalog_plan)
 				{
-					foreach($catalog_plans as $key => $catalog_plan)
+					$additional_data = json_decode($catalog_plan['additional_data'],true);
+
+					if($ammount >= $additional_data['min'] && $ammount <= $additional_data['max'])
 					{
-						$nextVal = $$catalog_plans[$key+1] != null ? $catalog_plans[$key+1]['goal'] : INF;
-		
-						if ($ammount >= $catalog_plan['goal'] && $ammount < $nextVal) 
-						{
-							$catalog_plan_id = $catalog_plan['catalog_plan_id'];
-						}
+						$catalog_plan_id = $catalog_plan['catalog_plan_id'];
 					}
-				} else {
-					$catalog_plan_id = $catalog_plans[0]['catalog_plan_id'];
 				}
 			}
 

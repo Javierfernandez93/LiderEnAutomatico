@@ -32,7 +32,6 @@ Vue.createApp({
     mounted() 
     {
         this.User = new User
-        
         this.getMyRange()
     },
 }).mount('#app')
