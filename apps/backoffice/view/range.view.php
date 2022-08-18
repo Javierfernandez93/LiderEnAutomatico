@@ -25,6 +25,15 @@
                                                 <div class="fs-4 fw-semibold text-gradient text-primary">{{catalogPlan.name}}</div>
                                                 <div class="">
                                                     <span class="badge bg-gradient-primary">Profit {{catalogPlan.profit.numberFormat(2)}}%</span>
+                                                    <span class="badge bg-gradient-success">
+                                                        $ {{catalogPlan.additional_data.min.numberFormat(2)}} - 
+                                                        <span v-if="catalogPlan.additional_data.max == -1">
+                                                            en adelante
+                                                        </span>
+                                                        <span v-else>
+                                                            $ {{catalogPlan.additional_data.max.numberFormat(2)}}
+                                                        </span>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="row d-flex justify-content-center mb-3 position-relative range-box-inner">

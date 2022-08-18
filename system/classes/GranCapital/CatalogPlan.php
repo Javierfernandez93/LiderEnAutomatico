@@ -18,6 +18,7 @@ class CatalogPlan extends Orm {
 					{$this->tblName}.name,
 					{$this->tblName}.goal,
 					{$this->tblName}.image,
+					{$this->tblName}.additional_data,
 					{$this->tblName}.profit
 				FROM 
 					{$this->tblName}
