@@ -16,6 +16,12 @@ Vue.createApp({
             currency: null,
             Stripe: null,
             card: null,
+            card : {
+                number: null,
+                exp_month: null,
+                exp_year: null,
+                cvc: null
+            },
             customer : {
                 customer_id: null
             },
@@ -38,12 +44,20 @@ Vue.createApp({
             this.Stripe = Stripe(this.public_key);
             this.elements = this.Stripe.elements();
             this.card = this.elements.create("card", 
-                { 
-                    style: {
-                        base: {
-                            color: "#32325d",
+                {
+                    base: {
+                        color: "#32325d",
+                        fontFamily: 'Arial, sans-serif',
+                        fontSmoothing: "antialiased",
+                        fontSize: "16px","::placeholder": {
+                            color: "#32325d"
                         }
-                    } 
+                    },
+                    invalid: {
+                        fontFamily: 'Arial, sans-serif',
+                        color: "#fa755a",
+                        iconColor: "#fa755a"
+                    }
                 }
             );
 
@@ -62,7 +76,6 @@ Vue.createApp({
         },
         makePayment: function()
         {
-            console.log(1)
             this.loadingButton = true
 
             this.User.createStripePayment({customer_id:this.customer.customer_id,ammount:this.ammount,currency:this.currency,transaction_requirement_per_user_id:getParam('trpid')},(response)=>{
@@ -76,18 +89,18 @@ Vue.createApp({
                     if (result.error) {
                         this.error = result.error
                     } else {
-                        console.log("result",result)
+                        
                         if (result.paymentIntent.status === 'succeeded') 
                         {
                             this.User.checkStripePayment({id: result.paymentIntent.id},(response) => {
-
-                                console.log(response)
-                                
                                 if (response.s == 1) {
                                     this.paymentStatus = this.STATUS.PAYMENT_DONE
+
+                                    this.User.saveCustomerCard({id: result.paymentIntent.id,customer_id: this.customer.customer_id},(response) => {
+                                        console.log(response)
+                                    })
                                 }
-                                console.log(this.paymentStatus)
-                            });
+                            })
                         }
                     }
                 })
@@ -175,6 +188,7 @@ Vue.createApp({
                 this.paymentStatus = this.STATUS.PAYMENT_PENDING
 
                 this.getStripeCustomer().then((customer_id) => {
+                    this.customer.customer_id = customer_id
                     this.getStripePublicKey().then((public_key) => {
                         this.public_key = public_key
 

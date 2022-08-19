@@ -13,6 +13,16 @@ $Layout->setScriptPath(TO_ROOT . '/src/');
 $Layout->setScript([
 	'stripe.vue.js',
 ]);
+// require_once TO_ROOT . '/vendor3/autoload.php';
+
+// $stripe = new \Stripe\StripeClient(JFStudio\Stripe::SECRET_KEY_SANDBOX);
+
+// $pm = $stripe->paymentIntents->retrieve(
+// 	'pi_3LYJzJHwPw0UyNib1zOT20La',
+// 	[]
+// );
+
+// d($pm->payment_method);
 
 $Layout->setVar([
 	"route" => $route,

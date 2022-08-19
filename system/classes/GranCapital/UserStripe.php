@@ -67,4 +67,24 @@ class UserStripe extends Orm {
 
     return false;
   }
+  
+  public function getUserLoginId(string $customer_id = null)
+  {
+    if(isset($customer_id) === true)
+    {
+      $sql = "SELECT 
+                {$this->tblName}.user_login_id
+              FROM 
+                {$this->tblName}
+              WHERE
+                {$this->tblName}.customer_id = '{$customer_id}'
+              AND 
+                {$this->tblName}.status = '1'
+              ";
+
+      return $this->connection()->field($sql);
+    }
+
+    return false;
+  }
 }

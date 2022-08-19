@@ -30,6 +30,27 @@ class CatalogPaymentMethod extends Orm {
 		return $fee > 0 ? Util::getPercentaje($ammount,$fee) : 0;
 	}
 
+	public function getStripePaymentMethodByCurrency(string $currency = null)
+	{
+		if(isset($currency) === true)
+		{
+			$sql = "SELECT 
+						{$this->tblName}.{$this->tblName}_id,
+						{$this->tblName}.fee
+					FROM 
+						{$this->tblName}
+					WHERE 
+						{$this->tblName}.code = 'STRIPE'
+					AND 
+						{$this->tblName}.currency = '{$currency}'
+					";
+			
+			return $this->connection()->row($sql);
+		}
+
+		return false;
+	}
+
 	public function getAll(string $filter = "WHERE catalog_payment_method.status = '1'")
 	{
 		$sql = "SELECT 

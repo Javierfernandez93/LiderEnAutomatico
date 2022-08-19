@@ -7,6 +7,7 @@ use HCStudio\Orm;
 use GranCapital\UserWallet;
 use GranCapital\TransactionPerWallet;
 use GranCapital\CatalogPlan;
+use PayPal\Api\Amount;
 
 class UserPlan extends Orm {
   protected $tblName  = 'user_plan';

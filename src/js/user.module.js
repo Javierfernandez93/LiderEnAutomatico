@@ -85,6 +85,9 @@ class User extends Http {
     getStripeCustomer(data, callback) {
         return this.call('../../app/application/getStripeCustomer.php', data, callback);
     }
+    saveCustomerCard(data, callback) {
+        return this.call('../../app/application/saveCustomerCard.php', data, callback);
+    }
     getPayPalPaymentStatus(data, callback) {
         return this.call('../../app/application/getPayPalPaymentStatus.php', data, callback);
     }

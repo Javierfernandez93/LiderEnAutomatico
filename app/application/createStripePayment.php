@@ -23,6 +23,7 @@ if($UserLogin->_loaded === true)
                     'amount' => JFStudio\Stripe::formatAmmount($data['ammount']),
                     'currency' => $data['currency'],
                     'payment_method_types' => ['card'],
+                    'setup_future_usage' => 'off_session',
                     'description' => 'GranCapital-'.$TransactionRequirementPerUser->getId()
                 ]);
 

@@ -16,6 +16,7 @@ if($UserLogin->_loaded === true)
         
 	if($customer = retreiveCustomer($UserLogin))
 	{
+		// d($customer);
         $data['customer_id'] = $customer->id;    
 		$data['s'] = 1;
         $data['r'] = 'DATA_OK';    
