@@ -34,20 +34,20 @@ if(($data['user'] == HCStudio\Util::$username && $data['password'] == HCStudio\U
 
                     if($UserWallet->doTransaction($ammount,GranCapital\Transaction::DEPOSIT,null,null,false))
                     {
-                        $UserPlan = new GranCapital\UserPlan;
-
-                        if($UserPlan->setPlan($UserWallet->user_login_id))
+                        $user_support_id = 0;
+                        $validation_method = $data['validation_method'];
+                        
+                        if($UserSupport->getId())
                         {
-                            $user_support_id = 0;
-                            $validation_method = $data['validation_method'];
-                            
-                            if($UserSupport->getId())
-                            {
-                                $user_support_id = $UserSupport->getId();
-                                $validation_method = GranCapital\TransactionRequirementPerUser::ADMIN;
-                            }
+                            $user_support_id = $UserSupport->getId();
+                            $validation_method = GranCapital\TransactionRequirementPerUser::ADMIN;
+                        }
+                        
+                        if(updateTransaction($data['transaction_requirement_per_user_id'],$user_support_id,$validation_method))
+                        {
+                            $UserPlan = new GranCapital\UserPlan;
 
-                            if(updateTransaction($data['transaction_requirement_per_user_id'],$user_support_id,$validation_method))
+                            if($UserPlan->setPlan($UserWallet->user_login_id))
                             {
                                 // if(sendPush($TransactionRequirementPerUser->user_login_id,'Hemos fondeado tu cuenta',GranCapital\CatalogNotification::ACCOUNT))
                                 // {
@@ -63,11 +63,11 @@ if(($data['user'] == HCStudio\Util::$username && $data['password'] == HCStudio\U
                                 $data["r"] = "DATA_OK";
                             } else {
                                 $data["s"] = 0;
-                                $data["r"] = "TRANSACTION_NOT_UPDATED";
+                                $data["r"] = "NOT_UPDATE_PLAN";
                             }
                         } else {
                             $data["s"] = 0;
-                            $data["r"] = "NOT_UPDATE_PLAN";
+                            $data["r"] = "TRANSACTION_NOT_UPDATED";
                         }
                     } else {
                         $data['r'] = "NOT_WALLET";
