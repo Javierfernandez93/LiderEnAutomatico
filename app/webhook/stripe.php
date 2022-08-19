@@ -31,7 +31,7 @@ saveEvent($event,$event->type);
 
 // Handle the event
 switch ($event->type) {
-  case 'invoice.paid':
+  case 'invoice.payment_succeeded':
     addFundsBySuscription($event->data->object->customer,$event->data->object->payment_intent,JFStudio\Stripe::unformatAmmount($event->data->object->amount_due),$event->data->object->currency,$event->data->object->invoice_pdf,$event->data->object->id);
     break;
   case 'payment_intent.succeeded':
