@@ -13,6 +13,8 @@ if($UserLogin->_loaded === true)
         'email' => $UserLogin->email,
         'phone' => $UserLogin->_data['user_contact']['phone'],
         'names' => $UserLogin->_data['user_data']['names'],
+        'last_login_date' => $UserLogin->last_login_date,
+        'ip_user_address' => $UserLogin->ip_user_address,
         'plan' => $UserLogin->getPlan(),
         'has_card' => $UserLogin->hasCard(),
         'image' => $UserLogin->_data['user_account']['image'],

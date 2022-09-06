@@ -134,6 +134,9 @@ class User extends Http {
     checkStripePayment(data,callback) {
         return this.call('./../../app/application/checkStripePayment.php', data, callback);
     }
+    getReferralsShortData(data,callback) {
+        return this.call('./../../app/application/getReferralsShortData.php', data, callback);
+    }
     getStripeClientSecret(data,callback) {
         return this.call('./../../app/application/getStripeClientSecret.php', data, callback);
     }

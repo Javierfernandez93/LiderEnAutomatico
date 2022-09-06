@@ -194,7 +194,7 @@ class ProfitPerUser extends Orm
 
     return $this->connection()->field($sql);
   }
-
+ 
   public function getWorkingDays(string $day = null)
   {
     $working_days = 0;
@@ -203,13 +203,12 @@ class ProfitPerUser extends Orm
 
     for ($i = 0; $i < date("t"); $i++) 
     {
-      $unix = strtotime("+" . ($i + 1) . " days",$start_date);
+      $unix = strtotime("+" . ($i) . " days",$start_date);
 
       if (date('N', $unix) < 6) {
         $working_days++;
       }
     }
-
     return $working_days;
   }
 

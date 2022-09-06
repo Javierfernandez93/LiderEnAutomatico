@@ -2,11 +2,11 @@ import { User } from '../../src/js/user.module.js?t=4'
 
 const ProfitViewer = {
     name : 'profit-viewer',
-    props : [],
+    props : ['user'],
     emits : [],
     data() {
         return {
-            User : null,
+            User : new User,
             gainStats : {
                 investment : {
                     total: 0,
@@ -33,112 +33,97 @@ const ProfitViewer = {
                     Object.assign(this.gainStats,response.gainStats)
                 }
             })
-        }
+        },
     },
     updated() {
     },
     mounted() 
     {   
-        this.User = new User
-
         this.getProfitStats()
     },
     template : `
-        <div class="row mb-4 border-bottom pb-3">
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <a href="../../apps/wallet">
-                    <div class="card bg-gradient-primary">
-                        <div class="card-body p-3">
-                            <div class="row c-pointer text-white">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-capitalize font-weight-bold">Balance</p>
-                                        <h5 class="font-weight-bolder text-white mb-0">
-                                            <u>$ {{ gainStats.balance.numberFormat(2) }}</u>
-                                            <span class="d-none text-danger text-sm font-weight-bolder">-2%</span>
-                                        </h5>
+        <div class="card bg-gradient-primary text-white mb-3">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div
+                        v-if="user" 
+                        class="col-xl-4 mb-3 mb-xl-0">
+                        <div class="row align-items-center">
+                            <div class="col-auto">
+                                <div class="avatar bg-white">
+                                    <img :src="user.image">
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="fw-semibold">Hola {{user.names}},</div>
+                                <div class="fs-5">¡Bienvenido de nuevo!</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8 align-items-center">    
+                        <div class="row">
+                            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                                <div class="card bg-dark">
+                                    <div class="card-body p-3">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <div class="numbers">
+                                                    <p class="text-sm mb-0 text-capitalize text-secondary">Billetera electrónica</p>
+                                                    <h5 class="mb-0 text-white fw-semibold">
+                                                        $ {{gainStats.balance.numberFormat(2)}}
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 text-end">
+                                                <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                                                    <i class="bi bi-wallet text-lg text-white opacity-10" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-4 text-end">
-                                    <div class="icon icon-shape bg-white shadow text-center border-radius-md">
-                                        <i class="bi bi-wallet text-lg text-dark opacity-10" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
+                                <div class="card bg-dark">
+                                    <div class="card-body p-3">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <div class="numbers">
+                                                    <p class="text-sm mb-0 text-capitalize text-secondary">Total de ganancias</p>
+                                                    <h5 class="mb-0 text-white fw-semibold">
+                                                        $ {{gainStats.referral.total.numberFormat(2)}}
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 text-end">
+                                                <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                                                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card border-end border-radius-xs">
-                    <div class="card-body p-3">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="numbers">
-                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Ganancias por inversión</p>
-                                    <h5 class="font-weight-bolder mb-0">
-                                        $ {{gainStats.investment.total.numberFormat(2)}}
-                                        <span v-if="gainStats.investment.percentaje >= 0" class="text-success text-sm font-weight-bolder">
-                                            +{{gainStats.investment.percentaje}}%
-                                        </span>
-                                        <span v-else class="text-danger text-sm font-weight-bolder">
-                                            -{{gainStats.investment.percentaje}}%
-                                        </span>
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="col-4 text-end">
-                                <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                    <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                <div class="card border-end border-radius-xs">
-                    <div class="card-body p-3">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="numbers">
-                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Ganancias por referidos</p>
-                                    <h5 class="font-weight-bolder mb-0">
-                                        $ {{gainStats.referral.total.numberFormat(2)}}
-                                        <span v-if="gainStats.referral.percentaje >= 0" class="text-success text-sm font-weight-bolder">
-                                            +{{gainStats.referral.percentaje}}%
-                                        </span>
-                                        <span v-else class="text-danger text-sm font-weight-bolder">
-                                            -{{gainStats.referral.percentaje}}%
-                                        </span>
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="col-4 text-end">
-                                <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                    <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6">
-                <div class="card">
-                    <div class="card-body p-3">
-                        <div class="row">
-                            <div class="col-8">
-                                <div class="numbers">
-                                    <p class="text-sm mb-0 text-capitalize font-weight-bold">Total Referidos</p>
-                                    <h5 class="font-weight-bolder mb-0">
-                                        {{gainStats.totalReferral}}
-                                        <span class="d-none text-success text-sm font-weight-bolder">+5%</span>
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="col-4 text-end">
-                                <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
-                                    <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
+                            <div class="col-xl-4 col-sm-6 mb-xl-0">
+                                <div class="card bg-dark">
+                                    <div class="card-body p-3">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <div class="numbers">
+                                                    <p class="text-sm mb-0 text-capitalize text-secondary">Retiros</p>
+                                                    <h5 class="mb-0 text-white fw-semibold">
+                                                        {{gainStats.totalReferral}}
+                                                        <span class="d-none text-success text-sm ">+5%</span>
+                                                    </h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-4 text-end">
+                                                <div class="icon icon-shape bg-gradient-primary shadow text-center border-radius-md">
+                                                    <i class="bi bi-wallet text-lg text-white opacity-10" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -3,16 +3,18 @@ import { User } from '../../src/js/user.module.js?t=4'
 /* vue */ 
 import { NoticeViewer } from '../../src/js/noticeViewer.vue.js?t=2'
 import { ProfitViewer } from '../../src/js/profitViewer.vue.js?t=2'
+import { AfiliateViewer } from '../../src/js/afiliateViewer.vue.js?t=2'
+import { AccountViewer } from '../../src/js/accountViewer.vue.js?t=2'
 
 Vue.createApp({
     components : { 
-        ProfitViewer, NoticeViewer
+        ProfitViewer, NoticeViewer, AfiliateViewer, AccountViewer
     },
     data() {
         return {
-            User : null,
-            profits : {},
+            User : new User,
             landing : null,
+            user: null
         }
     },
     watch : {
@@ -24,33 +26,17 @@ Vue.createApp({
         },
     },
     methods: {
-        copyLanding : function() {
-            copyToClipboardTextFromData(this.$refs.landing)
-        },
-        getProfits : function() {
-            this.User.getProfits({},(response)=>{
+        getProfile : function() {
+            this.User.getProfile({},(response)=>{
                 if(response.s == 1)
                 {
-                    this.profits = response.profits.map((profit)=>{
-                        profit['create_date'] = new Date(profit['create_date']*1000).toLocaleDateString()
-                        return profit
-                    })
+                    this.user = response.user
                 }
             })
-        },
-        getBackofficeVars : function() {
-            this.User.getBackofficeVars({},(response)=>{
-                if(response.s == 1)
-                {
-                    this.landing = response.landing
-                }
-            })
-        },
+        }
     },
     mounted() 
     {
-        this.User = new User
-        this.getProfits()
-        this.getBackofficeVars()
+        this.getProfile()
     },
 }).mount('#app')
