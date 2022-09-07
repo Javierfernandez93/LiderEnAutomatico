@@ -105,6 +105,15 @@
                     <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Herramientas</h6>
                 </li>
 
+                <?php if($UserSupport->hasPermission('list_tools')) { ?>
+                    <li class="nav-item">
+                        <a class="nav-link <?php if(in_array($route,[JFStudio\Router::AdminToolsAdd,JFStudio\Router::AdminToolsEdit,JFStudio\Router::AdminTools])){?>active<?php } ?>" href="../../apps/admin-tools">
+                            <i class="bi bi-tools"></i>
+                            <span class="nav-link-text ms-1"><?php echo JFStudio\Router::getName(JFStudio\Router::AdminTools);?></span>
+                        </a>
+                    </li>
+                <?php } ?>
+                
                 <?php if($UserSupport->hasPermission('list_notices')) { ?>
                     <li class="nav-item">
                         <a class="nav-link <?php if(in_array($route,[JFStudio\Router::AdminNoticesAdd,JFStudio\Router::AdminNoticesEdit,JFStudio\Router::AdminNotices])){?>active<?php } ?>" href="../../apps/admin-news">

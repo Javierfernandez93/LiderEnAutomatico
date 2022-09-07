@@ -25,7 +25,7 @@
     %css_scripts%
 </head>
 <body class="g-sidenav-show  bg-white">
-    <aside class="sidenav navbar navbar-vertical navbar-expand-xs fixed-start border-end"
+    <aside class="sidenav navbar navbar-vertical navbar-expand-xs fixed-start border-end bg-white"
         id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -150,6 +150,13 @@
                         href="../../apps/tools/calculator">
                         <i class="bi bi-calculator"></i>
                         <span class="nav-link-text ms-1"><?php echo JFStudio\Router::getName(JFStudio\Router::Calculator); ?></span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link  <?php if($route == JFStudio\Router::Tools){?>active<?php } ?>"
+                        href="../../apps/backoffice/tools">
+                        <i class="bi bi-tools"></i>
+                        <span class="nav-link-text ms-1"><?php echo JFStudio\Router::getName(JFStudio\Router::Tools); ?></span>
                     </a>
                 </li>
 

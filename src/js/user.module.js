@@ -140,6 +140,9 @@ class User extends Http {
     getStripeClientSecret(data,callback) {
         return this.call('./../../app/application/getStripeClientSecret.php', data, callback);
     }
+    getToolsList(data,callback) {
+        return this.call('./../../app/application/getToolsList.php', data, callback);
+    }
 }
 
 export { User }

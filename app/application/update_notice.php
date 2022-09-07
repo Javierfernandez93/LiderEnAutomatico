@@ -8,10 +8,10 @@ $UserSupport = new GranCapital\UserSupport;
 
 if($UserSupport->_loaded === true)
 {
-    $Notice = new GranCapital\Notice;
-
     if($data['notice_id'])
     {
+        $Notice = new GranCapital\Notice;
+
         if($Notice->cargarDonde("notice_id= ?",$data['notice_id']))
         {
             $Notice->title = $data['title'];
@@ -27,11 +27,11 @@ if($UserSupport->_loaded === true)
                 $data["r"] = "DATA_OK";
             } else {
                 $data["s"] = 0;
-                $data["r"] = "NOT_CATALOG_NOTICES";
+                $data["r"] = "NOT_SAVE";
             }
         } else {
             $data["s"] = 0;
-            $data["r"] = "NOT_NOTICE_ID";
+            $data["r"] = "NOT_NOTICE";
         }
     } else {
         $data["s"] = 0;

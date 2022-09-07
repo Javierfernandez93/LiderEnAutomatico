@@ -23,6 +23,7 @@ class Router {
     const ListFunds = 39;
     const Invoice = 40;
     const Registration = 41;
+    const Tools = 42;
 
     /* admin */
     const AdminUsers = 9;
@@ -48,6 +49,9 @@ class Router {
     const AdminNoticesAdd = 33;
     const AdminStats = 34;
     const AdminPaymentMethods = 38;
+    const AdminToolsAdd = 43;
+    const AdminToolsEdit = 44;
+    const AdminTools = 45;
 
     static function getName(int $route = null)
     {
@@ -139,6 +143,14 @@ class Router {
                 return 'Registro de fondeo';
             case self::Invoice:
                 return 'Recibo';
+            case self::Tools:
+                return 'Herramientas';
+            case self::AdminToolsAdd:
+                return 'Herramientas';
+            case self::AdminToolsEdit:
+                return 'Herramientas';
+            case self::AdminTools:
+                return 'Herramientas';
                 default: 
                 return 'Sin nombre';
         }

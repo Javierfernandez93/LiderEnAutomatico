@@ -199,9 +199,36 @@ class UserSupport extends Http {
     getCatalogPriorities(data, callback) {
         return this.call('../../app/application/get_catalog_priorities.php', data, callback);
     }
+    getAdminTools(data, callback) {
+        return this.call('../../app/application/getAdminTools.php', data, callback);
+    }
+    publishTool(data, callback) {
+        return this.call('../../app/application/publishTool.php', data, callback);
+    }
+    unpublishTool(data, callback) {
+        return this.call('../../app/application/unpublishTool.php', data, callback);
+    }
+    deleteTool(data, callback) {
+        return this.call('../../app/application/deleteTool.php', data, callback);
+    }
+    getCatalogTools(data, callback) {
+        return this.call('../../app/application/getCatalogTools.php', data, callback);
+    }
+    saveTool(data, callback) {
+        return this.call('../../app/application/saveTool.php', data, callback);
+    }
+    getTool(data,callback) {
+        return this.call('./../../app/application/getTool.php', data, callback);
+    }
+    updateTool(data,callback) {
+        return this.call('./../../app/application/updateTool.php', data, callback);
+    }
     // callfile
     uploadImageProfile(data, progress, callback) {
         return this.callFile('../../app/application/upload_image_profile.php', data, callback, progress);
+    }
+    uploadToolFile(data, progress, callback) {
+        return this.callFile('../../app/application/uploadToolFile.php', data, callback, progress);
     }
 }
 

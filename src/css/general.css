@@ -66,3 +66,6 @@ body {
     border-radius: 0.5rem;
     border: 1px solid #d2d6da;
 }
+.tool-body {
+    height: 200px;
+}

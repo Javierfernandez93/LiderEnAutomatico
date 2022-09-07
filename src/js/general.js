@@ -755,3 +755,13 @@ String.prototype.convertDataToHtml = function() {
   });
   return convertedHtml;
 }
+
+String.prototype.isImage = function()
+{
+    return (/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i).test(this)
+}
+
+String.prototype.isFile = function()
+{
+    return (/\.(pdf|doc?x|xls?x|zip|rar)$/i).test(this)
+}
