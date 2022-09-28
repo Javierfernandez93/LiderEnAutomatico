@@ -12,6 +12,7 @@ if($UserLogin->_loaded === true)
     
     if($referrals = $UserReferral->getReferrals($UserLogin->company_id))
     {
+        $data['workingDays'] = GranCapital\ProfitPerUser::getWorkingDays(date("Y/m/d H:i:s"));
         $data['referrals'] = formatData($referrals);
         $data["s"] = 1;
         $data["r"] = "DATA_OK";

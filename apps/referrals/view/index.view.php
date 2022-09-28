@@ -26,6 +26,7 @@
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Monto invertido</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ganancia estimada</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Miembro desde</th>
                                 </tr>
                             </thead>
@@ -55,20 +56,32 @@
                                         </span>
                                     </td>
                                     <td class="align-middle text-center text-sm">
+                                        <span v-if="referral.plan"  
+                                            class="badge badge-sm bg-primary small">
+                                            $ {{referral.estimatedGain.numberFormat(2)}}
+                                        </span>
+                                        <span v-else>
+                                            Sin monto
+                                        </span>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
                                         <p class="text-xs text-secondary mb-0">{{referral.signup_date.formatFullDate()}}</p>
                                     </td>
                                 </tr>
                             </tbody>
                             <tfoot>
-                                <tr>
-                                    <td></td>
-                                    <td class="align-middle text-center text-sm">
+                                <tr class="">
+                                    <td class="border-0"></td>
+                                    <td class="border-0 align-middle text-center">
                                         <h6>Total</h6>
                                     </td>
-                                    <td class="align-middle text-center text-sm">
+                                    <td class="border-0 align-middle text-center">
                                         <h6>$ {{totals.total_capital.numberFormat(2)}}</h6>
                                     </td>
-                                    <td></td>
+                                    <td class="border-0 align-middle text-center">
+                                        <h6>$ {{totals.totalEstimatedGains.numberFormat(2)}}</h6>
+                                    </td>
+                                    <td class="border-0"></td>
                                 </tr>
                             </tfoot>
                         </table>

@@ -195,7 +195,7 @@ class ProfitPerUser extends Orm
     return $this->connection()->field($sql);
   }
  
-  public function getWorkingDays(string $day = null)
+  public static function getWorkingDays(string $day = null)
   {
     $working_days = 0;
 
@@ -214,7 +214,7 @@ class ProfitPerUser extends Orm
 
   public function calculateProfit(float $profit = null, float $ammount = null,string $day = null)
   {
-    $day_profit = $profit / $this->getWorkingDays($day);
+    $day_profit = $profit / self::getWorkingDays($day);
 
     return round(Util::getPercentaje($ammount, $day_profit),2);
   }
