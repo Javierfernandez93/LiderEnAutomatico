@@ -8,11 +8,19 @@ $UserLogin = new GranCapital\UserLogin;
 
 if($UserLogin->_loaded === true)
 {
+    if($investor = $UserLogin->getInvestorInfo())
+    {
+        $investor = $investor;
+    } else {
+        $investor = ['number'=>null,'password' => null];
+    }
+
     $data["user"] = [
         'company_id' => $UserLogin->company_id,
         'email' => $UserLogin->email,
         'phone' => $UserLogin->_data['user_contact']['phone'],
         'names' => $UserLogin->_data['user_data']['names'],
+        'investor' => $investor,
         'last_login_date' => $UserLogin->last_login_date,
         'ip_user_address' => $UserLogin->ip_user_address,
         'plan' => $UserLogin->getPlan(),

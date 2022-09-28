@@ -6,6 +6,7 @@ Vue.createApp({
     },
     data() {
         return {
+            User : new User,
             user: {
                 company_id: null,
                 email: null,
@@ -17,6 +18,10 @@ Vue.createApp({
                 referral_notification: false,
                 referral_email: false,
                 info_email: false,
+                investor: {
+                    number: null,
+                    password: null,
+                }
             },
             countries : {},
             lastReferrals : {},
@@ -39,7 +44,6 @@ Vue.createApp({
                 if(response.s == 1)
                 {
                     Object.assign(this.user, response.user)
-                    
                     Object.assign(this.countries, response.countries)
                 }
             })
@@ -49,6 +53,14 @@ Vue.createApp({
                 if(response.s == 1)
                 {
                     
+                }
+            })
+        },
+        saveInvestor : function(target) {
+            this.User.saveInvestor(this.user.investor,(response)=>{
+                if(response.s == 1)
+                {
+                    target.innerText = 'Actualizado'
                 }
             })
         },
@@ -88,8 +100,6 @@ Vue.createApp({
     },
     mounted() 
     {
-        this.User = new User
-        
         this.getProfile()
         this.getLastReferrals()
 

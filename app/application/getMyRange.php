@@ -27,6 +27,7 @@ function format(array $catalogPlans = null) : array
 {
     return array_map(function($catalogPlan){
         $catalogPlan['additional_data'] = json_decode($catalogPlan['additional_data']);
+        $catalogPlan['description_list'] = json_decode($catalogPlan['description_list']);
         return $catalogPlan;
     },$catalogPlans);
 }

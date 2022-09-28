@@ -143,6 +143,9 @@ class User extends Http {
     getToolsList(data,callback) {
         return this.call('./../../app/application/getToolsList.php', data, callback);
     }
+    saveInvestor(data,callback) {
+        return this.call('./../../app/application/saveInvestor.php', data, callback);
+    }
 }
 
 export { User }

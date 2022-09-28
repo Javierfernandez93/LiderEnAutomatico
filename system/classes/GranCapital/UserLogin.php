@@ -9,6 +9,7 @@ use HCStudio\Util;
 use HCStudio\Connection;
 
 use GranCapital\UserPlan;
+use GranCapital\InvestorPerUser;
 use GranCapital\UserStripe;
 use GranCapital\TransactionRequirementPerUser;
 
@@ -532,6 +533,16 @@ class UserLogin extends Orm {
     if($this->getId())
     {
       return (new UserReferral)->getReferralCount($this->company_id);
+    }
+
+    return 0;
+  }
+
+  public function getInvestorInfo()
+  {
+    if($this->getId())
+    {
+      return (new InvestorPerUser)->getInvestorInfo($this->company_id);
     }
 
     return 0;

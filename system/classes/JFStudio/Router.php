@@ -60,7 +60,7 @@ class Router {
             case self::Backoffice:
                 return 'Oficina virtual';
             case self::Profile:
-                return 'Perfil';
+                return 'Actualiza tu perfil';
             case self::Gains:
                 return 'Ganancias';
             case self::Referrals:

@@ -148,7 +148,34 @@
                 </div>
             </div>
             <div class="col-12 col-xl-4">
-                <div class="card h-100">
+            <div class="card h-100">
+                    <div class="card-header pb-0 p-3">
+                        <div class="row">
+                            <div class="col-md-8 d-flex align-items-center">
+                                <h6 class="mb-0">Información del broker</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-3">
+                        <ul class="list-group">
+                            <li class="list-group-item border-0 ps-0 text-sm">
+                                <label>No. de broker</label>
+                                <input type="text" v-model="user.investor.number" class="form-control" placeholder="Número"/>
+                            </li>
+
+                            <li class="list-group-item border-0 ps-0 pt-0 text-sm">
+                                <label>Password de inversor</label>
+                                <input type="text" v-model="user.investor.password" class="form-control" placeholder="Contraseña"/>
+                            </li>
+                        </ul>
+                        <div v-if="!user.investor.password || !user.investor.number">
+                            <div class="alert alert-warning text-white">
+                                <strong>Aviso</strong> Es necesario que ingreses el número de broker y password. 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card h-100 d-none">
                     <div class="card-header pb-0 p-3">
                         <div class="row align-items-center">
                             <div class="col">

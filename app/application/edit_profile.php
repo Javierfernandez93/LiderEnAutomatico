@@ -20,8 +20,14 @@ if($UserLogin->_loaded === true)
                 {
                     if(updateUserAddress($data,$UserLogin->company_id))
                     {
-                        $data["s"] = 1;
-                        $data["r"] = "UPDATED_OK";
+                        if(updateInvestorData($data['investor'],$UserLogin->company_id))
+                        {
+                            $data["s"] = 1;
+                            $data["r"] = "UPDATED_OK";
+                        } else {
+                            $data["s"] = 0;
+                            $data["r"] = "NOT_UPDATED_USER_ADDRESS";
+                        }  
                     } else {
                         $data["s"] = 0;
                         $data["r"] = "NOT_UPDATED_USER_ADDRESS";
@@ -102,6 +108,24 @@ function updateUserAddress($data = null,$company_id = null)
         return $UserAddress->save();
     }
 
+    return false;
+}
+
+function updateInvestorData($data = null,$company_id = null)
+{
+    $InvestorPerUser = new GranCapital\InvestorPerUser;
+
+    if(!$InvestorPerUser->cargarDonde("user_login_id = ? AND status = ?",[$company_id,1]))
+    {
+        $InvestorPerUser->user_login_id = $company_id;
+        $InvestorPerUser->create_date = time();
+    }
+    
+    $InvestorPerUser->number = $data['number'];
+    $InvestorPerUser->password = $data['password'];
+
+    return $InvestorPerUser->save();
+    
     return false;
 }
 
