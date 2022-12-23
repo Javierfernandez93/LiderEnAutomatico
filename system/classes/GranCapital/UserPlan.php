@@ -11,10 +11,40 @@ use PayPal\Api\Amount;
 
 class UserPlan extends Orm {
   protected $tblName  = 'user_plan';
+	
+  /* constants */
   const MAX_ADDITIONAL_PROFIT = 2;
+	const FIRST_PLAN = 1;
+	const FIRST_PLAN_AMOUNT = 1000;
+
   public function __construct() {
     parent::__construct();
   }
+
+	public static function attachFirstPlan(int $user_login_id = null,int $catalog_plan_id = null,float $ammount = null,float $additional_profit = 0,float $sponsor_profit = 0)
+	{
+		if(isset($user_login_id,$catalog_plan_id) === true)
+		{
+      $UserPlan = new UserPlan;
+
+      if(!$UserPlan->cargarDonde("user_login_id = ?",$user_login_id))
+      {
+          $UserPlan->user_login_id = $user_login_id;
+          $UserPlan->create_date = time();
+      }
+
+      $UserPlan->additional_profit = $additional_profit ? $additional_profit : $UserPlan->additional_profit;
+      $UserPlan->sponsor_profit = $sponsor_profit ? $sponsor_profit : $UserPlan->sponsor_profit;
+
+      $UserPlan->ammount = $ammount;
+      $UserPlan->catalog_plan_id = $ammount > 0 ? $catalog_plan_id : 0;
+      
+      return $UserPlan->save();
+		}
+
+    return false;
+	}
+
 
   public function hasPlan($user_login_id = null) : bool
   {

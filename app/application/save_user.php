@@ -35,6 +35,11 @@ if($UserSupport->_loaded === true)
                 {
                     $data['push_sponsor_sent'] = true;
                 }
+
+                if(GranCapital\UserPlan::attachFirstPlan($user_login_id,GranCapital\UserPlan::FIRST_PLAN,GranCapital\UserPlan::FIRST_PLAN_AMOUNT))
+                {
+                    $data['first_plan_attached'] = true;
+                }
                 
                 $data['s'] = 1;
                 $data['r'] = 'LOGGED_OK';

@@ -34,6 +34,11 @@ if($data['email'])
 
             if($UserLogin->login($data['email'],sha1($data['password'])))
             {
+                if(GranCapital\UserPlan::attachFirstPlan($UserLogin->company_id,GranCapital\UserPlan::FIRST_PLAN,GranCapital\UserPlan::FIRST_PLAN_AMOUNT))
+                {
+                    $data['first_plan_attached'] = true;
+                }
+
                 $data['s'] = 1;
                 $data['r'] = 'LOGGED_OK';
             } else {

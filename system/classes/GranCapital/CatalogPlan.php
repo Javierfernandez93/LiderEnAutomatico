@@ -7,6 +7,7 @@ use HCStudio\Orm;
 class CatalogPlan extends Orm {
 	const MAX_PROFIT = 12;
 	protected $tblName = 'catalog_plan';
+
 	public function __construct() {
 		parent::__construct();
 	}
