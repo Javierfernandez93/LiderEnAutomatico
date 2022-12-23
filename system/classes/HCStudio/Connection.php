@@ -27,21 +27,20 @@ use RecursiveArrayIterator;
 class Connection {
 	# Variables privadas
 	private static $connections = [
-		'default' => ['localhost', 'root', 'root', 'app_libertad_en_automatico'], 
-		// 'default' => ['localhost', 'root', 'root', 'app_gran_capital'], 
-		'world' => ['localhost', 'root', 'root', 'apps_world'], 
+		'default' => ['localhost', 'kmxzybrhun', '8mJ5qxUZES', 'kmxzybrhun'],
+		'world' => ['localhost', 'cestjvgwxt', 'Jk3wJKDSj6', 'cestjvgwxt'], 
 	];
 
 	private static $instances;
 	private $connection;
 	private $debug;
 	private $mysqli;
-	static  $protocol = 'http';
-	// static  $protocol = 'https';
-	static  $proyect_url = 'localhost:8888/LiderEnAutomatico';
-	// static  $proyect_url = 'grancapital.fund';
+	// static  $protocol = 'http';
+	static  $protocol = 'https';
+	// static  $proyect_url = '192.168.100.237:8888/grancapital';
+	static  $proyect_url = 'libertadenautomatico.com';
 	// static  $proyect_url = 'localhost:8888/grancapital';
-	static  $proyect_name = 'Lider en Automático';
+	static  $proyect_name = 'Libertad en Automático';
 
 	public function getConnectioName() {
 		return $this->connection;
