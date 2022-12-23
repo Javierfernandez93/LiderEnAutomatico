@@ -1,5 +1,7 @@
 <?php define("TO_ROOT", "../..");
 
+echo 1;die;
+
 require_once TO_ROOT . "/system/core.php";
 
 $UserLogin = new GranCapital\UserLogin;
