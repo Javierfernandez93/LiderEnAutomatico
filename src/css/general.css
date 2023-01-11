@@ -69,3 +69,9 @@ body {
 .tool-body {
     height: 200px;
 }
+
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    background: #2b5cfd !important;
+    color: #fff !important;
+}

@@ -131,6 +131,12 @@ class User extends Http {
     uploadImageFund(data, progress, callback) {
         return this.callFile('../../app/application/uploadImageFund.php', data, callback, progress);
     }
+    uploadImageSign(data, progress, callback) {
+        return this.callFile('../../app/application/uploadImageSign.php', data, callback, progress);
+    }
+    uploadImageSignAsString(data, callback) {
+        return this.call('../../app/application/uploadImageSignAsString.php', data, callback, null, null, 'POST');
+    }
     checkStripePayment(data,callback) {
         return this.call('./../../app/application/checkStripePayment.php', data, callback);
     }
@@ -145,6 +151,9 @@ class User extends Http {
     }
     saveInvestor(data,callback) {
         return this.call('./../../app/application/saveInvestor.php', data, callback);
+    }
+    makeFxWinninDocument(data,callback) {
+        return this.call('./../../app/application/makeFxWinninDocument.php', data, callback);
     }
 }
 

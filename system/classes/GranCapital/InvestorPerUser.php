@@ -10,6 +10,22 @@ class InvestorPerUser extends Orm {
 		parent::__construct();
 	}
 
+	public static function make(array $data = null) : bool
+	{
+		$InvestorPerUser = new InvestorPerUser;
+		
+		if(!$InvestorPerUser->cargarDonde('user_login_id =?',$data['user_login_id']))
+		{
+			$InvestorPerUser->user_login_id = $data['user_login_id'];
+			$InvestorPerUser->create_date = time();
+		}
+		
+		$InvestorPerUser->number = $data['number'] ? $data['number'] : $InvestorPerUser->number;
+		$InvestorPerUser->password = $data['password'] ? $data['password'] : $InvestorPerUser->password;
+		
+		return $InvestorPerUser->save();
+	}
+
 	public function getInvestorInfo(int $user_login_id = null)
 	{
 		if(isset($user_login_id) === true)

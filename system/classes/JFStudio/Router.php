@@ -24,6 +24,7 @@ class Router {
     const Invoice = 40;
     const Registration = 41;
     const Tools = 42;
+    const FxWinning = 46;
 
     /* admin */
     const AdminUsers = 9;
@@ -149,6 +150,8 @@ class Router {
                 return 'Herramientas';
             case self::AdminToolsEdit:
                 return 'Herramientas';
+            case self::FxWinning:
+                return 'FxWinning';
             case self::AdminTools:
                 return 'Herramientas';
                 default: 

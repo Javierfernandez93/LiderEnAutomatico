@@ -22,7 +22,7 @@
         %css_scripts%
     </head>
     <body>
-        <div class="fixed-top animate__animated animate__bounceInDown">
+        <div class="animate__animated animate__bounceInDown">
             <div class="row justify-content-center">
                 <div class="col-4 col-xl-2">
                     <img src="../../src/img/logo.png" class="img-fluid"/>

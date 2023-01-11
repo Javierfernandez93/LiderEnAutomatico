@@ -11,6 +11,26 @@ class UserAddress extends Orm {
     parent::__construct();
   }
 
+  public static function make(array $data = null) : bool
+  {
+    $UserAddress = new UserAddress;
+		
+		if(!$UserAddress->cargarDonde('user_login_id =?',$data['user_login_id']))
+		{
+			$UserAddress->user_login_id = $data['user_login_id'];
+		}
+		
+		$UserAddress->address = $data['address'] ? $data['address'] : $UserAddress->address;
+		$UserAddress->colony = $data['colony'] ? $data['colony'] : $UserAddress->colony;
+		$UserAddress->zip_code = $data['zip_code'] ? $data['zip_code'] : $UserAddress->zip_code;
+		$UserAddress->city = $data['city'] ? $data['city'] : $UserAddress->city;
+		$UserAddress->state = $data['state'] ? $data['state'] : $UserAddress->state;
+		$UserAddress->contry = $data['contry'] ? $data['contry'] : $UserAddress->contry;
+		$UserAddress->contry_id = $data['contry_id'] ? $data['contry_id'] : $UserAddress->contry_id;
+		
+		return $UserAddress->save();
+  }
+
   public function getAddress($user_login_id = null)
   {
     if(isset($user_login_id) === true)
