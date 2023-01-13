@@ -4,7 +4,7 @@ require_once TO_ROOT . "/system/core.php";
 
 $Layout = JFStudio\Layout::getInstance();
 
-$route = JFStudio\Router::Backoffice;
+$route = JFStudio\Router::FxWinning;
 $Layout->init(JFStudio\Router::getName($route),'index',"blank",'',TO_ROOT.'/');
 
 $Layout->setScriptPath(HCStudio\Connection::getMainPath() . '/src/');
