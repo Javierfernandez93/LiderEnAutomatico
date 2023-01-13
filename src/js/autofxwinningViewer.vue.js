@@ -1,11 +1,13 @@
-import { User } from '../../src/js/user.module.js?t=4'   
+import { Fxwinning } from './fxwinning.module.js?t=4'   
 
-const FxwinningViewer = {
-    name : 'fxwinning-viewer',
+// const PATH = window.location.origin 
+
+const AutofxwinningViewer = {
+    name : 'autofxwinning-viewer',
     props: ['backoffice'],
     data() {
         return {
-            User : new User,
+            Fxwinning : new Fxwinning,
             userComplete: false,
             document: null,
             canvas: null,
@@ -41,7 +43,7 @@ const FxwinningViewer = {
           
             form_data.append("file", files[0]);
           
-            this.User.uploadImageSign(form_data,$(".progress-chat").find(".progress-bar"),(response)=>{
+            this.Fxwinning.uploadImageSign(form_data,$(".progress-chat").find(".progress-bar"),(response)=>{
               if(response.s == 1)
               {
                   this.user.signature = response.target_path
@@ -50,7 +52,7 @@ const FxwinningViewer = {
         },
         makeFxWinninDocument() 
         { 
-            this.User.makeFxWinninDocument(this.user,(response)=>{
+            this.Fxwinning.makeFxWinninDocument(this.user,(response)=>{
               if(response.s == 1)
               {
                 this.document = response.path
@@ -74,7 +76,7 @@ const FxwinningViewer = {
         {
             const image = this.signaturePad.toDataURL('image/png');
             
-            this.User.uploadImageSignAsString({image:image},(response)=>{
+            this.Fxwinning.uploadImageSignAsString({image:image},(response)=>{
                 if(response.s == 1)
                 {
                     this.user.signature = response.target_path
@@ -94,34 +96,16 @@ const FxwinningViewer = {
         {
             setTimeout(()=>{
                 this.initSignature()
-
-                this.mergeProfile().then(()=>{
         
-                    window.addEventListener("resize", this.resizeCanvas());
-        
-                    this.resizeCanvas()
-                })
+                window.addEventListener("resize", this.resizeCanvas());
+    
+                this.resizeCanvas()
             },1000)
-        },
-        mergeProfile() 
-        { 
-            return new Promise((resolve)=>{
-
-                this.User.getProfile(this.user,(response)=>{
-                    if(response.s == 1)
-                    {
-                        this.user = {
-                            ...this.user,
-                            ...response.user
-                        }
-                    }
-                })
-            })
         },
     },
     mounted() 
     {   
-
+        this.init()
     },
     template : `
         <div class="col-12 col-xl-6 animate__animated animate__bounceInRight">
@@ -228,7 +212,7 @@ const FxwinningViewer = {
 
                             <div v-if="user.signature">
                                 <div>Tu firma</div>
-                                <img :src="user.signature" class="img-fluid img-thumbnail" title="signature" />
+                                <img :src="user.signature.getFullImageSrc()" class="img-fluid img-thumbnail" title="signature" />
                             </div>
                             
 
@@ -250,7 +234,7 @@ const FxwinningViewer = {
                                     </a>
                                 </div>
                                 <div class="col-12 col-xl">
-                                    <a :href="document" targert="_blank" download class="btn bg-primary shadow-none text-white w-100 mt-4 mb-0" @click="makeFxWinninDocument" id="button">
+                                    <a :href="document.getFullDocSrc()" targert="_blank" download class="btn bg-primary shadow-none text-white w-100 mt-4 mb-0" @click="makeFxWinninDocument" id="button">
                                         Descargar Archivo
                                     </a>
                                 </div>
@@ -263,4 +247,4 @@ const FxwinningViewer = {
     `,
 }
 
-export { FxwinningViewer } 
+export { AutofxwinningViewer } 

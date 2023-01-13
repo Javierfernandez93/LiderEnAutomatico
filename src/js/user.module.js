@@ -1,4 +1,4 @@
-import { Http } from '../../src/js/http.module.js';
+import { Http } from './http.module.js';
 
 class User extends Http {
     constructor() {
@@ -138,22 +138,22 @@ class User extends Http {
         return this.call('../../app/application/uploadImageSignAsString.php', data, callback, null, null, 'POST');
     }
     checkStripePayment(data,callback) {
-        return this.call('./../../app/application/checkStripePayment.php', data, callback);
+        return this.call('../../app/application/checkStripePayment.php', data, callback);
     }
     getReferralsShortData(data,callback) {
-        return this.call('./../../app/application/getReferralsShortData.php', data, callback);
+        return this.call('../../app/application/getReferralsShortData.php', data, callback);
     }
     getStripeClientSecret(data,callback) {
-        return this.call('./../../app/application/getStripeClientSecret.php', data, callback);
+        return this.call('../../app/application/getStripeClientSecret.php', data, callback);
     }
     getToolsList(data,callback) {
-        return this.call('./../../app/application/getToolsList.php', data, callback);
+        return this.call('../../app/application/getToolsList.php', data, callback);
     }
     saveInvestor(data,callback) {
-        return this.call('./../../app/application/saveInvestor.php', data, callback);
+        return this.call('../../app/application/saveInvestor.php', data, callback);
     }
     makeFxWinninDocument(data,callback) {
-        return this.call('./../../app/application/makeFxWinninDocument.php', data, callback);
+        return this.call('../../app/application/makeFxWinninDocument.php', data, callback);
     }
 }
 

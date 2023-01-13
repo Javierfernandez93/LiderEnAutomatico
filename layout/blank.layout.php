@@ -8,67 +8,50 @@
     <meta name="author" content="<?php echo HCStudio\Connection::$proyect_name;?> all rights reserved 2016">
     %metadata%
     <title>%title%</title>
-    <link href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/css/sb-admin-2.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=3.0, user-scalable=no" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="" />
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="theme-color" content="#07a07A">    
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
-    <script src="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/js/jquery-3.1.1.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-
-    <link rel="stylesheet" media="screen" type="text/css" href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/css/colorpicker.css" />
-    <link rel="stylesheet" media="screen" type="text/css" href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/css/ruler.css" />
-    <script type="text/javascript" src="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/js/colorpicker.js"></script>
-    <script src="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/js/wow.js" type="text/javascript"></script>
-    <script src="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/js/tooltip.js" type="text/javascript"></script>
-    <script src="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/js/http.js" type="text/javascript"></script>
-    <script src="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/js/translator.js" type="text/javascript"></script>
-    <script src="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/js/ruler.js?t=1" type="text/javascript"></script>
-    <script src="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/js/general.js?t=1" type="text/javascript"></script>
-
-    <script src="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/js/alertCtrl.js?t=1" type="text/javascript"></script>
-    <script src="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/js/loader.js" type="text/javascript"></script>
-    <script src="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/js/boxloader.js" type="text/javascript"></script>
+    <!--     Fonts and icons     -->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> -->
+    <!-- Nucleo Icons -->
+    <link rel="stylesheet" href="<?php echo HCStudio\Connection::getMainPath();?>/src/css/nucleo-icons.css" />
+    <link rel="stylesheet" href="<?php echo HCStudio\Connection::getMainPath();?>/src/css/nucleo-svg.css" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="<?php echo HCStudio\Connection::getMainPath();?>/src/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?php echo HCStudio\Connection::getMainPath();?>/src/css/general.css" />
+    <link rel="stylesheet" href="<?php echo HCStudio\Connection::getMainPath();?>/src/css/nucleo-svg.css" />
+    <!-- CSS Files -->
     
-    <!-- boostrap v4 -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/css/general.css" />
-    <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/awesome/css/font-awesome.css" />
-    <link rel="stylesheet" type="text/css" media="screen" charset="utf-8" href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/css/loader.css" />
-    
-    <link href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/css/sb-admin-2.css" rel="stylesheet">
-    <link href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/css/theme.min.css" rel="stylesheet">
-    <link href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/css/loader.css" rel="stylesheet">
-    <link href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/css/notifications.css" rel="stylesheet">
-    
-    <link rel="shortcut icon" type="image/png" href="<?php echo HCStudio\Connection::$protocol;?>://<?php echo HCStudio\Connection::$proyect_url;?>/src/img/logo-sm.png"/>
-    %js_scripts%
-    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-    <!-- css styles -->
+    <link id="pagestyle" href="<?php echo HCStudio\Connection::getMainPath();?>/src/css/soft-ui-dashboard.css?v=1.0.6" rel="stylesheet" />
     %css_scripts%
   </head>
   <body>
-    <?php if($preloader === true) { ?>
-        <div class="preloader-container bg-dark w-100 h-100 d-flex align-items-center justify-content-center" id="preloader">
-            <div class="preloader-main">
-                <div class="preloader preloader-white">
-                    <div class="preloader-logo">
-                    </div>
-                </div>
-                <img src="../../src/img/logo-sm.png">
-            </div>
-        </div>
-    <?php } ?>
     %content%
+
+    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/core/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <!--   Core JS Files   -->
+    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/plugins/perfect-scrollbar.min.js"></script>
+    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/plugins/smooth-scrollbar.min.js"></script>
+    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/plugins/chartjs.min.js"></script>
+    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/42d5adcbca.js" type="text/javascript"></script>
+    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/jquery-3.1.1.js" type="text/javascript"></script>
+    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/alertCtrl.js?t=1" type="text/javascript"></script>
+    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/general.js?t=2" type="text/javascript"></script>
+
+    <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+            damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+    </script>
+    <!-- Github buttons -->
+    <script async defer src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/buttons.js"></script>
+    <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/soft-ui-dashboard.min.js?v=1.0.6"></script>
+    
+    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/vue.js"></script>
+    
+    %js_scripts%
   </body>
 </html>

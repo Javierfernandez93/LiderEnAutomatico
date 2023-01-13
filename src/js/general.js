@@ -765,3 +765,24 @@ String.prototype.isFile = function()
 {
     return (/\.(pdf|doc?x|xls?x|zip|rar)$/i).test(this)
 }
+
+
+String.prototype.getFullImageSrc = function() 
+{
+  return getMainPath() + this.replace('../..','')
+}
+
+String.prototype.getFullDocSrc = function() 
+{
+  return getMainPath() + this.replace('../..','')
+}
+
+const getMainPath = () => {
+  let proyectPath = '' 
+
+  if(window.location.hostname === 'localhost') {
+    proyectPath = `/${window.location.pathname.split("/")[1]}`
+  }
+
+  return window.location.origin + proyectPath
+}

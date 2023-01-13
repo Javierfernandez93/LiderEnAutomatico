@@ -1,4 +1,4 @@
-import { User } from '../../src/js/user.module.js?t=4.1.1'
+import { User } from '../../src/js/user.module.js?t=4'
 
 /* vue */ 
 import { ToolsViewer } from '../../src/js/toolsViewer.vue.js?t=2'
