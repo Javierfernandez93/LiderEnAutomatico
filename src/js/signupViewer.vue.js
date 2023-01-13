@@ -1,4 +1,4 @@
-import { User } from '../../src/js/user.module.js?t=4'   
+import { User } from '../../src/js/user.module.js?t=4.1.1'   
 
 const SignupViewer = {
     name : 'signup-viewer',
