@@ -15,6 +15,7 @@ $Layout->init(JFStudio\Router::getName($route),"index","two_columns","",TO_ROOT.
 
 $Layout->setScriptPath(TO_ROOT . '/src/');
 $Layout->setScript([
+	'signaturePad.js',
 	'jquery.mask.js',
 	'signup.vue.js',
 	'signup.css'
