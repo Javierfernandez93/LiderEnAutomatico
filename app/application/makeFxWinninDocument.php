@@ -22,7 +22,6 @@ if($UserLogin->_loaded === true)
         }
         
         if(GranCapital\UserData::make(array_merge(['user_login_id' => $UserLogin->company_id],[
-            'birthday' => $data['birthday'],
             'id_number' => $data['id_number'],
         ]))) {
             $data["save_investor"] = true;
@@ -102,7 +101,7 @@ function createFXWinningDocument(array $data = null,int $user_login_id = null)
     
     $birthdayCords = GranCapital\FXWinning::getCoords('birthday');
     $pdf->SetXY($birthdayCords['x'], $birthdayCords['y']);
-    $pdf->Write(0, $data['birthday']);
+    $pdf->Write(0, date("Y-m-d"));
 
     $signatureCords = GranCapital\FXWinning::getCoords('signature');
     // $pdf->SetXY($signatureCords['x'], $signatureCords['y']);

@@ -17,7 +17,6 @@ const FxwinningViewer = {
                 id_number: null,
                 address: null,
                 signature: null,
-                birthday: null,
                 investor: {
                     number: null
                 }
@@ -27,7 +26,7 @@ const FxwinningViewer = {
     watch : {
         user : {
             handler() {
-              this.userComplete = this.user.id_number != null && this.user.address != null && this.user.investor.number != null && this.user.signature != null && this.user.birthday != null  
+              this.userComplete = this.user.id_number != null && this.user.address != null && this.user.investor.number != null && this.user.signature != null
             },
             deep: true
         },
@@ -163,17 +162,6 @@ const FxwinningViewer = {
                                 </div>
                                 
                                 <div class="col-12 col-xl-6 mb-3 mb-xl-0">
-                                    <label>* Dirección completa</label>
-                                    <div class="mb-3">
-                                        <input 
-                                            :class="user.address ? 'is-valid' : ''"
-                                            :autofocus="true" type="text" ref="address" v-model="user.address" class="form-control" @keydown.enter.exact.prevent="$refs.number.focus()" placeholder="Escribe aquí" aria-label="Escribe aquí" aria-describedby="basic-addon1">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-12 col-xl-6 mb-3 mb-xl-0">
                                     <label>* Account Number (MI5):</label>
                                     <div class="mb-3">
                                         <input 
@@ -181,12 +169,15 @@ const FxwinningViewer = {
                                             :autofocus="true" type="text" ref="number" v-model="user.investor.number" class="form-control" @keydown.enter.exact.prevent="$refs.phone.focus()" placeholder="Escribe aquí" aria-label="Escribe aquí" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
-                                <div class="col-12 col-xl-6 mb-3 mb-xl-0">
-                                    <label>* Fecha de nacimiento</label>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-12 col-xl-12 mb-3 mb-xl-0">
+                                    <label>* Dirección completa</label>
                                     <div class="mb-3">
                                         <input 
-                                            :class="user.birthday ? 'is-valid' : ''"
-                                            :autofocus="true" type="date" ref="birthday" v-model="user.birthday" class="form-control" placeholder="Escribe aquí" aria-label="Escribe aquí" aria-describedby="basic-addon1">
+                                            :class="user.address ? 'is-valid' : ''"
+                                            :autofocus="true" type="text" ref="address" v-model="user.address" class="form-control" @keydown.enter.exact.prevent="$refs.number.focus()" placeholder="Escribe aquí" aria-label="Escribe aquí" aria-describedby="basic-addon1">
                                     </div>
                                 </div>
                             </div>
