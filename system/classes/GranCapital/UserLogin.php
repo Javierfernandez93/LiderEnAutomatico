@@ -493,7 +493,7 @@ class UserLogin extends Orm {
     {
       $utm = (new CatalogCampaign)->getUtm($this->catalog_campaing_id);
       
-      return Connection::getMainPath().'/apps/'.$utm.'/?uid='.$this->company_id;
+      return Connection::getMainPath().'/apps/'.$utm.'/?uid='.$this->company_id.'&fxwinning=true';
     }
   }
 
