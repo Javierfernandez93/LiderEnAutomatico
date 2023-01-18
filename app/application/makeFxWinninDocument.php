@@ -3,6 +3,7 @@
 require_once TO_ROOT. "/system/core.php";
 require_once TO_ROOT . "/vendor/autoload.php";
 
+use GranCapital\UserAccount;
 use setasign\Fpdi\Fpdi;
 
 $data = HCStudio\Util::getHeadersForWebService();
@@ -51,14 +52,15 @@ function createFXWinningDocument(array $data = null,int $user_login_id = null)
     $pdf = new FPDI();
 
     $pdf->AddPage(); 
-    $pdf->setSourceFile(GranCapital\FXWinning::getSourceTemplate(TO_ROOT)); 
+
+    $lpoa = (new GranCapital\UserAccount)->getLPOA($user_login_id);
+    
+    $pdf->setSourceFile(GranCapital\FXWinning::getSourceTemplate(TO_ROOT,$lpoa)); 
     $tplIdx = $pdf->importPage(1); 
     $pdf->useTemplate($tplIdx); 
 
     $pdf->SetFont('Arial', '', '12'); 
     $pdf->SetTextColor(0,0,0);
-
-    // d($data);
 
     $nameCords = GranCapital\FXWinning::getCoords('name');
     $pdf->SetXY($nameCords['x'], $nameCords['y']);

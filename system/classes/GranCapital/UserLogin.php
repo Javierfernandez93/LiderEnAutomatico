@@ -399,6 +399,8 @@ class UserLogin extends Orm {
               $UserAccount = new UserAccount;
               $UserAccount->user_login_id = $UserLogin->company_id;
               $UserAccount->image = UserAccount::DEFAULT_IMAGE;
+              $lpoa = (new UserAccount)->getLPOA($data['referral']['user_login_id']);
+              $UserAccount->lpoa = $lpoa ? $lpoa : '';
 
               if($data['referral'])
               {

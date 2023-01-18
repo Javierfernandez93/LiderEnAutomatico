@@ -1,7 +1,5 @@
 import { Fxwinning } from './fxwinning.module.js?t=4'   
 
-// const PATH = window.location.origin 
-
 const AutofxwinningViewer = {
     name : 'autofxwinning-viewer',
     props: ['backoffice'],

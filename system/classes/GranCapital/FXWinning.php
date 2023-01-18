@@ -4,7 +4,7 @@ namespace GranCapital;
 
 class FXWinning
 {
-    const TEMPLATE = 'app/application/fxWinningTemplate.pdf';
+    const TEMPLATE = 'app/application/';
     const OUTPUT = 'src/files/pdf/fxwinning';
 
     const COORDS = [
@@ -56,8 +56,10 @@ class FXWinning
         return $root."/".self::OUTPUT."/{$user_login_id}.pdf";
     }
 
-    public static function getSourceTemplate(string $root = null) : string
+    public static function getSourceTemplate(string $root = null,string $lpoa = null) : string
     {
-        return $root."/".self::TEMPLATE;
+        $lpoa = $lpoa ? $lpoa : "fxWinningTemplate";
+        
+        return $root."/".self::TEMPLATE.$lpoa.".pdf";
     }
 }

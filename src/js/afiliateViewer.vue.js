@@ -9,7 +9,7 @@ const AfiliateViewer = {
         }
     },
     methods: {
-        getBackofficeVars : function() {
+        getBackofficeVars() {
             this.User.getBackofficeVars({},(response)=>{
                 if(response.s == 1)
                 {
@@ -17,12 +17,12 @@ const AfiliateViewer = {
                 }
             })
         },
-        copyLandingButton : function(link,event) {
+        copyLandingButton(link,event) {
             this.copyLanding(link)
 
             event.target.innerText = 'Link copiado con éxito'
         },
-        copyLanding : function(link) {
+        copyLanding(link) {
             navigator.clipboard.writeText(link).then(() => {
                 this.$refs.landingHelper.innerText = 'Link copiado con éxito'
             });
