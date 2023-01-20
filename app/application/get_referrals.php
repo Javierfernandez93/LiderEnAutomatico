@@ -9,11 +9,11 @@ $UserLogin = new GranCapital\UserLogin;
 if($UserLogin->_loaded === true)
 {
     $UserReferral = new GranCapital\UserReferral;
-    
-    if($referrals = $UserReferral->getReferrals($UserLogin->company_id))
+
+    if($levels = $UserReferral->_getNetwork(-1,$UserLogin->company_id))
     {
         $data['workingDays'] = GranCapital\ProfitPerUser::getWorkingDays(date("Y/m/d H:i:s"));
-        $data['referrals'] = formatData($referrals);
+        $data['levels'] = $levels;
         $data["s"] = 1;
         $data["r"] = "DATA_OK";
     } else {
@@ -23,18 +23,6 @@ if($UserLogin->_loaded === true)
 } else {
 	$data["s"] = 0;
 	$data["r"] = "INVALID_CREDENTIALS";
-}
-
-function formatData(array $referrals = null) : array {
-
-    $UserPlan = new GranCapital\UserPlan;
-
-    $referrals = array_map(function($referral) use ($UserPlan) {
-        $referral['plan'] = $UserPlan->getPlan($referral['user_login_id']);
-        return $referral;
-    },$referrals);
-
-    return $referrals;
 }
 
 echo json_encode($data);
