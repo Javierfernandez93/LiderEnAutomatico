@@ -1,4 +1,4 @@
-import { User } from './user.module.js'
+import { User } from './user.module.js?t=1.0.0'
 
 const ReferralsViewer = {
     name : 'referrals-viewer',
@@ -37,8 +37,6 @@ const ReferralsViewer = {
 
             this.calculateProfit()
             this.getTotals()
-
-            console.log(this.levels)
         },
         calculateProfit() {
             this.levels.map((users)=>{
