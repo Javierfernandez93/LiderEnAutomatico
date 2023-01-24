@@ -1,4 +1,4 @@
-import { User } from './user.module.js?t=1.0.0'
+import { User } from './user.module.js?t=1.0.1'
 
 const ReferralsViewer = {
     name : 'referrals-viewer',
