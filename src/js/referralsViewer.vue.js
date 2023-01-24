@@ -82,13 +82,17 @@ const ReferralsViewer = {
     
                 this.calculateProfit()
                 this.getTotals()
+            }).catch(() => {
+                alertMesage("No tenemos más niveles")
             })
         },
         getReferrals(viewLevels,company_id) {
-            return new Promise((resolve) => {
+            return new Promise((resolve,reject) => {
                 this.User.getReferrals({viewLevels:viewLevels,company_id:company_id}, (response) => {
                     if (response.s == 1) {
                         resolve(response)
+                    } else if (response.r == "NOT_DATA") {
+                        reject()
                     }
                 })
             })
@@ -129,7 +133,7 @@ const ReferralsViewer = {
                 <div v-if="level" class="card-body px-0 pt-0 pb-2">
                     <div class="card-body px-0 pt-0 pb-2">
                         <div class="table-responsive p-0">
-                            <table class="table align-items-center mb-0">
+                            <table class="table table-borderless align-items-center mb-0">
                                 <thead>
                                     <tr>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
@@ -145,7 +149,7 @@ const ReferralsViewer = {
                                         <td class="align-middle text-center text-sm">
                                             <p class="text-xs text-secondary mb-0">{{referral.user_login_id}}</p>
                                         </td>
-                                        <td class="cursor-pointer" @click="getReferralsAux(1,referral.user_login_id,true)">
+                                        <td class="cursor-pointer d-flex mb-0 rounded-0 text-start btn bg-light" @click="getReferralsAux(1,referral.user_login_id,true)">
                                             <div class="d-flex px-2 py-1">
                                                 <div>
                                                     <img :src="referral.image" class="avatar avatar-sm me-3" :alt="referral.names">
