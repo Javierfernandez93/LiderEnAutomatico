@@ -175,7 +175,10 @@ class UserReferral extends Orm {
       foreach($levels as $levelKey => $level) 
       {
         foreach($level as $key => $user_login_id) {
-          $users[$levelKey][$key] = array_merge($this->getUser($user_login_id),["plan" => $UserPlan->getPlan($user_login_id)]);
+          $users[$levelKey][$key] = array_merge(
+            $this->getUser($user_login_id),["plan" => $UserPlan->getPlan($user_login_id)
+          ]);
+          $users[$levelKey][$key]['referral'] = $this->getReferral($user_login_id);
         }
       }
 

@@ -9,6 +9,7 @@ const ReferralsViewer = {
             levelsAux: null,
             workingDays: 0,
             query: null,
+            viewLevels: 1,
             totals: {
                 totalEstimatedGains: 0,
                 total_capital: 0
@@ -64,9 +65,28 @@ const ReferralsViewer = {
                 return users
             })
         },
-        getReferrals() {
+        getReferralsAux(viewLevels,company_id,append) {
+            this.getReferrals(viewLevels,company_id).then((response)=>{
+
+                if(append)
+                {
+                    this.levels = this.levels.concat(response.levels)
+                    this.levelsAux = this.levels
+                    
+                } else {
+                    this.levels = response.levels
+                    this.levelsAux = response.levels
+                }
+    
+                this.workingDays = response.workingDays
+    
+                this.calculateProfit()
+                this.getTotals()
+            })
+        },
+        getReferrals(viewLevels,company_id) {
             return new Promise((resolve) => {
-                this.User.getReferrals({}, (response) => {
+                this.User.getReferrals({viewLevels:viewLevels,company_id:company_id}, (response) => {
                     if (response.s == 1) {
                         resolve(response)
                     }
@@ -75,21 +95,20 @@ const ReferralsViewer = {
         }
     },
     mounted() {
-        this.getReferrals().then((response)=>{
-            this.levels = response.levels
-            this.levelsAux = response.levels
-
-            this.workingDays = response.workingDays
-
-            this.calculateProfit()
-            this.getTotals()
-        })
+        this.getReferralsAux(this.viewLevels)
     },
     template : `
         <div v-if="levelsAux" class="container">
             <div class="card shadow-lg overflow-auto mb-3">
                 <div class="card-header">
-                    <input v-model="query" :autofocus="true" type="text" class="form-control" placeholder="Buscar usuario por nombre o ID...">
+                    <div class="row">
+                        <div class="col">
+                            <input v-model="query" :autofocus="true" type="text" class="form-control" placeholder="Buscar usuario por nombre o ID...">
+                        </div>
+                        <div class="col-auto">
+                            <button @click="getReferralsAux(-1)" class="btn btn-primary">Ver red completa</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         
@@ -115,6 +134,7 @@ const ReferralsViewer = {
                                     <tr>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ID</th>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Usuario</th>
+                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Invitado por</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Monto invertido</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Ganancia estimada</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Miembro desde</th>
@@ -125,7 +145,7 @@ const ReferralsViewer = {
                                         <td class="align-middle text-center text-sm">
                                             <p class="text-xs text-secondary mb-0">{{referral.user_login_id}}</p>
                                         </td>
-                                        <td>
+                                        <td class="cursor-pointer" @click="getReferralsAux(1,referral.user_login_id,true)">
                                             <div class="d-flex px-2 py-1">
                                                 <div>
                                                     <img :src="referral.image" class="avatar avatar-sm me-3" :alt="referral.names">
@@ -133,6 +153,17 @@ const ReferralsViewer = {
                                                 <div class="d-flex flex-column justify-content-center">
                                                     <h6 class="mb-0 text-sm">{{referral.names}}</h6>
                                                     <p class="text-xs text-secondary mb-0">{{referral.email}}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="d-flex px-2 py-1">
+                                                <div>
+                                                    <img :src="referral.referral.image" class="avatar avatar-sm me-3" :alt="referral.referral.names">
+                                                </div>
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">{{referral.referral.names}}</h6>
+                                                    <p class="text-xs text-secondary mb-0">{{referral.referral.email}}</p>
                                                 </div>
                                             </div>
                                         </td>

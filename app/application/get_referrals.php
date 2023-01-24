@@ -10,7 +10,9 @@ if($UserLogin->_loaded === true)
 {
     $UserReferral = new GranCapital\UserReferral;
 
-    if($levels = $UserReferral->_getNetwork(-1,$UserLogin->company_id))
+    $data['company_id'] = $data['company_id'] ? $data['company_id'] : $UserLogin->company_id;
+
+    if($levels = $UserReferral->_getNetwork($data['viewLevels'],$data['company_id']))
     {
         $data['workingDays'] = GranCapital\ProfitPerUser::getWorkingDays(date("Y/m/d H:i:s"));
         $data['levels'] = $levels;
