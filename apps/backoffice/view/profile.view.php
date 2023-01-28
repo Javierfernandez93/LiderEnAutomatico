@@ -148,7 +148,7 @@
                 </div>
             </div>
             <div class="col-12 col-xl-4">
-            <div class="card h-100">
+            <div class="card h-100 d-none">
                     <div class="card-header pb-0 p-3">
                         <div class="row">
                             <div class="col-md-8 d-flex align-items-center">
