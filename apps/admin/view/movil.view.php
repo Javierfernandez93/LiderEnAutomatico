@@ -65,7 +65,7 @@
 	<div class="col-md-5 d-none d-sm-block col-sm-12 text-center">
 		<div class="row box-vertical-center" style="height: 100%">
 			<div class="col-md-12">
-				<img src="../../src/img/logo.png">
+				<img src="../../src/img/logo.png?t=4.1.2">
 			</div>
 		</div>
 	</div>
