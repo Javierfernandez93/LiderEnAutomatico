@@ -63,28 +63,7 @@ const AccountViewer = {
     },
     template : `
         <div class="row align-items-center">
-            <div class="col-xl-4">
-                <div class="card bg-dark text-white text-center">
-                    <div class="card-body">
-                        <div v-if="myRange">
-                            <div class="fs-2"><i class="bi bi-diamond-half"></i></div>
-
-                            <div>
-                                <span class="badge text-secondary">Mi rango</span>
-                            </div>
-                            <div class="fs-2 text-gradient text-success">
-                                {{myRange.name}}
-                            </div>
-                        </div>
-                        <div v-if="nextRange">
-                            <div class="text-center">
-                                Próximo rango <i class="bi bi-diamond-fill"></i> {{nextRange.name}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4">
+            <div class="col-12 col-xl-6">
                 <div class="card bg-secondary text-white">
                     <div class="card-body">
                         <div class="row">
@@ -136,7 +115,7 @@ const AccountViewer = {
                     </ul>
                 </div>
             </div>
-            <div class="col-xl-4">
+            <div class="col-12 col-xl-6">
                 <div v-if="referrals" class="row">
                     <div class="col-12 mb-2">
                         <div class="card bg-gradient-primary text-white">
