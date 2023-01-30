@@ -203,7 +203,7 @@
                             document.write(new Date().getFullYear())
                             </script>,
                             made with <i class="fa fa-heart"></i> by
-                            <a href="https://grancapital.fund/" class="font-weight-bold" target="_blank">Grand
+                            <a href="https://libertadenautomatico.com/" class="font-weight-bold" target="_blank">Grand
                                 Capital - admin site</a>
                             for a better web.
                         </div>

@@ -223,7 +223,7 @@ function createTransaction(string $email = null,array $data = null)
             'item_name' => 'Fondos en Libertad en Automático',
             'item_number' => (string)$data['transaction_requirement_per_user_id'],
             'address' => '', // leave blank send to follow your settings on the Coin Settings page
-            'ipn_url' => 'https://grancapital.fund/ipn_handler.php',
+            'ipn_url' => 'https://libertadenautomatico.com/ipn_handler.php',
         ];
         // See https://www.coinpayments.net/apidoc-create-transaction for all of the available fields
                 

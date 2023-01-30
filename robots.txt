@@ -6,4 +6,4 @@ Disallow: /apps/admin
 User-agent: *
 Allow: /
 
-Sitemap: https://grancapital.fund/sitemap.xml
+Sitemap: https://libertadenautomatico.com//sitemap.xml

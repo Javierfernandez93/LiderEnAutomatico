@@ -328,7 +328,7 @@
                             document.write(new Date().getFullYear())
                             </script>,
                             made with <i class="fa fa-heart"></i> by
-                            <a href="https://grancapital.fund/" class="font-weight-bold" target="_blank">Libertad en Automático</a>
+                            <a href="https://libertadenautomatico.com/" class="font-weight-bold" target="_blank">Libertad en Automático</a>
                             for a better web.
                         </div>
                     </div>
