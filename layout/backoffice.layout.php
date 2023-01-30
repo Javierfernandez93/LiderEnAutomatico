@@ -54,7 +54,7 @@
                             <span class="nav-link-text ms-1"><?php echo JFStudio\Router::getName(JFStudio\Router::Referrals);?></span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item d-none">
                         <a class="nav-link <?php if($route == JFStudio\Router::Range){?>active<?php } ?>" href="../../apps/backoffice/range">
                             <i class="bi bi-bookmark-star-fill"></i>
                             <span class="nav-link-text ms-1"><?php echo JFStudio\Router::getName(JFStudio\Router::Range);?></span>

@@ -29,7 +29,7 @@
                         <span 
                             v-if="user.plan"
                             class="badge bg-primary">
-                            Activo en PLAN {{user.plan.name}}
+                            Usuario Activo
                         </span>
                         <span v-else
                             class="badge bg-secondary">
