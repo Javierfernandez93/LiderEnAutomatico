@@ -16,25 +16,25 @@ if($UserSupport->_loaded === true)
         {
             if($user_login_id = $UserLogin->doSignup($data['user']))
             {
-                if(sendEmailUser($data['user']['email'],$data['user']['names']))
-                {
-                    $data['email_sent'] = true;
-                }
+                // if(sendEmailUser($data['user']['email'],$data['user']['names']))
+                // {
+                //     $data['email_sent'] = true;
+                // }
 
-                if(sendPushUser($user_login_id,$data['user']['names']))
-                {
-                    $data['push_sent'] = true;
-                }
+                // if(sendPushUser($user_login_id,$data['user']['names']))
+                // {
+                //     $data['push_sent'] = true;
+                // }
 
-                if(sendEmailSponsor($data['user']['referral']['user_login_id'],$data['user']['names']))
-                {
-                    $data['email_sponsor_sent'] = true;
-                }
+                // if(sendEmailSponsor($data['user']['referral']['user_login_id'],$data['user']['names']))
+                // {
+                //     $data['email_sponsor_sent'] = true;
+                // }
 
-                if(sendPushSponsor($data['user']['referral']['user_login_id'],$data['user']['names']))
-                {
-                    $data['push_sponsor_sent'] = true;
-                }
+                // if(sendPushSponsor($data['user']['referral']['user_login_id'],$data['user']['names']))
+                // {
+                //     $data['push_sponsor_sent'] = true;
+                // }
 
                 if(GranCapital\UserPlan::attachFirstPlan($user_login_id,GranCapital\UserPlan::FIRST_PLAN,GranCapital\UserPlan::FIRST_PLAN_AMOUNT))
                 {
