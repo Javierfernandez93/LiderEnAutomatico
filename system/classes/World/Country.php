@@ -129,6 +129,24 @@ class Country extends Orm {
 		return $this->connection()->rows($sql);
 	}
 
+	public function getCountryIdByPhoneCode(int $phone_code = null)
+	{
+		if(isset($phone_code) === true)
+		{
+			$sql = "SELECT 
+						{$this->tblName}.{$this->tblName}_id
+					FROM 
+						{$this->tblName}
+					WHERE
+						{$this->tblName}.phone_code LIKE '%{$phone_code}%'
+					";
+	
+			return $this->connection()->field($sql);
+		}
+
+		return false;
+	}
+
 	public function getAllByWeb(){
 		$sql = "SELECT 
 					{$this->tblName}.country as nicename,

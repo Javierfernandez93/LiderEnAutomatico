@@ -12,7 +12,8 @@
                             <div class="text-primary">Porcentaje de hoy {{percentaje.numberFormat(2)}}%</div>
                         </div>
                         <div class="col-auto text-end">
-                            <div><a href="../../apps/admin-users/add" type="button" class="btn btn-success btn-sm">Añadir usuario</a></div>
+                            <div><a href="../../apps/admin-users/add" type="button" class="btn btn-success px-3 shadow-none mb-1 btn-sm">Añadir usuario</a></div>
+                            <div><a href="../../apps/admin-users/import" type="button" class="btn btn-success px-3 shadow-none mb-1 btn-sm">Importar usuarios</a></div>
                             <div><span class="badge bg-secondary">Total de usuarios {{Object.keys(users).length}}</span></div>
                         </div>
                     </div>

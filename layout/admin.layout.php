@@ -51,13 +51,14 @@
                
                 <?php if($UserSupport->hasPermission('list_users')) { ?>
                     <li class="nav-item">
-                        <a class="nav-link <?php if(in_array($route,[JFStudio\Router::AdminUsers,JFStudio\Router::AdminDeposits,JFStudio\Router::AdminUserEdit,JFStudio\Router::AdminUserAdd,JFStudio\Router::AdmiActivation])){?>active<?php } ?>"
+                        <a class="nav-link <?php if(in_array($route,[JFStudio\Router::AdminUsers,JFStudio\Router::AdminDeposits,JFStudio\Router::AdminUserEdit,JFStudio\Router::AdminUserAdd,JFStudio\Router::AdmiActivation,JFStudio\Router::AdminImportUsers])){?>active<?php } ?>"
                             href="../../apps/admin-users">
                             <i class="bi bi-people-fill"></i>
                             <span class="nav-link-text ms-1"><?php echo JFStudio\Router::getName(JFStudio\Router::AdminUsers);?></span>
                         </a>
                     </li>
                 <?php } ?>
+                
                 <?php if($UserSupport->hasPermission('list_administrators')) { ?>
                     <li class="nav-item">
                         <a class="nav-link <?php if(in_array($route,[JFStudio\Router::AdminAdministrators,JFStudio\Router::AdminAdministratorsAdd,JFStudio\Router::AdminAdministratorsEdit])){?>active<?php } ?>" href="../../apps/admin-administrators">

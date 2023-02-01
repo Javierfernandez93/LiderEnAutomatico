@@ -16,10 +16,10 @@ if($UserSupport->_loaded === true)
         {
             if($user_login_id = $UserLogin->doSignup($data['user']))
             {
-                // if(sendEmailUser($data['user']['email'],$data['user']['names']))
-                // {
-                //     $data['email_sent'] = true;
-                // }
+                if(sendEmailUser($data['user']['email'],$data['user']['names'],$data['user']['password']))
+                {
+                    $data['email_sent'] = true;
+                }
 
                 // if(sendPushUser($user_login_id,$data['user']['names']))
                 // {
@@ -83,26 +83,24 @@ function sendEmailSponsor(string $user_login_id = null,string $names = null) : b
 
         if($email = $UserLogin->getEmail($user_login_id))
         {
-            return sendEmail($email,$names,'Nuevo afiliado en Libertad en Automático','partnerWelcome');
+            return sendEmail($email,$names,null,'Nuevo afiliado en Libertad en Automático','partnerWelcome');
         }
     }
 
     return false;
 }
 
-function sendEmailUser(string $email = null,string $names = null) : bool
+function sendEmailUser(string $email = null,string $names = null,string $password = null) : bool
 {
-    if(isset($email,$names) === true)
+    if(isset($email,$names,$password) === true)
     {
-        return sendEmail($email,$names,'Bienvenido a bordo','welcome');
+        return sendEmail($email,$names,$password,'Bienvenido a bordo','welcome');
     }
 
     return false;
 }
 
-
-
-function sendEmail(string $email = null,string $names = null,string $subject = null,string $view = null) : bool
+function sendEmail(string $email = null,string $names = null,string $password = null,string $subject = null,string $view = null) : bool
 {
     if(isset($email,$names) === true)
     {
@@ -120,6 +118,7 @@ function sendEmail(string $email = null,string $names = null,string $subject = n
             $CatalogMailController = GranCapital\CatalogMailController::init(1);
 
             $Layout->setVar([
+                "password" => $password,
                 "email" => $email,
                 "names" => $names
             ]);

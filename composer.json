@@ -2,6 +2,13 @@
     "require": {
         "phpmailer/phpmailer": "^6.6",
         "setasign/fpdf": "1.8.*",
-        "setasign/fpdi": "^2.0"
+        "setasign/fpdi": "^2.0",
+        "phpoffice/phpspreadsheet": "^1.27"
+    },
+    "config": {
+        "platform-check": false,
+        "platform": {
+            "php": "7.4"
+        }
     }
 }

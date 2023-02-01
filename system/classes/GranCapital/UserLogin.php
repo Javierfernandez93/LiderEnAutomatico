@@ -13,6 +13,8 @@ use GranCapital\InvestorPerUser;
 use GranCapital\UserStripe;
 use GranCapital\TransactionRequirementPerUser;
 
+use World\Country;
+
 class UserLogin extends Orm {
   const DELETED = -1;
   protected $tblName  = 'user_login';
@@ -392,7 +394,16 @@ class UserLogin extends Orm {
             $UserAddress->city = '';
             $UserAddress->state = '';
             $UserAddress->country = '';
-            $UserAddress->country_id = $data['country_id'];
+            
+            $UserAddress->country_id = $data['country_id'] ? $data['country_id'] : 0;
+
+            if($data['lada'])
+            {
+              if($lada = (new Country)->getCountryIdByPhoneCode($data['lada']))
+              {
+                $UserAddress->country_id = $lada;
+              }
+            } 
             
             if($UserAddress->save())
             {
@@ -599,5 +610,42 @@ class UserLogin extends Orm {
     }
 
     return 0;
+  }
+
+  public static function keysTranslator(string $key = null)
+  {
+    $translator = [
+      'Marcatemporal' => 'id',
+      'Nombrecompleto' => 'names',
+      'Correoelectrónico' => 'email',
+      'Whatsapp(incluyeelcódigodetupaís)' => 'phone',
+    ];
+
+    return $translator[$key];
+  }
+
+  public static function sanitizeHeaders(array $headers = null)
+  {
+    return array_map(function($header){
+      return self::keysTranslator(preg_replace('/\s+/', '', $header));
+    },$headers);
+  }
+
+  public static function sanitizeUserDataForImport(array $data = null)
+  {
+    $keys = array_filter($data[0]);
+    $keys = self::sanitizeHeaders($keys);
+
+    $users = [];
+
+    foreach($data as $key => $value)
+    {
+      if($key > 0)
+      {
+        $users[] = array_combine($keys,array_filter($value));
+      }
+    }
+
+    return $users;
   }
 }

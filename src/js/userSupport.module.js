@@ -223,12 +223,18 @@ class UserSupport extends Http {
     updateTool(data,callback) {
         return this.call('./../../app/application/updateTool.php', data, callback);
     }
+    readFileData(data,callback) {
+        return this.call('./../../app/application/readFileData.php', data, callback);
+    }
     // callfile
     uploadImageProfile(data, progress, callback) {
         return this.callFile('../../app/application/upload_image_profile.php', data, callback, progress);
     }
     uploadToolFile(data, progress, callback) {
         return this.callFile('../../app/application/uploadToolFile.php', data, callback, progress);
+    }
+    uploadXLSFile(data, progress, callback) {
+        return this.callFile('../../app/application/uploadXLSFile.php', data, callback, progress);
     }
 }
 

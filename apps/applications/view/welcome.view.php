@@ -1,7 +1,7 @@
 <h3>Bienvenido a bordo</h3>
 
 <p>
-    Hola <b><?php echo $names; ?></b> recientemente te has registrado en nuestro sitio web Grand Capital. La contraseña que elegiste es <strong><?php echo $password;?></strong>.
+    Hola <b><?php echo $names; ?></b> recientemente te has registrado en nuestro sitio web Libertad en Automático. La contraseña que elegiste es <strong><?php echo $password;?></strong>.
 </p>
 
 <p>

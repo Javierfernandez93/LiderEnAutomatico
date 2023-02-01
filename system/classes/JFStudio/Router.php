@@ -53,6 +53,7 @@ class Router {
     const AdminToolsAdd = 43;
     const AdminToolsEdit = 44;
     const AdminTools = 45;
+    const AdminImportUsers = 46;
 
     static function getName(int $route = null)
     {
@@ -150,6 +151,8 @@ class Router {
                 return 'Herramientas';
             case self::AdminToolsEdit:
                 return 'Herramientas';
+            case self::AdminImportUsers:
+                return 'Importar usuarios';
             case self::FxWinning:
                 return 'FxWinning';
             case self::AdminTools:
