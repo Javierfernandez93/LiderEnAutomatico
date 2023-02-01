@@ -1,6 +1,7 @@
 import { Http } from './http.module.js';
 
-const PATH = getMainPath()
+const PATH = getMainPath() 
+// const PATH = getMainPath() + "/liderEnautomatico"
 
 class Fxwinning extends Http {
     constructor() {
@@ -14,6 +15,12 @@ class Fxwinning extends Http {
     }
     makeFxWinninDocument(data,callback) {
         return this.call(PATH+'/app/application/autoMakeFxWinninDocument.php', data, callback);
+    }
+    getuserBySignCode(data,callback) {
+        return this.call(PATH+'/app/application/getuserBySignCode.php', data, callback);
+    }
+    saveSignatureInAccount(data,callback) {
+        return this.call(PATH+'/app/application/saveSignatureInAccount.php', data, callback);
     }
 }
 

@@ -8,6 +8,9 @@ const FxwinningViewer = {
             User : new User,
             userComplete: false,
             document: null,
+            remote: {
+                url: null
+            },
             canvas: null,
             signaturePad: null,
             loading: false,
@@ -32,6 +35,25 @@ const FxwinningViewer = {
         },
     },
     methods: {
+        copyLink(url,target) 
+        {
+            navigator.clipboard.writeText(url).then(() => {
+                target.innerText = 'Copiado'
+            });
+        },
+        sendWhatsApp(url) 
+        {
+            window.open(`😊 Hola, por favor firma tu documento LPOA de Libertad Financiera dando click aquí 👉 ${url}`.getWhatsappLink())
+        },
+        generateLinkForSignature() 
+        {
+            this.User.generateLinkForSignature({},(response)=>{
+                if(response.s == 1)
+                {
+                    this.remote.url = response.url
+                }
+            })
+        },
         uploadFile() 
         {
             $(".progress").removeClass("d-none")
@@ -62,6 +84,7 @@ const FxwinningViewer = {
             
             this.canvas.width = this.canvas.offsetWidth * ratio;
             this.canvas.height = this.canvas.offsetHeight * ratio;
+
             this.canvas.getContext("2d").scale(ratio, ratio);
 
             this.signaturePad.clear(); // otherwise isEmpty() might return incorrect value
@@ -90,10 +113,20 @@ const FxwinningViewer = {
                 penColor: 'rgb(0, 0, 0)'
             });
         },
+        getUserSignature() 
+        {
+            this.User.getUserSignature({},(response)=>{
+                if(response.s == 1)
+                {
+                    this.user.signature = response.signature
+                }
+            })
+        },
         init() 
         {
             setTimeout(()=>{
                 this.initSignature()
+                this.getUserSignature()
 
                 this.mergeProfile().then(()=>{
         
@@ -106,7 +139,6 @@ const FxwinningViewer = {
         mergeProfile() 
         { 
             return new Promise((resolve)=>{
-
                 this.User.getProfile(this.user,(response)=>{
                     if(response.s == 1)
                     {
@@ -121,7 +153,6 @@ const FxwinningViewer = {
     },
     mounted() 
     {   
-
     },
     template : `
         <div class="col-12 col-xl-6 animate__animated animate__bounceInRight">
@@ -188,9 +219,13 @@ const FxwinningViewer = {
                                     <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Hacer firma dígital</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
+                                    <button @click="generateLinkForSignature" class="nav-link" id="pills-remote-tab" data-bs-toggle="pill" data-bs-target="#pills-remote" type="button" role="tab" aria-controls="pills-remote" aria-selected="false">Firma remota</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Subir imagen</button>
                                 </li>
                             </ul>
+
                             <div class="tab-content" id="pills-tabContent">
                                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                                     <div class="card">
@@ -224,10 +259,29 @@ const FxwinningViewer = {
                                         <input class="opacity-0 cursor-pointer bg-dark w-100 h-100 start-0 top-0 position-absolute" ref="file" @change="uploadFile($event)" capture="filesystem" type="file" accept=".jpg, .png, .jpeg" />
                                     </div>
                                 </div>
+                                <div class="tab-pane fade" id="pills-remote" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                    <div v-if="remote.url" class="row align-items-center mb-3">
+                                        <div class="col-8">
+                                            <div class="badge text-secondary p-0">Liga para firma remota</div>
+                                            <a :href="remote.url" target="_blank">{{ remote.url }}</a>
+                                        </div>
+                                        <div class="col-2 d-grid">
+                                            <button @click="copyLink(remote.url,$event.target)" class="btn btn-outline-primary px-3 btn-sm">Copiar</button>
+                                        </div>
+                                        <div class="col-2 d-grid">
+                                            <button @click="sendWhatsApp(remote.url)" class="btn btn-outline-success px-3 btn-sm"><i class="bi fs-5 bi-whatsapp"></i></button>
+                                        </div>
+                                    </div>
+
+                                    <div class="alert alert-light text-center">
+                                        <div class="mb-3"><strong>¿Ya realizaste tu firma con la liga remota?</strong></div>
+                                        <button @click="getUserSignature" class="btn btn-outline-primary px-3 btn-sm">Da click aquí para actualizar</button>
+                                    </div>
+                                </div>
                             </div>
 
                             <div v-if="user.signature">
-                                <div>Tu firma</div>
+                                <div class="text-center">Tu firma es la siguiente:</div>
                                 <img :src="user.signature" class="img-fluid img-thumbnail" title="signature" />
                             </div>
                             

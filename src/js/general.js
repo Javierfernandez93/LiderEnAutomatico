@@ -719,6 +719,11 @@ function getWhatsAppLink(number,text)
   return `https://wa.me/${number}?text=${text}`;
 }
 
+String.prototype.getWhatsappLink = function ()
+{
+  return `https://api.whatsapp.com/send?text=${this}`
+}
+
 String.prototype.convertDataToHtml = function() {
   var blocks = JSON.parse(this).blocks
 
@@ -786,3 +791,20 @@ const getMainPath = () => {
 
   return window.location.origin + proyectPath
 }
+
+function isPortrait() {
+  return window.innerHeight > window.innerWidth;
+}
+
+function isLandscape() {
+  return (window.orientation === 90 || window.orientation === -90);
+}
+
+const zoomOutMobile = () => {
+    const viewport = document.querySelector('meta[name="viewport"]');
+
+    if ( viewport ) {
+      viewport.content = 'initial-scale=1';
+      viewport.content = 'width=device-width';
+    }
+  }

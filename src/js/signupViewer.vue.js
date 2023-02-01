@@ -1,4 +1,4 @@
-import { User } from '../../src/js/user.module.js?t=4.1.2'   
+import { User } from '../../src/js/user.module.js?t=4.1.3'   
 
 const SignupViewer = {
     name : 'signup-viewer',
@@ -128,7 +128,7 @@ const SignupViewer = {
         <div class="col-12 col-xl-6 animate__animated animate__bounceInLeft">
             <div class="row justify-content-center text-center">
                 <div class="col-11 col-xl-7">
-                    <div class="card text-start shadow p-3">
+                    <div class="card text-start shadow-none p-3">
                         <div class="card-header pb-0 text-left bg-transparent">
                             <h3 class="font-weight-bolder text-info text-gradient">Bienvenido a Libertad en Automático</h3>
                             <p class="mb-0">Ingresa tus datos para unirte</p>

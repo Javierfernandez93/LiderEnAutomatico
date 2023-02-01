@@ -121,6 +121,12 @@ class User extends Http {
     getAllTransactionsRequirement(data, callback) {
         return this.call('../../app/application/getAllTransactionsRequirement.php', data, callback);
     }
+    getUserSignature(data, callback) {
+        return this.call('../../app/application/getUserSignature.php', data, callback);
+    }
+    generateLinkForSignature(data, callback) {
+        return this.call('../../app/application/generateLinkForSignature.php', data, callback);
+    }
     getTransactionAmmount(data, callback) {
         return this.call('../../app/application/getTransactionAmmount.php', data, callback);
     }

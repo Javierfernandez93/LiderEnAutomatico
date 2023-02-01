@@ -298,6 +298,10 @@ class UserLogin extends Orm {
     return false;
   }
 
+  public function getPid() {
+    return $this->session->get('pid');
+  }
+  
   public function setPid() {
     $pid = $this->createPid();
     $this->session->set('pid',$pid);
@@ -476,6 +480,12 @@ class UserLogin extends Orm {
 
   function checkRedirection()
   {
+    $redir = Util::getVarFromPGS('redir');
+
+    if($redir)
+    {
+      Util::redirectTo($redir);
+    }
     // @todo
   }
 

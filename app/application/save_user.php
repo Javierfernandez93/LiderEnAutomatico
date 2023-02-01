@@ -16,10 +16,10 @@ if($UserSupport->_loaded === true)
         {
             if($user_login_id = $UserLogin->doSignup($data['user']))
             {
-                if(sendEmailUser($data['user']['email'],$data['user']['names'],$data['user']['password']))
-                {
-                    $data['email_sent'] = true;
-                }
+                // if(sendEmailUser($data['user']['email'],$data['user']['names'],$data['user']['password']))
+                // {
+                //     $data['email_sent'] = true;
+                // }
 
                 // if(sendPushUser($user_login_id,$data['user']['names']))
                 // {

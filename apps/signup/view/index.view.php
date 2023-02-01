@@ -1,4 +1,4 @@
-<div class="row d-flex justify-content-center align-items-center py-5" id="app">
+<div class="row d-flex justify-content-center align-items-center py-5 vh-100" id="app">
     
     <signup-viewer v-if="step == 1" @setstep="setStep"></signup-viewer>
     

@@ -2,7 +2,7 @@ import { FxwinningViewer } from '../../src/js/fxwinningViewer.vue.js?t=4'
 
 Vue.createApp({
     components : { 
-         FxwinningViewer
+        FxwinningViewer
     },
     data() {
         return {

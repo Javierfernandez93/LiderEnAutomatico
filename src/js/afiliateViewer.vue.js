@@ -1,4 +1,4 @@
-import { User } from '../../src/js/user.module.js?t=4.1.2'   
+import { User } from '../../src/js/user.module.js?t=4.1.3'   
 
 const AfiliateViewer = {
     name : 'afiliate-viewer',

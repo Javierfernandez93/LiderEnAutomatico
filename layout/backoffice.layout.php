@@ -31,7 +31,7 @@
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
             <a class="navbar-brand m-0" href=""
                 target="_blank">
-                <img src="../../src/img/logo.png?t=4.1.2" class="navbar-brand-" alt="main_logo">
+                <img src="../../src/img/logo.png?t=4.1.3" class="navbar-brand-" alt="main_logo">
             </a>
         </div>
         <hr class="horizontal dark mt-0">
@@ -352,7 +352,7 @@
     <script src="../../src/js/42d5adcbca.js" type="text/javascript"></script>
     <script src="../../src/js/jquery-3.1.1.js" type="text/javascript"></script>
     <script src="../../src/js/alertCtrl.js?t=1" type="text/javascript"></script>
-    <script src="../../src/js/general.js?t=4.1.2" type="text/javascript"></script>
+    <script src="../../src/js/general.js?t=4.1.3" type="text/javascript"></script>
 
     <script>
     var win = navigator.platform.indexOf('Win') > -1;

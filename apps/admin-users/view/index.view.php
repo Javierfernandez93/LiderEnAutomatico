@@ -177,7 +177,7 @@
                                     </td>
                                     <td class="align-middle text-center text-sm">
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button type="button" class="btn btn-primary px-3 mb-0 shadow-none btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 
                                             </button>
                                             <ul class="dropdown-menu shadow">
@@ -192,6 +192,9 @@
                                                 <?php } ?>
                                                 <?php if($UserSupport->hasPermission('backoffice_access')) { ?>
                                                     <li><button class="dropdown-item" @click="getInBackoffice(user.user_login_id)">Acceder a backoffice</button></li>
+                                                <?php } ?>
+                                                <?php if($UserSupport->hasPermission('backoffice_access')) { ?>
+                                                    <li><button class="dropdown-item" @click="getInBackofficeToEditLPOA(user.user_login_id)">Editar LPOA</button></li>
                                                 <?php } ?>
                                                 <?php if($UserSupport->hasPermission('delete_user')) { ?>
                                                     <li>
