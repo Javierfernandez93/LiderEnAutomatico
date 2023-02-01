@@ -1,4 +1,4 @@
-import { UserSupport } from './userSupport.module.js'   
+import { UserSupport } from './userSupport.module.js?t=1.0.1'   
 
 const StatsViewer = {
     name : 'stats-viewer',
