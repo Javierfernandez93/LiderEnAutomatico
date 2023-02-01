@@ -1,4 +1,5 @@
 import { User } from '../../src/js/user.module.js?t=4'   
+import { debounce } from './util.module.js?t=4'
 
 const FxwinningViewer = {
     name : 'fxwinning-viewer',
@@ -30,6 +31,8 @@ const FxwinningViewer = {
         user : {
             handler() {
               this.userComplete = this.user.id_number != null && this.user.address != null && this.user.investor.number != null && this.user.signature != null
+
+              this.saveUserDataTemporally()
             },
             deep: true
         },
@@ -76,6 +79,15 @@ const FxwinningViewer = {
               if(response.s == 1)
               {
                 this.document = response.path
+              }
+            });
+        },
+        saveUserDataTemporally() 
+        { 
+            this.User.saveUserDataTemporally(this.user,(response)=>{
+              if(response.s == 1)
+              {
+                
               }
             });
         },

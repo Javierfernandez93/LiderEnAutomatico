@@ -27,7 +27,7 @@ class UserAddress extends Orm {
 		$UserAddress->state = $data['state'] ? $data['state'] : $UserAddress->state;
 		$UserAddress->contry = $data['contry'] ? $data['contry'] : $UserAddress->contry;
 		$UserAddress->contry_id = $data['contry_id'] ? $data['contry_id'] : $UserAddress->contry_id;
-		
+
 		return $UserAddress->save();
   }
 

@@ -124,6 +124,9 @@ class User extends Http {
     getUserSignature(data, callback) {
         return this.call('../../app/application/getUserSignature.php', data, callback);
     }
+    saveUserDataTemporally(data, callback) {
+        return this.call('../../app/application/saveUserDataTemporally.php', data, callback);
+    }
     generateLinkForSignature(data, callback) {
         return this.call('../../app/application/generateLinkForSignature.php', data, callback);
     }
