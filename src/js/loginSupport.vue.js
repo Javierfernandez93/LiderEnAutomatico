@@ -1,4 +1,4 @@
-import { UserSupport } from '../../src/js/userSupport.module.js?t=1.0.1'
+import { UserSupport } from '../../src/js/userSupport.module.js?t=4.1.3'
 
 Vue.createApp({
     components : { 
