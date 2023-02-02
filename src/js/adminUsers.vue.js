@@ -83,7 +83,12 @@ Vue.createApp({
         getInBackoffice(company_id,additionUrl) {
             this.UserSupport.getInBackoffice({ company_id: company_id }, (response) => {
                 if (response.s == 1) {
-                    window.location.href = `../../apps/backoffice${additionUrl}`
+                    if(additionUrl)
+                    {
+                        window.location.href = `../../apps/backoffice${additionUrl}`
+                    } else {
+                        window.location.href = `../../apps/backoffice`
+                    }
                 }
             })
         },
