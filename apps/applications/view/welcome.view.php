@@ -5,7 +5,7 @@
 </p>
 
 <p>
-    Te queremos dar la más calurosas de las bienvenidas y decirte que ahora eres parte de nosotros.
+    Te queremos dar la más calurosas de las bienvenidas y decirte que ahora eres parte de nosotros. Accede a tu oficina virtual en <a href="https://libertadenautomatico.com/apps/login/">https://libertadenautomatico.com/apps/login/</a>
 </p>
 
 <p>
