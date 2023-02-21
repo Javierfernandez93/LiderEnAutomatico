@@ -1,4 +1,4 @@
-import { AutofxwinningViewer } from './autofxwinningViewer.vue.js?t=4.1.3'
+import { AutofxwinningViewer } from './autofxwinningViewer.vue.js?t=5.1.3'
 
 Vue.createApp({
     components : { 

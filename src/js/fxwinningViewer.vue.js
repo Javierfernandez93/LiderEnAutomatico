@@ -1,5 +1,5 @@
-import { User } from '../../src/js/user.module.js?t=4'   
-import { debounce } from './util.module.js?t=4'
+import { User } from '../../src/js/user.module.js?t=5'   
+import { debounce } from './util.module.js?t=5'
 
 const FxwinningViewer = {
     name : 'fxwinning-viewer',
@@ -205,7 +205,7 @@ const FxwinningViewer = {
                                 </div>
                                 
                                 <div class="col-12 col-xl-6 mb-3 mb-xl-0">
-                                    <label>* Account Number (MI5):</label>
+                                    <label>* No. de broker Fxwinning (No. Metatrader 5):</label>
                                     <div class="mb-3">
                                         <input 
                                             :class="user.investor.number ? 'is-valid' : ''"

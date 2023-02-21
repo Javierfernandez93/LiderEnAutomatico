@@ -1,4 +1,4 @@
-import { Fxwinning } from './fxwinning.module.js?t=4'   
+import { Fxwinning } from './fxwinning.module.js?t=5'   
 
 const FxwinningsignViewer = {
     name : 'fxwinningsign-viewer',

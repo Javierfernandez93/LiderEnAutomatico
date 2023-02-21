@@ -1,5 +1,5 @@
-import { SignupViewer } from '../../src/js/signupViewer.vue.js?t=4'
-import { FxwinningViewer } from '../../src/js/fxwinningViewer.vue.js?t=4'
+import { SignupViewer } from '../../src/js/signupViewer.vue.js?t=5'
+import { FxwinningViewer } from '../../src/js/fxwinningViewer.vue.js?t=5'
 
 Vue.createApp({
     components : { 

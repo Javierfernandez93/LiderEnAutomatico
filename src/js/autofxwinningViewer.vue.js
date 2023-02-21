@@ -1,4 +1,4 @@
-import { Fxwinning } from './fxwinning.module.js?t=4'   
+import { Fxwinning } from './fxwinning.module.js?t=5'   
 
 const AutofxwinningViewer = {
     name : 'autofxwinning-viewer',
@@ -144,7 +144,7 @@ const AutofxwinningViewer = {
                                 </div>
                                 
                                 <div class="col-12 col-xl-6 mb-3 mb-xl-0">
-                                    <label>* Account Number (MI5):</label>
+                                    <label>* No. de broker Fxwinning (No. Metatrader 5):</label>
                                     <div class="mb-3">
                                         <input 
                                             :class="user.investor.number ? 'is-valid' : ''"

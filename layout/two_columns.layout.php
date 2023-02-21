@@ -32,7 +32,7 @@
         %content%
         
         <script src="../../src/js/jquery-3.1.1.js" type="text/javascript"></script>
-        <script src="../../src/js/general.js?t=4.1.3" type="text/javascript"></script>
+        <script src="../../src/js/general.js?t=5.1.3" type="text/javascript"></script>
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         <script src="https://unpkg.com/vue@3"></script>

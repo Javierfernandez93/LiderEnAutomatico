@@ -1,7 +1,7 @@
-import { User } from '../../src/js/user.module.js?t=4'
+import { User } from '../../src/js/user.module.js?t=5'
 
 /* vue */ 
-import { ToolsViewer } from '../../src/js/toolsViewer.vue.js?t=4.1.3'
+import { ToolsViewer } from '../../src/js/toolsViewer.vue.js?t=5.1.3'
 
 Vue.createApp({
     components : { 
