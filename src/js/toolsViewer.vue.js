@@ -1,9 +1,7 @@
-import { User } from '../../src/js/user.module.js?t=5.1.3'   
+import { User } from '../../src/js/user.module.js?t=5.1.4'   
 
 const ToolsViewer = {
     name : 'tools-viewer',
-    props : [],
-    emits : [],
     data() {
         return {
             User : new User,
@@ -81,7 +79,7 @@ const ToolsViewer = {
                         </div>
                     </div>
 
-                    <div>
+                    <div v-if="tool.route">
                         <a class="btn btn-primary btn-lg rounded-0 w-50 m-0" :href="tool.route" download>Descargar</a>
                         <a class="btn btn-primary btn-lg rounded-0 w-50 m-0" :href="tool.route">Visualizar</a>
                     </div>

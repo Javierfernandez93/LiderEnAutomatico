@@ -1,4 +1,4 @@
-import { UserSupport } from '../../src/js/userSupport.module.js?t=5.1.3'
+import { UserSupport } from '../../src/js/userSupport.module.js?t=5.1.4'
 
 Vue.createApp({
     components : {
@@ -27,7 +27,7 @@ Vue.createApp({
         tool : 
         {
             handler() {
-                this.toolComplete = this.tool.title !== null && this.tool.route !== null
+                this.toolComplete = this.tool.title !== null 
             },
             deep : true
         },

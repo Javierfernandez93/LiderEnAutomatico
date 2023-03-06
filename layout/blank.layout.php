@@ -34,7 +34,7 @@
     <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/42d5adcbca.js" type="text/javascript"></script>
     <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/jquery-3.1.1.js" type="text/javascript"></script>
     <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/alertCtrl.js?t=1" type="text/javascript"></script>
-    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/general.js?t=5.1.3" type="text/javascript"></script>
+    <script src="<?php echo HCStudio\Connection::getMainPath();?>/src/js/general.js?t=5.1.4" type="text/javascript"></script>
 
     <script>
     var win = navigator.platform.indexOf('Win') > -1;

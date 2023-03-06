@@ -1,4 +1,4 @@
-import { UserSupport } from '../../src/js/userSupport.module.js?t=5.1.3'
+import { UserSupport } from '../../src/js/userSupport.module.js?t=5.1.4'
 
 /* vue */
 import { StatsViewer } from '../../src/js/statsViewer.vue.js'
