@@ -97,17 +97,30 @@ function createFXWinningDocument(array $data = null,int $user_login_id = null)
     importPage($pdf,9);
     importPage($pdf,10);
 
-    $fullNameEndCords = GranCapital\FXWinning::getCoords('fullNameEnd');
-    $pdf->SetXY($fullNameEndCords['x'], $fullNameEndCords['y']);
-    $pdf->Write(0, $data['names']);
+    if($lpoa != 2)
+    {
+        $fullNameEndCords = GranCapital\FXWinning::getCoords('fullNameEnd');
+        $pdf->SetXY($fullNameEndCords['x'], $fullNameEndCords['y']);
+        $pdf->Write(0, $data['names']);
+        
+        $birthdayCords = GranCapital\FXWinning::getCoords('birthday');
+        $pdf->SetXY($birthdayCords['x'], $birthdayCords['y']);
+        $pdf->Write(0, date("Y-m-d"));
     
-    $birthdayCords = GranCapital\FXWinning::getCoords('birthday');
-    $pdf->SetXY($birthdayCords['x'], $birthdayCords['y']);
-    $pdf->Write(0, date("Y-m-d"));
-
-    $signatureCords = GranCapital\FXWinning::getCoords('signature');
-    // $pdf->SetXY($signatureCords['x'], $signatureCords['y']);
-    $pdf->Image($data['signature'], $signatureCords['x'], $signatureCords['y'], 40);
+        $signatureCords = GranCapital\FXWinning::getCoords('signature');
+        $pdf->Image($data['signature'], $signatureCords['x'], $signatureCords['y'], 40);
+    } else {
+        $fullNameEndCords = GranCapital\FXWinning::getCoords('fullNameEndSpecial');
+        $pdf->SetXY($fullNameEndCords['x'], $fullNameEndCords['y']);
+        $pdf->Write(0, $data['names']);
+        
+        $birthdayCords = GranCapital\FXWinning::getCoords('birthdaySpecial');
+        $pdf->SetXY($birthdayCords['x'], $birthdayCords['y']);
+        $pdf->Write(0, date("Y-m-d"));
+    
+        $signatureCords = GranCapital\FXWinning::getCoords('signatureSpecial');
+        $pdf->Image($data['signature'], $signatureCords['x'], $signatureCords['y'], 40);
+    }
 
     // d(1);
     $path = GranCapital\FXWinning::getSourceTemplateOutput(TO_ROOT,$user_login_id);

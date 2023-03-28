@@ -44,6 +44,18 @@ class FXWinning
             'x' => 65,
             'y' => 57,
         ],
+        'fullNameEndSpecial' => [
+            'x' => 55,
+            'y' => 28+48,
+        ],
+        'birthdaySpecial' => [
+            'x' => 45,
+            'y' => 52+48,
+        ],
+        'signatureSpecial' => [
+            'x' => 65,
+            'y' => 57+48,
+        ],
     ];
 
     public static function getCoords(string $key = null) : array
