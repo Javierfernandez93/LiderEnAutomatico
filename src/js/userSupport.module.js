@@ -19,6 +19,9 @@ class UserSupport extends Http {
     updatePlan(data, callback) {
         return this.call('../../app/application/update_plan.php', data, callback);
     }
+    searchTXIDCoinpayments(data, callback) {
+        return this.call('../../app/application/searchTXIDCoinpayments.php', data, callback);
+    }
     addDeposit(data, callback) {
         return this.call('../../app/application/add_deposit.php', data, callback);
     }
