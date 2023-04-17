@@ -197,7 +197,7 @@ class Layout
 		else $__content = $this->replaceView("js_scripts","",$__content);
 
 		# replacing css scripts
-		if($this->_css_scripts)
+		if($this->_css_scripts ?? false)
 			$__content = $this->replaceView("css_scripts",$this->_css_scripts,$__content);
 		else $__content = $this->replaceView("css_scripts","",$__content );
 
@@ -338,7 +338,7 @@ class Layout
 				}
 			}
 
-			if( $this->_css_scripts )
+			if( $this->_css_scripts ?? false)
 				$this->_css_scripts = $this->setCssScripts();
 
 			if( $this->_js_scripts )
