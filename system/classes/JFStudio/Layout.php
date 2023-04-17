@@ -244,9 +244,12 @@ class Layout
 	# function:: add new module
 	# INPUT  = (String)$module_name = Module name
 	# OUTPUT = true or 1
-	public function setModule(string $name)
+	public function setModule(string $name = null)
 	{
-		if($name && !$this->modules["%{$name}%"]) $this->modules[] = "%{$name}%";
+		if(isset($name) === true) 
+		{
+			if($name && !$this->modules["%{$name}%"]) $this->modules[] = "%{$name}%";
+		}
 
 		return true;
 	}
